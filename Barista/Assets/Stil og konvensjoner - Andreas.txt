@@ -1,0 +1,56 @@
+Dette dokumentet er ment for å gjøre det enklere å forstå og tolke min kode, og mine valg i forhold til hvordan jeg skriver den.
+Om dere ønsker at vi standariserer noe, eller at vi burde bruke noe annet enn det som er beskrevet her, så si gjerne i fra om det.
+
+Jeg følger hovedsakelig de standarde microsoft konvensjonene for C# kode fra https://docs.microsoft.com/en-us/dotnet/csharp/fundamentals/coding-style/coding-conventions
+
+For å oppsummere dette kort og lett:
+
+Klasser, funksjoner og andre datastrukturnavn bruker PascalCase.
+Public variabler og properties bruker også PascalCase.
+Private og interne variabler bruker _camelCase med "_"-prefiks.
+Variabler i lokalt scope, som i en funksjon, bruker camelCase.
+Interfacer bruker ICamelCase med kapitalisert "I" som prefiks.
+
+---------------------------------------------------------------
+
+Bruk helst engelsk i kode, variabler og kode-kommentarer slik at vi kan holde oss til ett språk, 
+og mange innebygde funksjoner er allerede på engelsk. Jeg skriver også generelt git-commit beskrivelser
+på engelsk av samme grunn, siden en ofte må bruke engelsk terminologi der.
+
+
+Jeg putter vanligvis brakker på en ny linje, i stedet for den samme:
+
+private void Eksempel
+{
+
+}
+
+
+All kode til prosjektet burde være i samme NameSpace, som for eksempel:
+
+namespace Funksoft.Barista
+{
+	public class Coffeemachine
+	{
+
+	}
+}
+
+
+Om en kodeblokk kun har en linje, pleier jeg å unngå brakkebruk for lesbarhetens skyld:
+
+if (isThisTrue)
+	return true;
+
+
+Jeg bruker vanligvis Func<> og Action<> når jeg bruker events, i stedet for å definere egne delegater, eller bruke EventHandler<>.
+
+
+Jeg bruker også alltid [SerializeField] når jeg spesifikt ønsker at en variabel skal serialiseres for bruk i unity inspektøren,
+selv på public variabler som vises til vanlig. 
+Jeg bruker dermed også aldri public til å vise det som ellers burde vært en privat variabel i inspektøren.
+
+
+Scriptable Object data objekter som lagres som prosjekt-asset kan en lage nye av ved å høyreklikke i prosjektvinduet i Unity
+og deretter Create -> DataObjects -> (Navn på DataObjekt type). Jeg bruker vanligvis slike data objekter som en database for
+informasjon som er forhåndsbestemt og ikke genereres "at runtime".

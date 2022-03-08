@@ -1,0 +1,23 @@
+MainIngredient - The core ingredients that define what drink the mixture is. (ex: Coffee, Tea, Milk, Water(?))
+ExtraIngredient - Additional ingredients that dont change the drink recipe outcome, but can be requested by the customer. (ex: Chocolate Flakes, Caramel Syrup, Whipped Cream)
+
+DrinkRecipe (A premade recipe to define what a particular drink is and consists of):
+	Contains up to 3 main ingredients. Duplicates allowed.
+	Color/visual display in cup and/or UI.
+	Outputs corresponding recipe.
+
+CustomerOrder (The request and relevant information of what the customer wants):
+	Contains 1 DrinkRecipe.
+	Contains time value (N number of seconds until customer leaves and order is failed).
+	Contains HashSet of random extra ingredients (ex: Chocolate flakes on their cappucino). Duplicates disallowed.
+
+DrinkMixture (The drink being constructed by the player before its served):
+	3 MainIngredient Slots. Duplicates allowed. Gets matched to a recipe.
+	HashSet of ExtraIngredients. Duplicates disallowed. Gets matched to extra ingredients in the customer order.
+	(If a fluid simulationor percentage system is put in place, that data will be converted to this datastructure when the drink is served)
+
+Customer(?):
+	Contains 1 randomly generated customer order.
+	Contains basic dialogue passages(?).
+	Contains visuals for display in counter window.
+
