@@ -6,6 +6,7 @@ namespace Funksoft.Barista
 {
     public class Drink : MonoBehaviour
     {
+        [SerializeField]
         private DrinkMixture _drinkMixture = new DrinkMixture();
 
         private void AddMainIngredient(MainIngredientData ingredient)

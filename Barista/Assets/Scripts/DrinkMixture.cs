@@ -4,8 +4,10 @@ using UnityEngine;
 
 namespace Funksoft.Barista
 {
+    [System.Serializable]
     public class DrinkMixture
     {
+        [field: SerializeField]
         public List<MainIngredientData> MainIngredients
         {
             get;
