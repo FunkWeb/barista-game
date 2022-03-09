@@ -17,5 +17,7 @@ namespace Funksoft.Barista
             get;
             private set;
         }
+
+        public int MaxMainIngredients = 3;
     }
 }

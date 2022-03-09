@@ -36,6 +36,8 @@ namespace Funksoft.Barista
 	}
 }
 
+Bruk av underliggende namespace-er så klart også greit (eksempel: Funksoft.Barista.UI).
+
 
 Om en kodeblokk kun har en linje, pleier jeg å unngå brakkebruk for lesbarhetens skyld:
 

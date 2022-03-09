@@ -61,7 +61,7 @@ namespace Funksoft.Barista
 
         private void Awake()
         {
-            
+            //Convert lists to hashsets on startup. Property setters will match serialized lists to hashset contents-
             DrinkRecipes = new HashSet<DrinkRecipeData>(_drinkRecipeList);
             MainIngredients = new HashSet<MainIngredientData>(_mainIngredientList);
             SideIngredients = new HashSet<SideIngredientData>(_sideIngredientList);
