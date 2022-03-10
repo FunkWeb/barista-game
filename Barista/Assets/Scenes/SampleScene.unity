@@ -303,8 +303,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _drinkMixture:
-    <MainIngredients>k__BackingField: []
     MaxMainIngredients: 3
+    <MainIngredients>k__BackingField: []
+    <SideIngredients>k__BackingField:
+      _items: []
 --- !u!4 &1132660446
 Transform:
   m_ObjectHideFlags: 0

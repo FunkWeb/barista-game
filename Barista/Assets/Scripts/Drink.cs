@@ -24,7 +24,7 @@ namespace Funksoft.Barista
         private void AddSideIngredient(SideIngredientData ingredient)
         {
             //Add if not already added.
-            if (_drinkMixture.SideIngredients.Add(ingredient))
+            if (_drinkMixture.SideIngredients.HashSet.Add(ingredient))
                 Debug.Log("Side ingredient " + ingredient.Name + " added to mixture.");
             else
                 Debug.Log("Side ingredient " + ingredient.Name + " is already in mixture.");
