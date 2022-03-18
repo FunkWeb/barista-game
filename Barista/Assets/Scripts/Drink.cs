@@ -9,7 +9,7 @@ namespace Funksoft.Barista
         [SerializeField]
         private DrinkMixture _drinkMixture = new DrinkMixture();
 
-        private void AddMainIngredient(MainIngredientData ingredient)
+        public void AddMainIngredient(MainIngredientData ingredient)
         {
             //Add if mainingredient list isnt full.
             if (_drinkMixture.MainIngredients.Count < _drinkMixture.MaxMainIngredients)
@@ -35,5 +35,7 @@ namespace Funksoft.Barista
             _drinkMixture = new DrinkMixture();
             Debug.Log("Drink cleared!");
         }
+
+        
     }
 }

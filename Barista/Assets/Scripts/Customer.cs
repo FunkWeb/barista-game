@@ -18,7 +18,7 @@ namespace Funksoft.Barista
         
         private float _timeRemaining;
 
-        public event Action<Customer> CustomerLeaves;
+        public event Action<Customer> CustomerLeaves; //Todo: Add bool second parameter for leaving statisfied or unstatisfied?
 
         private SpriteRenderer _spriteRenderer;
 
@@ -50,9 +50,7 @@ namespace Funksoft.Barista
         private void OutOfPatience()
         {
             if (CustomerLeaves != null)
-            {
                 CustomerLeaves(this);
-            }
                 
         }
 
