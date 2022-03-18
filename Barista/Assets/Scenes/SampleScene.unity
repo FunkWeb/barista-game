@@ -154,6 +154,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _database: {fileID: 11400000, guid: d474ff30e52965c46b5b84135b8561cc, type: 2}
   _customerPrefab: {fileID: 5663859507957798225, guid: 448a89e6dfd557c4482e142cd09a2863, type: 3}
+  _maxCustomerCount: 5
   _distanceBetweenCustomers: 3
 --- !u!4 &305992932
 Transform:

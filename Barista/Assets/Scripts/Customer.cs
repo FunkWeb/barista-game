@@ -11,16 +11,29 @@ namespace Funksoft.Barista
         [SerializeField]
         private DatabaseSO _database;
 
+        [SerializeField]
+        public CustomerData CustomerData;
+
         private Order _order;
         
         private float _timeRemaining;
 
         public event Action<Customer> CustomerLeaves;
 
+        private SpriteRenderer _spriteRenderer;
+
+        private void Awake()
+        {
+            TryGetComponent<SpriteRenderer>(out _spriteRenderer);
+        }
+
         private void Start()
         {
+            _timeRemaining = CustomerData.PatienceTimer;
+            _spriteRenderer.sprite = CustomerData.Sprite;
+            Debug.Log("Customer Type: " + CustomerData.name);
+            Debug.Log("Patience Time: " + CustomerData.PatienceTimer);
             CreateRandomOrder();
-            _timeRemaining = _order.PatienceTime;
         }
 
         private void Update()
@@ -57,11 +70,10 @@ namespace Funksoft.Barista
             }
             //Create order
             _order = new Order(recipe, sideIngredients, 5f);
-            Debug.Log(_order.Drink.Name);
-            Debug.Log(_order.PatienceTime);
+            Debug.Log("Order: " + _order.Drink.Name);
             foreach(SideIngredientData osi in _order.SideIngredients)
             {
-                Debug.Log(osi.Name);
+                Debug.Log("Topping wanted: " + osi.Name);
             }
                 
         }

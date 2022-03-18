@@ -16,5 +16,8 @@ namespace Funksoft.Barista
 
         [SerializeField]
         public SerializableHashSet<SideIngredientData> SideIngredients;
+
+        [SerializeField]
+        public SerializableHashSet<CustomerData> CustomerTypes;
     }
 }

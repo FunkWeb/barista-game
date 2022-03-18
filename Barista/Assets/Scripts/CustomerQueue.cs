@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
+using System.Linq;
 
 namespace Funksoft.Barista
 {
@@ -25,7 +25,7 @@ namespace Funksoft.Barista
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                CreateNewCustomer();
+                CreateNewCustomer(_database.CustomerTypes.HashSet.ElementAt(Random.Range(0, _database.CustomerTypes.HashSet.Count)));
             }
         }
 
@@ -52,7 +52,7 @@ namespace Funksoft.Barista
                 
         }
 
-        private void CreateNewCustomer()
+        private void CreateNewCustomer(CustomerData customerData)
         {
             if (_customers.Count >= _maxCustomerCount)
                 return;
@@ -60,9 +60,11 @@ namespace Funksoft.Barista
             //Spawn customer prefab instance in position corresponding to the next open spot in the queue.
             Vector3 spawnPos = new Vector3(transform.position.x + (_distanceBetweenCustomers * _customers.Count), transform.position.y, transform.position.z);
             var inst = Instantiate(_customerPrefab, spawnPos, Quaternion.identity);
+            //
             Customer customer;
             inst.TryGetComponent<Customer>(out customer);
             _customers.Add(customer);
+            customer.CustomerData = customerData;
 
             //Subscribe to CustomerLeaves event so we know when to "clean up" and remove them.
             customer.CustomerLeaves += CustomerLeft;

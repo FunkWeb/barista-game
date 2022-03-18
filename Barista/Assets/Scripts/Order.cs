@@ -17,5 +17,6 @@ namespace Funksoft.Barista
             SideIngredients = sideIngredients;
             PatienceTime = patienceTime;
         }
+        
     }
 }
