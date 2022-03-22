@@ -23,6 +23,7 @@ namespace Funksoft.Barista
         {
             _mainCamera = Camera.main;
         }
+        
         //Eventually replace with proper in-worldspace object detected by raycast
         private void OnGUI()
         {
@@ -35,7 +36,7 @@ namespace Funksoft.Barista
             
             if (GUI.Button(new Rect(pos.x, Screen.height - pos.y, _buttonWidth, _buttonHeight), Ingredient.Name, style))
             {
-                _drink.AddMainIngredient(Ingredient);
+                _drink.AddMainIngredient(Ingredient, 0.1f);
             }
         }
     }
