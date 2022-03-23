@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Valley;
+using System.Linq;
 
 namespace Funksoft.Barista
 {
@@ -19,5 +20,14 @@ namespace Funksoft.Barista
 
         [SerializeField]
         public SerializableHashSet<CustomerData> CustomerTypes;
+    
+        private void OnEnable()
+        {
+            Debug.Log("DatabaseSO Enabled");
+
+            //Sort the recipelist alphabetically by name, makes for easier matching of ingredients in recipes.
+            foreach(DrinkRecipeData r in DrinkRecipes.HashSet)
+                r.Ingredients = r.Ingredients.OrderBy(e => e.Name).ToList();
+        }
     }
 }

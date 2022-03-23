@@ -13,6 +13,9 @@ namespace Funksoft.Barista
         [SerializeField]
         private Drink _drink;
 
+        [Header("Variables"), SerializeField, Range(0f, 1f)]
+        private float minFillAmount = 0.9f;
+
         private Camera _mainCamera;
 
         private void Awake()
@@ -20,19 +23,38 @@ namespace Funksoft.Barista
             _mainCamera = Camera.main;
         }
 
-        private void Start()
+        private bool AssembleDrink(DrinkMixture drinkMixture)
         {
-            //Todo: revisit and check if still required after recipe refactor.
-            //Consistently order the ingredients in each recipe so we can match each one to the mixture's easier.
-            foreach(DrinkRecipeData r in _databaseSO.DrinkRecipes.HashSet)
-                r.Ingredients = r.Ingredients.OrderBy(e => e.Name).ToList();
-            
+            if (drinkMixture.GetTotalLiquid < minFillAmount * drinkMixture.MaxCupLiquid)
+            {
+                Debug.Log("Drink not filled enough to be a completed drink.");
+                return false;
+            }
+
+            ScaleMixtureToFull(drinkMixture);
+
+            Debug.Log(GetMatchingRecipe(drinkMixture)?.Name);
+
+            return true;
+        }
+
+        //Scales the values of each ingredient in the mixture proportionally to what they would be if the cup was full, but with the same proportion.
+        //lowerFillLimit is a floor of how big a portion of the mixture max must be filled to allow this.
+        private void ScaleMixtureToFull(DrinkMixture drinkMixture)
+        {
+            //Calculate how much larger the maximum liquid amount is, proportionally to the amount of liquid already in the cup.
+            float inverseFilledProportion = drinkMixture.MaxCupLiquid / drinkMixture.GetTotalLiquid;
+
+            //Scale value amount of each ingredient up by the proportional amount required to reach max fill.
+             foreach(KeyValuePair<MainIngredientData, float> pair in drinkMixture.MainIngredients)
+            {
+                drinkMixture.MainIngredients[pair.Key] *= inverseFilledProportion;
+            }
         }
         
+        //Matches contents of drink to corresponding recipe, return first alphabetical recipe that matches. Returns null if no matches are made.
         private DrinkRecipeData GetMatchingRecipe(DrinkMixture drinkMixture)
         {
-            
-
             //Compare drinkmixture with each recipe to check if any match
             foreach(DrinkRecipeData recipe in _databaseSO.DrinkRecipes.HashSet)
             {
@@ -70,7 +92,7 @@ namespace Funksoft.Barista
             
             if (GUI.Button(new Rect(pos.x, Screen.height - pos.y, 400, 100), "Assemble Drink", style))
             {
-                Debug.Log(GetMatchingRecipe(_drink.DrinkMixture)?.Name);
+                AssembleDrink(_drink.DrinkMixture);
             }
         }
     }

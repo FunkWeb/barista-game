@@ -37,9 +37,14 @@ namespace Funksoft.Barista
             if (!DrinkMixture.MainIngredients.ContainsKey(ingredient))
                 DrinkMixture.MainIngredients.Add(ingredient, 0f);
 
+            //If cup does not overflow if amount is added, allow it
             if (DrinkMixture.GetTotalLiquid + amount < DrinkMixture.MaxCupLiquid)
             {
                 DrinkMixture.MainIngredients[ingredient] += amount;
+            }
+            else //If it would overflow, fill to the brim instead.
+            {
+                DrinkMixture.MainIngredients[ingredient] += (DrinkMixture.MaxCupLiquid - DrinkMixture.GetTotalLiquid);
             }
 
             Debug.Log("DrinkMixture contains: " + DrinkMixture.MainIngredients[ingredient] + " of " + ingredient.Name);

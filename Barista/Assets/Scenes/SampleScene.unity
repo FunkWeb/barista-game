@@ -262,6 +262,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _databaseSO: {fileID: 11400000, guid: d474ff30e52965c46b5b84135b8561cc, type: 2}
   _drink: {fileID: 1132660445}
+  minFillAmount: 0.9
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -422,7 +423,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DrinkMixture:
-    <MaxCupLiquid>k__BackingField: 1
+    <MaxCupLiquid>k__BackingField: 250
     <SideIngredients>k__BackingField:
       _items: []
 --- !u!4 &1132660446
