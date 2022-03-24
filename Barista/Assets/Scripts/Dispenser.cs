@@ -36,7 +36,7 @@ namespace Funksoft.Barista
             
             if (GUI.Button(new Rect(pos.x, Screen.height - pos.y, _buttonWidth, _buttonHeight), Ingredient.Name, style))
             {
-                _drink.AddMainIngredient(Ingredient, 50f);
+                _drink.AddMainIngredient(Ingredient, 25f);
             }
         }
     }

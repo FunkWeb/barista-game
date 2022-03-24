@@ -45,10 +45,17 @@ namespace Funksoft.Barista
             //Calculate how much larger the maximum liquid amount is, proportionally to the amount of liquid already in the cup.
             float inverseFilledProportion = drinkMixture.MaxCupLiquid / drinkMixture.GetTotalLiquid;
 
+            Dictionary<MainIngredientData, float> scaledDictionary = new Dictionary<MainIngredientData, float>();
+
             //Scale value amount of each ingredient up by the proportional amount required to reach max fill.
              foreach(KeyValuePair<MainIngredientData, float> pair in drinkMixture.MainIngredients)
             {
-                drinkMixture.MainIngredients[pair.Key] *= inverseFilledProportion;
+                scaledDictionary.Add(pair.Key, pair.Value * inverseFilledProportion) ;
+            }
+
+            foreach(KeyValuePair<MainIngredientData, float> pair in scaledDictionary)
+            {
+                drinkMixture.MainIngredients[pair.Key] = pair.Value;
             }
         }
         
@@ -65,7 +72,7 @@ namespace Funksoft.Barista
                 foreach(KeyValuePair<MainIngredientData, float> pair in drinkMixture.MainIngredients)
                 {
                     //Convert the amount of liquid for this ingredient to the closest slot, assuming the total amount of liquid corresponds to the total amount of slots
-                    int liquidAmountInSlots = Mathf.RoundToInt(pair.Value * recipe.Ingredients.Count);
+                    int liquidAmountInSlots = Mathf.RoundToInt((pair.Value / drinkMixture.MaxCupLiquid) * recipe.Ingredients.Count);
                     //Add a 
                     for(int i = 0; i < liquidAmountInSlots; i++)
                         convertedIngredients.Add(pair.Key);
