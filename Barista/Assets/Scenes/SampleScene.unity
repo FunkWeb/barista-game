@@ -200,9 +200,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Ingredient: {fileID: 11400000, guid: 6223d65f808ee694883aea75c5f98fdf, type: 2}
-  _drink: {fileID: 1132660445}
-  _buttonWidth: 200
-  _buttonHeight: 75
+  FillAmountPerSec: 50
 --- !u!4 &475466632
 Transform:
   m_ObjectHideFlags: 0
@@ -261,7 +259,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _databaseSO: {fileID: 11400000, guid: d474ff30e52965c46b5b84135b8561cc, type: 2}
-  _drink: {fileID: 1132660445}
   minFillAmount: 0.9
 --- !u!1 &519420028
 GameObject:
@@ -376,9 +373,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Ingredient: {fileID: 11400000, guid: faa3123fccd3fb94b9d815776476100c, type: 2}
-  _drink: {fileID: 1132660445}
-  _buttonWidth: 200
-  _buttonHeight: 75
+  FillAmountPerSec: 50
 --- !u!4 &845698279
 Transform:
   m_ObjectHideFlags: 0
@@ -423,7 +418,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DrinkMixture:
-    <MaxCupLiquid>k__BackingField: 250
+    <MaxTotalLiquid>k__BackingField: 250
     <SideIngredients>k__BackingField:
       _items: []
 --- !u!4 &1132660446
@@ -470,9 +465,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Ingredient: {fileID: 11400000, guid: e067ed3f0c293584ba383585708e2864, type: 2}
-  _drink: {fileID: 1132660445}
-  _buttonWidth: 200
-  _buttonHeight: 75
+  FillAmountPerSec: 50
 --- !u!4 &1537530187
 Transform:
   m_ObjectHideFlags: 0
@@ -486,4 +479,59 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1635950743
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1635950745}
+  - component: {fileID: 1635950744}
+  m_Layer: 0
+  m_Name: TestUI
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1635950744
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1635950743}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3dd3d8df357ac544faf651fa8081bea7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _buttonWidth: 200
+  _buttonHeight: 75
+  _xPadding: 25
+  _yPadding: 25
+  _spaceBetweenButtons: 25
+  _drink: {fileID: 1132660445}
+  _drinkAssembler: {fileID: 476806448}
+  _mainDispensers:
+  - {fileID: 845698278}
+  - {fileID: 475466631}
+  - {fileID: 1537530186}
+  _sideDispensers: []
+--- !u!4 &1635950745
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1635950743}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

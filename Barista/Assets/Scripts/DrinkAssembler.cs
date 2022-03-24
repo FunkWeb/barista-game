@@ -10,22 +10,13 @@ namespace Funksoft.Barista
         [SerializeField]
         private DatabaseSO _databaseSO;
 
-        [SerializeField]
-        private Drink _drink;
-
         [Header("Variables"), SerializeField, Range(0f, 1f)]
         private float minFillAmount = 0.9f;
 
-        private Camera _mainCamera;
-
-        private void Awake()
+        public bool AssembleDrink(DrinkMixture drinkMixture)
         {
-            _mainCamera = Camera.main;
-        }
-
-        private bool AssembleDrink(DrinkMixture drinkMixture)
-        {
-            if (drinkMixture.GetTotalLiquid < minFillAmount * drinkMixture.MaxCupLiquid)
+            //Dont assemble drink if its not filled to the minimum required amount of liquid.
+            if (drinkMixture.GetTotalLiquid < minFillAmount * drinkMixture.MaxTotalLiquid)
             {
                 Debug.Log("Drink not filled enough to be a completed drink.");
                 return false;
@@ -43,19 +34,12 @@ namespace Funksoft.Barista
         private void ScaleMixtureToFull(DrinkMixture drinkMixture)
         {
             //Calculate how much larger the maximum liquid amount is, proportionally to the amount of liquid already in the cup.
-            float inverseFilledProportion = drinkMixture.MaxCupLiquid / drinkMixture.GetTotalLiquid;
-
-            Dictionary<MainIngredientData, float> scaledDictionary = new Dictionary<MainIngredientData, float>();
+            float inverseFilledProportion = drinkMixture.MaxTotalLiquid / drinkMixture.GetTotalLiquid;
 
             //Scale value amount of each ingredient up by the proportional amount required to reach max fill.
-             foreach(KeyValuePair<MainIngredientData, float> pair in drinkMixture.MainIngredients)
+            foreach(MainIngredientData k in drinkMixture.MainIngredients.Keys.ToList())
             {
-                scaledDictionary.Add(pair.Key, pair.Value * inverseFilledProportion) ;
-            }
-
-            foreach(KeyValuePair<MainIngredientData, float> pair in scaledDictionary)
-            {
-                drinkMixture.MainIngredients[pair.Key] = pair.Value;
+                drinkMixture.MainIngredients[k] *= inverseFilledProportion;
             }
         }
         
@@ -72,7 +56,7 @@ namespace Funksoft.Barista
                 foreach(KeyValuePair<MainIngredientData, float> pair in drinkMixture.MainIngredients)
                 {
                     //Convert the amount of liquid for this ingredient to the closest slot, assuming the total amount of liquid corresponds to the total amount of slots
-                    int liquidAmountInSlots = Mathf.RoundToInt((pair.Value / drinkMixture.MaxCupLiquid) * recipe.Ingredients.Count);
+                    int liquidAmountInSlots = Mathf.RoundToInt((pair.Value / drinkMixture.MaxTotalLiquid) * recipe.Ingredients.Count);
                     //Add a 
                     for(int i = 0; i < liquidAmountInSlots; i++)
                         convertedIngredients.Add(pair.Key);
@@ -87,20 +71,5 @@ namespace Funksoft.Barista
             return null;
         }
 
-        //Clear cup contents button. Eventually replace with proper in-worldspace object detected by raycast
-        private void OnGUI()
-        {
-            //Buttons screen position determined by this objects in world position
-            Vector3 pos = _mainCamera.WorldToScreenPoint(transform.position);
-
-            //Set properties and values of button and its text
-            var style = new GUIStyle(GUI.skin.button);
-            style.fontSize = 30;
-            
-            if (GUI.Button(new Rect(pos.x, Screen.height - pos.y, 400, 100), "Assemble Drink", style))
-            {
-                AssembleDrink(_drink.DrinkMixture);
-            }
-        }
     }
 }

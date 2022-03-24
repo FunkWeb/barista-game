@@ -11,7 +11,7 @@ namespace Funksoft.Barista
     {
         //Max amount of total liquid in cup, measured in milliliters. Amount of all ingredients added must be <= this.
         [field: SerializeField]
-        public float MaxCupLiquid{ get; private set;} = 250;
+        public float MaxTotalLiquid{ get; private set;} = 250;
 
         public float GetTotalLiquid
         {
