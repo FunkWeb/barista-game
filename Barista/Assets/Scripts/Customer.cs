@@ -14,9 +14,9 @@ namespace Funksoft.Barista
         [SerializeField]
         public CustomerData CustomerData;
 
-        private Order _order;
+        public Order Order;
         
-        private float _timeRemaining;
+        public float TimeRemaining;
 
         public event Action<Customer> CustomerLeaves; //Todo: Add bool second parameter for leaving statisfied or unstatisfied?
 
@@ -29,7 +29,7 @@ namespace Funksoft.Barista
 
         private void Start()
         {
-            _timeRemaining = CustomerData.PatienceTimer;
+            TimeRemaining = CustomerData.PatienceTimer;
             _spriteRenderer.sprite = CustomerData.Sprite;
             Debug.Log("Customer Type: " + CustomerData.name);
             Debug.Log("Patience Time: " + CustomerData.PatienceTimer);
@@ -40,8 +40,8 @@ namespace Funksoft.Barista
         {
             
             //Customer Patience Countdown. Leave when timer has run out.
-            _timeRemaining -= Time.deltaTime;
-            if (_timeRemaining < Mathf.Epsilon)
+            TimeRemaining -= Time.deltaTime;
+            if (TimeRemaining < Mathf.Epsilon)
             {
                 OutOfPatience();
             }
@@ -67,9 +67,9 @@ namespace Funksoft.Barista
                     sideIngredients.Add(si);
             }
             //Create order
-            _order = new Order(recipe, sideIngredients, 5f);
-            Debug.Log("Order: " + _order.Drink.Name);
-            foreach(SideIngredientData osi in _order.SideIngredients)
+            Order = new Order(recipe, sideIngredients, 5f);
+            Debug.Log("Order: " + Order.Drink.Name);
+            foreach(SideIngredientData osi in Order.SideIngredients)
             {
                 Debug.Log("Topping wanted: " + osi.Name);
             }

@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: C_Karen
   m_EditorClassIdentifier: 
   Sprite: {fileID: 21300000, guid: 0e330dc5bbd6a824ba91da0c7af05be9, type: 3}
-  PatienceTimer: 5
+  PatienceTimer: 10
   MaxServeTries: 3
   SideIngredientChance: 1

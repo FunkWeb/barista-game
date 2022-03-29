@@ -13,20 +13,20 @@ namespace Funksoft.Barista
         [Header("Variables"), SerializeField, Range(0f, 1f)]
         private float minFillAmount = 0.9f;
 
-        public bool AssembleDrink(DrinkMixture drinkMixture)
+        public DrinkRecipeData AssembleDrink(DrinkMixture drinkMixture)
         {
             //Dont assemble drink if its not filled to the minimum required amount of liquid.
             if (drinkMixture.GetTotalLiquid < minFillAmount * drinkMixture.MaxTotalLiquid)
             {
                 Debug.Log("Drink not filled enough to be a completed drink.");
-                return false;
+                return null;
             }
 
             ScaleMixtureToFull(drinkMixture);
-
-            Debug.Log(GetMatchingRecipe(drinkMixture)?.Name);
-
-            return true;
+            var result = GetMatchingRecipe(drinkMixture);
+            Debug.Log("Recipe Assembled: " + result?.Name);
+            
+            return result;
         }
 
         //Scales the values of each ingredient in the mixture proportionally to what they would be if the cup was full, but with the same proportion.

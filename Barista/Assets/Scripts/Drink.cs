@@ -39,9 +39,6 @@ namespace Funksoft.Barista
             {
                 DrinkMixture.MainIngredients[ingredient] += (DrinkMixture.MaxTotalLiquid - DrinkMixture.GetTotalLiquid);
             }
-
-            Debug.Log("DrinkMixture contains: " + DrinkMixture.MainIngredients[ingredient] + " of " + ingredient.Name);
-            Debug.Log("Total liquid: " + DrinkMixture.GetTotalLiquid);
         }
     }
 }

@@ -19,7 +19,7 @@ namespace Funksoft.Barista
         [SerializeField]
         private float _distanceBetweenCustomers = 3f;
 
-        private List<Customer> _customers = new List<Customer>();
+        public List<Customer> Customers = new List<Customer>();
 
         private void Update()
         {
@@ -32,7 +32,7 @@ namespace Funksoft.Barista
         private void OnDestroy()
         {
             //Event cleanup, unsubscribe to vents from all customers in queue.
-            foreach(Customer c in _customers)
+            foreach(Customer c in Customers)
             {
                 c.CustomerLeaves -= CustomerLeft;
             }
@@ -41,9 +41,9 @@ namespace Funksoft.Barista
         //Remove customers from queue and handle changes needed when customers 
         private void CustomerLeft(Customer customer)
         {    
-            if (_customers.Contains(customer))
+            if (Customers.Contains(customer))
             {
-                _customers.Remove(customer);
+                Customers.Remove(customer);
                 Destroy(customer.gameObject);
                 //Reorder queue. (Move up sprites to fill gaps left by leaving customers).
                 Debug.Log("Customer Left");
@@ -54,16 +54,16 @@ namespace Funksoft.Barista
 
         private void CreateNewCustomer(CustomerData customerData)
         {
-            if (_customers.Count >= _maxCustomerCount)
+            if (Customers.Count >= _maxCustomerCount)
                 return;
                 
             //Spawn customer prefab instance in position corresponding to the next open spot in the queue.
-            Vector3 spawnPos = new Vector3(transform.position.x + (_distanceBetweenCustomers * _customers.Count), transform.position.y, transform.position.z);
+            Vector3 spawnPos = new Vector3(transform.position.x + (_distanceBetweenCustomers * Customers.Count), transform.position.y, transform.position.z);
             var inst = Instantiate(_customerPrefab, spawnPos, Quaternion.identity);
             //
             Customer customer;
             inst.TryGetComponent<Customer>(out customer);
-            _customers.Add(customer);
+            Customers.Add(customer);
             customer.CustomerData = customerData;
 
             //Subscribe to CustomerLeaves event so we know when to "clean up" and remove them.
