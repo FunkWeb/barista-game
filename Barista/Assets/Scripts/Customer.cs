@@ -75,5 +75,10 @@ namespace Funksoft.Barista
             }
                 
         }
+
+        public void TryServeDrink(Drink drink)
+        {
+
+        }
     }
 }

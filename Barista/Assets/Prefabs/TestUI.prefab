@@ -43,9 +43,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3dd3d8df357ac544faf651fa8081bea7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cupPanelPos: {x: -6, y: 0}
+  _cupPanelPos: {x: -5.5, y: 0}
   _drinkPanelPos: {x: 0, y: 0}
-  _customerPanelPos: {x: 6, y: 0}
+  _customerPanelPos: {x: 5.5, y: 0}
   _panelWidth: 600
   _panelHeight: 600
   _textLabelWidth: 250
@@ -53,7 +53,7 @@ MonoBehaviour:
   _textPaddingX: 25
   _textPaddingY: 50
   _spaceBetweenText: 20
-  _buttonWidth: 200
+  _buttonWidth: 250
   _buttonHeight: 75
   _buttonPaddingX: 50
   _buttonPaddingY: 50
@@ -65,4 +65,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  _sideDispensers: []
+  _sideDispensers:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}

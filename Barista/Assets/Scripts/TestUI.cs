@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using pEventBus;
 
 namespace Funksoft.Barista
 {
@@ -54,7 +55,7 @@ namespace Funksoft.Barista
         private List<Dispenser> _mainDispensers;
 
         [SerializeField]
-        private List<Dispenser> _sideDispensers;
+        private List<SideDispenser> _sideDispensers;
 
         private Camera _mainCamera;
 
@@ -81,14 +82,12 @@ namespace Funksoft.Barista
    
         }
 
-
         private void OnGUI()
         {
             
             DrawInputButtonsGUI();
             DrawCupPanelGUI(_cupPanelPos);
-            if (_assembledDrink)
-                DrawDrinkPanelGUI(_assembledDrink, _drinkPanelPos);
+            DrawMidPanelGUI(_assembledDrink, _drinkPanelPos);
 
 
             _style.alignment = TextAnchor.MiddleCenter;
@@ -131,13 +130,26 @@ namespace Funksoft.Barista
                 //Set position and size of buttons.
                 rect = new Rect(_topLeft.x + _buttonPaddingX + i * (_buttonWidth + _spaceBetweenButtons), 
                                     _topLeft.y + _buttonPaddingY,
-                                    _buttonWidth, 
-                                    _buttonHeight);
+                                    _buttonWidth, _buttonHeight);
 
                 //Create button and detect button input.
                 if (GUI.RepeatButton(rect, dispenser.Ingredient.Name, _style))
                     _drink.AddMainIngredient(dispenser.Ingredient, dispenser.FillAmountPerSec * Time.deltaTime);
+            }
 
+            //SideIngredient dispenser buttons
+            for(var i = 0; i < _sideDispensers.Count; i++)
+            {
+                SideDispenser dispenser = _sideDispensers[i];
+
+                //Set position and size of buttons.
+                rect = new Rect(_topLeft.x + _buttonPaddingX + i * (_buttonWidth + _spaceBetweenButtons), 
+                                    _topLeft.y + _buttonPaddingY + _buttonHeight + _spaceBetweenButtons,
+                                    _buttonWidth, _buttonHeight);
+
+                //Create button and detect button input.
+                if (GUI.Button(rect, dispenser.Ingredient.Name, _style))
+                    _drink.AddSideIngredient(dispenser.Ingredient);
             }
 
             #region Clear Drink Button
@@ -162,33 +174,56 @@ namespace Funksoft.Barista
                 _assembledDrink = _drinkAssembler.AssembleDrink(_drink.DrinkMixture);
                 
             #endregion
+
+            #region Serve Drink Button
+            //Set position and size of button
+            rect = new Rect(_botRight.x - _buttonWidth -_buttonPaddingX, _botRight.y - _buttonPaddingY - _buttonHeight, _buttonWidth, _buttonHeight);
+            
+            //Create button and detect button input. Get resulting drink from DrinkAssembler.
+            if (GUI.Button(rect, "Serve", _style))
+            {
+                //_currentCustomer.TryServeDrink(_drink);
+            }
+                
+            #endregion
         }
 
-        private void DrawDrinkPanelGUI(DrinkRecipeData recipe, Vector2 pos)
+        private void DrawMidPanelGUI(DrinkRecipeData recipe, Vector2 pos)
         {
+            Rect textRect;
+
             //Create Panel and Title text
             var panelRect = new Rect(_topLeft.x + _mainCamera.WorldToScreenPoint(pos).x - _panelWidth/2, 
                                      _topLeft.y + _mainCamera.WorldToScreenPoint(pos).y - _panelHeight/2, 
                                      _panelWidth, _panelHeight);
-            _style.alignment = TextAnchor.UpperCenter;
-            _style.fontSize = 30;
-            GUI.Box(panelRect, "Assembled Drink: " + recipe.Name, _style);
-
-            //Style for text labels
-            _style.alignment = TextAnchor.MiddleCenter;
-            _style.fontSize = 25;
-
-            Rect textRect;
-
-            for(var i = 0; i < recipe.Ingredients.Count; i++)
+            
+            if (recipe != null)
             {
-                //Set area for text label
-                textRect = new Rect(panelRect.x + _textPaddingX, 
-                                    panelRect.y + _textPaddingY + i * (_spaceBetweenText + _textLabelHeight), 
-                                    _textLabelWidth, _textLabelHeight);
-                //Create text label
-                GUI.Label(textRect, recipe.Ingredients[i].Name, _style);
+                //Drink recipe title text
+                _style.alignment = TextAnchor.UpperCenter;
+                _style.fontSize = 30;
+                GUI.Box(panelRect, "Assembled Drink: " + recipe.Name, _style);
+
+                //Style for text labels
+                _style.alignment = TextAnchor.MiddleCenter;
+                _style.fontSize = 25;
+                
+                //Ingredients text labels
+                for(var i = 0; i < recipe.Ingredients.Count; i++)
+                {
+                    //Set area for text label
+                    textRect = new Rect(panelRect.x + _textPaddingX, 
+                                        panelRect.y + _textPaddingY + i * (_spaceBetweenText + _textLabelHeight), 
+                                        _textLabelWidth, _textLabelHeight);
+                    //Create text label
+                    GUI.Label(textRect, recipe.Ingredients[i].Name, _style);
+                }
+
             }
+            //Log window
+            textRect = new Rect(panelRect.x, panelRect.y + _panelHeight - _textLabelHeight*3, _panelWidth, _textLabelHeight*3);
+            GUI.Label(textRect, "Test string", _style);
+
 
 
         }
@@ -219,6 +254,19 @@ namespace Funksoft.Barista
                 GUI.Label(textRect, pair.Key.Name + " : " + pair.Value.ToString("F2") + "ml", _style);
                 index++;
             }
+
+            index = 0;
+            foreach(SideIngredientData si in _drink.DrinkMixture.SideIngredients.HashSet)
+            {
+                //Set area for text label
+                textRect = new Rect(panelRect.x + _panelWidth - _textPaddingX - _textLabelWidth, 
+                                    panelRect.y + _textPaddingY + index * (_spaceBetweenText + _textLabelHeight), 
+                                    _textLabelWidth, _textLabelHeight);
+                //Create text label
+                GUI.Label(textRect, si.Name, _style);
+                index++;
+            }
+            
             
             //Total liquid text
             textRect = new Rect(panelRect.x, panelRect.y + _panelHeight - _textLabelHeight, _panelWidth, _textLabelHeight);

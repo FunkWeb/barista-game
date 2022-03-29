@@ -9,7 +9,7 @@ namespace Funksoft.Barista
         [SerializeField]
         public DrinkMixture DrinkMixture = new DrinkMixture();
 
-        private void AddSideIngredient(SideIngredientData ingredient)
+        public void AddSideIngredient(SideIngredientData ingredient)
         {
             //Add if not already added.
             if (DrinkMixture.SideIngredients.HashSet.Add(ingredient))
