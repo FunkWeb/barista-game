@@ -9,6 +9,9 @@ namespace Funksoft.Barista
     public class Customer : MonoBehaviour
     {
         [SerializeField]
+        private bool _debugLogsEnabled = false;
+
+        [SerializeField]
         private DatabaseSO _database;
 
         [SerializeField]
@@ -31,8 +34,11 @@ namespace Funksoft.Barista
         {
             TimeRemaining = CustomerData.PatienceTimer;
             _spriteRenderer.sprite = CustomerData.Sprite;
-            Debug.Log("Customer Type: " + CustomerData.name);
-            Debug.Log("Patience Time: " + CustomerData.PatienceTimer);
+            if (_debugLogsEnabled)
+            {
+                Debug.Log("Customer Type: " + CustomerData.name);
+                Debug.Log("Patience Time: " + CustomerData.PatienceTimer);
+            }
             CreateRandomOrder();
         }
 
@@ -68,17 +74,14 @@ namespace Funksoft.Barista
             }
             //Create order
             Order = new Order(recipe, sideIngredients, 5f);
-            Debug.Log("Order: " + Order.Drink.Name);
-            foreach(SideIngredientData osi in Order.SideIngredients)
+            if (_debugLogsEnabled)
             {
-                Debug.Log("Topping wanted: " + osi.Name);
+                Debug.Log("Order: " + Order.Drink.Name);
+                foreach(SideIngredientData osi in Order.SideIngredients)
+                    Debug.Log("Topping wanted: " + osi.Name);
             }
+            
                 
-        }
-
-        public void TryServeDrink(Drink drink)
-        {
-
         }
     }
 }

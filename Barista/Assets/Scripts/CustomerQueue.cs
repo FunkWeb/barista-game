@@ -9,6 +9,9 @@ namespace Funksoft.Barista
     public class CustomerQueue : MonoBehaviour
     {
         [SerializeField]
+        private bool _debugLogsEnabled = false;
+
+        [SerializeField]
         private DatabaseSO _database;
 
         [SerializeField]
@@ -46,8 +49,9 @@ namespace Funksoft.Barista
             {
                 Customers.Remove(customer);
                 Destroy(customer.gameObject);
-                //Reorder queue. (Move up sprites to fill gaps left by leaving customers).
-                Debug.Log("Customer Left");
+                //Todo: Reorder queue. (Move up sprites to fill gaps left by leaving customers).
+                if (_debugLogsEnabled)
+                    Debug.Log("Customer Left");
 
             }
                 

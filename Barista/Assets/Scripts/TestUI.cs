@@ -52,7 +52,7 @@ namespace Funksoft.Barista
         private CustomerQueue _customerQueue;
 
         [SerializeField]
-        private List<Dispenser> _mainDispensers;
+        private List<MainDispenser> _mainDispensers;
 
         [SerializeField]
         private List<SideDispenser> _sideDispensers;
@@ -125,7 +125,7 @@ namespace Funksoft.Barista
             //MainIngredient dispenser buttons
             for(var i = 0; i < _mainDispensers.Count; i++)
             {
-                Dispenser dispenser = _mainDispensers[i];
+                MainDispenser dispenser = _mainDispensers[i];
 
                 //Set position and size of buttons.
                 rect = new Rect(_topLeft.x + _buttonPaddingX + i * (_buttonWidth + _spaceBetweenButtons), 
@@ -134,7 +134,7 @@ namespace Funksoft.Barista
 
                 //Create button and detect button input.
                 if (GUI.RepeatButton(rect, dispenser.Ingredient.Name, _style))
-                    _drink.AddMainIngredient(dispenser.Ingredient, dispenser.FillAmountPerSec * Time.deltaTime);
+                    dispenser.Use();
             }
 
             //SideIngredient dispenser buttons
@@ -149,7 +149,7 @@ namespace Funksoft.Barista
 
                 //Create button and detect button input.
                 if (GUI.Button(rect, dispenser.Ingredient.Name, _style))
-                    _drink.AddSideIngredient(dispenser.Ingredient);
+                    dispenser.Use();
             }
 
             #region Clear Drink Button

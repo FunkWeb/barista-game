@@ -2,11 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using pEventBus;
 
 namespace Funksoft.Barista
 {
     public class DrinkAssembler : MonoBehaviour
     {
+        [SerializeField]
+        private bool _debugLogsEnabled = false;
+
         [SerializeField]
         private DatabaseSO _databaseSO;
 
@@ -18,13 +22,17 @@ namespace Funksoft.Barista
             //Dont assemble drink if its not filled to the minimum required amount of liquid.
             if (drinkMixture.GetTotalLiquid < minFillAmount * drinkMixture.MaxTotalLiquid)
             {
-                Debug.Log("Drink not filled enough to be a completed drink.");
+                if (_debugLogsEnabled)
+                    Debug.Log("Drink not filled enough to be a completed drink.");
                 return null;
             }
 
             ScaleMixtureToFull(drinkMixture);
+
             var result = GetMatchingRecipe(drinkMixture);
-            Debug.Log("Recipe Assembled: " + result?.Name);
+            
+            if (_debugLogsEnabled)
+                Debug.Log("Recipe Assembled: " + result?.Name);
             
             return result;
         }

@@ -11,7 +11,7 @@ namespace Funksoft.Barista
     {
         //Max amount of total liquid in cup, measured in milliliters. Amount of all ingredients added must be <= this.
         [field: SerializeField]
-        public float MaxTotalLiquid{ get; private set;} = 250;
+        public float MaxTotalLiquid{ get; private set;} = 250f;
 
         public float GetTotalLiquid
         {
@@ -36,7 +36,7 @@ namespace Funksoft.Barista
             private set
             {
                 _mainIngredients = value;
-                UpdateCupContents();
+                ClearEmptyIngredients();
             }
         }
 
@@ -48,10 +48,9 @@ namespace Funksoft.Barista
         }
 
         
-
-        private void UpdateCupContents()
+        //Remove ingredient entries with no liquid from dictionary.
+        private void ClearEmptyIngredients()
         {
-            //Remove ingredient entries with no liquid from dictionary.
             foreach(KeyValuePair<MainIngredientData, float> pair in _mainIngredients)
             {
                 if (pair.Value <= Mathf.Epsilon)
