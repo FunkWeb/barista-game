@@ -47,11 +47,13 @@ namespace Funksoft.Barista
         {    
             if (Customers.Contains(customer))
             {
+                if (_debugLogsEnabled)
+                    Debug.Log("Customer " + customer.name + " left.");
                 Customers.Remove(customer);
+                
                 Destroy(customer.gameObject);
                 //Todo: Reorder queue. (Move up sprites to fill gaps left by leaving customers).
-                if (_debugLogsEnabled)
-                    Debug.Log("Customer Left");
+                
 
             }
                 

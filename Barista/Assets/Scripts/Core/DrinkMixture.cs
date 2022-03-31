@@ -36,19 +36,15 @@ namespace Funksoft.Barista
             private set
             {
                 _mainIngredients = value;
-                ClearEmptyIngredients();
+                //ClearEmptyIngredients();
             }
         }
 
         [field: SerializeField]
-        public SerializableHashSet<SideIngredientData> SideIngredients
-        {
-            get;
-            private set;
-        }
+        public SerializableHashSet<SideIngredientData> SideIngredients{ get; private set; } = new SerializableHashSet<SideIngredientData>();
 
         
-        //Remove ingredient entries with no liquid from dictionary.
+        //Remove ingredient entries with no liquid from dictionary. Safety
         private void ClearEmptyIngredients()
         {
             foreach(KeyValuePair<MainIngredientData, float> pair in _mainIngredients)

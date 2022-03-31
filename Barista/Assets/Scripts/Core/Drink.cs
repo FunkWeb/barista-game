@@ -11,7 +11,7 @@ namespace Funksoft.Barista
         private bool _debugLogsEnabled = false;
 
         [SerializeField]
-        public DrinkMixture DrinkMixture = new DrinkMixture();
+        public DrinkMixture DrinkMixture = new DrinkMixture(); //Holds the actual ingredients and amounts of liquid in the drink.
 
         //Subscribe to events
         private void OnEnable()

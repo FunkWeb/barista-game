@@ -11,7 +11,7 @@ namespace Funksoft.Barista
         [SerializeField, Header("Panel and Text")]
         private Vector2 _cupPanelPos;
         [SerializeField]
-        private Vector2 _drinkPanelPos;
+        private Vector2 _midPanelPos;
         [SerializeField]
         private Vector2 _customerPanelPos;
         [SerializeField]
@@ -46,9 +46,6 @@ namespace Funksoft.Barista
         private Drink _drink;
 
         [SerializeField]
-        private DrinkAssembler _drinkAssembler;
-
-        [SerializeField]
         private CustomerQueue _customerQueue;
 
         [SerializeField]
@@ -61,7 +58,6 @@ namespace Funksoft.Barista
 
         #endregion
         
-        private DrinkRecipeData _assembledDrink;
         private Customer _currentCustomer;
         private GUIStyle _style;
 
@@ -69,6 +65,12 @@ namespace Funksoft.Barista
         private Vector3 _topRight;
         private Vector3 _botLeft;
         private Vector3 _botRight;
+
+        public struct ServeInputTriggered : IEvent
+        {
+            public Drink drink;
+            public Customer customer;
+        }
 
 
         private void Awake()
@@ -87,8 +89,6 @@ namespace Funksoft.Barista
             
             DrawInputButtonsGUI();
             DrawCupPanelGUI(_cupPanelPos);
-            DrawMidPanelGUI(_assembledDrink, _drinkPanelPos);
-
 
             _style.alignment = TextAnchor.MiddleCenter;
             _style.fontSize = 30;
@@ -109,8 +109,6 @@ namespace Funksoft.Barista
             //if a customer is selected, create customer panel with its data
             if (_currentCustomer)
                 DrawCustomerPanel(_customerPanelPos, _currentCustomer);
-
-
 
         }
 
@@ -155,34 +153,22 @@ namespace Funksoft.Barista
             #region Clear Drink Button
             //Set position and size of button
             rect = new Rect(_botLeft.x + _buttonPaddingX, _botLeft.y - _buttonPaddingY - _buttonHeight , _buttonWidth, _buttonHeight);
-            
             //Create button and detect button input
             if (GUI.Button(rect, "Clear Drink", _style))
             {
-                _assembledDrink = null;
                 _drink.Clear();
             }
-                
-            #endregion
-
-            #region Assemble Drink Button
-            //Set position and size of button
-            rect = new Rect(_botLeft.x + Screen.width/2 - _buttonWidth/2, _botRight.y - _buttonPaddingY - _buttonHeight, _buttonWidth, _buttonHeight);
-            
-            //Create button and detect button input. Get resulting drink from DrinkAssembler.
-            if (GUI.Button(rect, "Assemble", _style))
-                _assembledDrink = _drinkAssembler.AssembleDrink(_drink.DrinkMixture);
                 
             #endregion
 
             #region Serve Drink Button
             //Set position and size of button
             rect = new Rect(_botRight.x - _buttonWidth -_buttonPaddingX, _botRight.y - _buttonPaddingY - _buttonHeight, _buttonWidth, _buttonHeight);
-            
-            //Create button and detect button input. Get resulting drink from DrinkAssembler.
+            //Create button and detect button input.
             if (GUI.Button(rect, "Serve", _style))
             {
-                //_currentCustomer.TryServeDrink(_drink);
+                var inputEvent = new ServeInputTriggered{drink = _drink, customer = _currentCustomer};
+                EventBus<ServeInputTriggered>.Raise(inputEvent);
             }
                 
             #endregion

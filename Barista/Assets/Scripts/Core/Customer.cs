@@ -21,7 +21,7 @@ namespace Funksoft.Barista
         
         public float TimeRemaining;
 
-        public event Action<Customer> CustomerLeaves; //Todo: Add bool second parameter for leaving statisfied or unstatisfied?
+        public event Action<Customer> CustomerLeaves;
 
         private SpriteRenderer _spriteRenderer;
 
@@ -53,6 +53,11 @@ namespace Funksoft.Barista
             }
         }
 
+        public void OrderSatisfied()
+        {
+
+        }
+
         private void OutOfPatience()
         {
             if (CustomerLeaves != null)
@@ -80,7 +85,6 @@ namespace Funksoft.Barista
                 foreach(SideIngredientData osi in Order.SideIngredients)
                     Debug.Log("Topping wanted: " + osi.Name);
             }
-            
                 
         }
     }
