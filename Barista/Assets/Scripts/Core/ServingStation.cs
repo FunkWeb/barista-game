@@ -39,9 +39,11 @@ namespace Funksoft.Barista
 
         public bool TryServeDrink(Drink drink, Customer customer)
         {
+            //Make sure customer still exists
             if (customer == null)
                 return false;
-    
+
+            //Attempt to assemble drink.
             var assembledDrinkRecipe = _drinkAssembler.AssembleDrink(drink.DrinkMixture);
 
             //If the converted and assembled drink does not match any recipe
