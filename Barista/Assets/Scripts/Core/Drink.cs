@@ -54,16 +54,16 @@ namespace Funksoft.Barista
         {
             //Add if not already added.
             if (DrinkMixture.SideIngredients.HashSet.Add(ingredient) && _debugLogsEnabled)
-                Debug.Log("Side ingredient " + ingredient.Name + " added to mixture.");
+                TestUI.Log("Side ingredient " + ingredient.Name + " added to mixture.");
             else if (_debugLogsEnabled)
-                Debug.Log("Side ingredient " + ingredient.Name + " is already in mixture.");
+                TestUI.Log("Side ingredient " + ingredient.Name + " was not added as it is already in mixture.");
         }
 
         public void Clear()
         {
             DrinkMixture = new DrinkMixture();
             if (_debugLogsEnabled)
-                Debug.Log("Drink cleared!");
+                TestUI.Log("Drink contents emptied.");
         }
 
         

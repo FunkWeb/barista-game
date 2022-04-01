@@ -23,7 +23,7 @@ namespace Funksoft.Barista
             if (drinkMixture.GetTotalLiquid < minFillAmount * drinkMixture.MaxTotalLiquid)
             {
                 if (_debugLogsEnabled)
-                    Debug.Log("Drink not filled enough to be a completed drink.");
+                    TestUI.Log("Drink not filled enough to be a completed drink.");
                 return null;
             }
 
@@ -32,7 +32,7 @@ namespace Funksoft.Barista
             var result = GetMatchingRecipe(drinkMixture);
             
             if (_debugLogsEnabled)
-                Debug.Log("Recipe Assembled: " + result?.Name);
+                TestUI.Log("Recipe Assembled: " + result?.Name);
             
             return result;
         }

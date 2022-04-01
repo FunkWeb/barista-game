@@ -43,13 +43,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3dd3d8df357ac544faf651fa8081bea7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cupPanelPos: {x: -5.5, y: 0}
-  _drinkPanelPos: {x: 0, y: 0}
-  _customerPanelPos: {x: 5.5, y: 0}
+  _cupPanelPos: {x: -5.6, y: 0}
+  _midPanelPos: {x: 0, y: 0}
+  _customerPanelPos: {x: 5.6, y: 0}
+  _logWindowPos: {x: 0, y: 4}
   _panelWidth: 600
   _panelHeight: 600
   _textLabelWidth: 250
   _textLabelHeight: 50
+  _logLabelWidth: 1000
+  _logLabelHeight: 75
   _textPaddingX: 25
   _textPaddingY: 50
   _spaceBetweenText: 20
@@ -59,7 +62,6 @@ MonoBehaviour:
   _buttonPaddingY: 50
   _spaceBetweenButtons: 25
   _drink: {fileID: 0}
-  _drinkAssembler: {fileID: 0}
   _customerQueue: {fileID: 0}
   _mainDispensers:
   - {fileID: 0}

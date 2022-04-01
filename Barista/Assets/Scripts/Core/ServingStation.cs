@@ -32,7 +32,7 @@ namespace Funksoft.Barista
             if (TryServeDrink(e.drink, e.customer))
             {
                 if (_debugLogsEnabled)
-                    Debug.Log("Customer " + e.customer + "'s order was filled and left satisfied.");
+                    TestUI.Log("Customer " + e.customer + "'s order was filled and left satisfied.");
                 e.customer.OrderSatisfied();
             }
         }
@@ -48,7 +48,7 @@ namespace Funksoft.Barista
             if (assembledDrinkRecipe == null)
             {
                 if (_debugLogsEnabled)
-                    Debug.Log("Mistake: Drink does not match any existing recipe");
+                    TestUI.Log("Mistake: Drink does not match any existing recipe");
                 return false;
             }
 
@@ -56,7 +56,7 @@ namespace Funksoft.Barista
             if (assembledDrinkRecipe != customer.Order.Drink)
             {
                 if (_debugLogsEnabled)
-                    Debug.Log("Mistake: Wrong drink served. " + customer.CustomerData.name + " ordered: " + 
+                    TestUI.Log("Mistake: Wrong drink served. " + customer.CustomerData.name + " ordered: " + 
                               customer.Order.Drink.Name + ". You served: " + assembledDrinkRecipe.Name + ".");
                 return false;
             }
@@ -67,7 +67,7 @@ namespace Funksoft.Barista
                 if (!drink.DrinkMixture.SideIngredients.HashSet.Contains(si))
                 {
                     if (_debugLogsEnabled)
-                        Debug.Log("Mistake: Drink is missing " + si.Name);
+                        TestUI.Log("Mistake: Drink is missing " + si.Name);
                     return false;
                 }
             }
@@ -77,7 +77,7 @@ namespace Funksoft.Barista
                 if (!customer.Order.SideIngredients.Contains(si))
                 {
                     if (_debugLogsEnabled)
-                        Debug.Log("Mistake: Drink was not supposed to have " + si.Name);
+                        TestUI.Log("Mistake: Drink was not supposed to have " + si.Name);
                     return false;
                 }
             }

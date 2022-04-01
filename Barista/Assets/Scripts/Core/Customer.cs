@@ -36,8 +36,7 @@ namespace Funksoft.Barista
             _spriteRenderer.sprite = CustomerData.Sprite;
             if (_debugLogsEnabled)
             {
-                Debug.Log("Customer Type: " + CustomerData.name);
-                Debug.Log("Patience Time: " + CustomerData.PatienceTimer);
+                TestUI.Log("Customer Type: " + CustomerData.name + ". Patience Time: " + CustomerData.PatienceTimer);
             }
             CreateRandomOrder();
         }
@@ -81,9 +80,8 @@ namespace Funksoft.Barista
             Order = new Order(recipe, sideIngredients, 5f);
             if (_debugLogsEnabled)
             {
-                Debug.Log("Order: " + Order.Drink.Name);
                 foreach(SideIngredientData osi in Order.SideIngredients)
-                    Debug.Log("Topping wanted: " + osi.Name);
+                    TestUI.Log("Topping wanted: " + osi.Name);
             }
                 
         }

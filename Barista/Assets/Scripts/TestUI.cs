@@ -5,8 +5,8 @@ using pEventBus;
 
 namespace Funksoft.Barista
 {
-    //Class Responsible for on screen testing/debugging GUI and Inputs.
-    public class TestUI : MonoBehaviour
+    //Class Responsible for on screen testing/debugging GUI and Inputs. Messiest class in the whole project. Naming it Test-Something will make you do that.
+    public class TestUI : Valley.MonoBehaviourSingleton<TestUI>
     {
         [SerializeField, Header("Panel and Text")]
         private Vector2 _cupPanelPos;
@@ -15,6 +15,8 @@ namespace Funksoft.Barista
         [SerializeField]
         private Vector2 _customerPanelPos;
         [SerializeField]
+        private Vector2 _logWindowPos;
+        [SerializeField]
         private float _panelWidth = 800f;
         [SerializeField]
         private float _panelHeight = 600f;
@@ -22,6 +24,10 @@ namespace Funksoft.Barista
         private float _textLabelWidth = 200;
         [SerializeField]
         private float _textLabelHeight = 50;
+        [SerializeField]
+        private float _logLabelWidth = 300;
+        [SerializeField]
+        private float _logLabelHeight = 50;
         [SerializeField]
         private float _textPaddingX = 50;
         [SerializeField]
@@ -58,6 +64,7 @@ namespace Funksoft.Barista
 
         #endregion
         
+        private string _currentLogText;
         private Customer _currentCustomer;
         private GUIStyle _style;
 
@@ -66,6 +73,7 @@ namespace Funksoft.Barista
         private Vector3 _botLeft;
         private Vector3 _botRight;
 
+
         public struct ServeInputTriggered : IEvent
         {
             public Drink drink;
@@ -73,8 +81,10 @@ namespace Funksoft.Barista
         }
 
 
-        private void Awake()
-        {
+        protected override void Awake()
+        {   
+            base.Awake();
+
             _mainCamera = Camera.main;
 
             _topLeft = new Vector3(0f, 0f, 0f);
@@ -84,9 +94,22 @@ namespace Funksoft.Barista
    
         }
 
+        public static void Log(string text)
+        {
+            Instance._currentLogText = text;
+        }
+        public static void ClearLog()
+        {
+            Instance._currentLogText = null;
+        }
+
         private void OnGUI()
         {
-            
+            _style = new GUIStyle(GUI.skin.button);
+
+            if (_currentLogText != null)
+                DrawLogGUI(_logWindowPos, _logLabelWidth, _logLabelHeight, _currentLogText);
+
             DrawInputButtonsGUI();
             DrawCupPanelGUI(_cupPanelPos);
 
@@ -112,10 +135,19 @@ namespace Funksoft.Barista
 
         }
 
+        private void DrawLogGUI(Vector2 pos, float width, float height, string text)
+        {
+            _style.alignment = TextAnchor.UpperLeft;
+            _style.fontSize = 28;
+            var rect = new Rect(pos.x + _mainCamera.WorldToScreenPoint(pos).x - width/2, 
+                                pos.y + _mainCamera.WorldToScreenPoint(pos).y - height/2,
+                                width, height);
+            GUI.Label(rect, text, _style);
+        }
+
         private void DrawInputButtonsGUI()
         {
             //Set properties and values for buttons and text.
-            _style = new GUIStyle(GUI.skin.button);
             _style.alignment = TextAnchor.MiddleCenter;
             _style.fontSize = 30;
             Rect rect;

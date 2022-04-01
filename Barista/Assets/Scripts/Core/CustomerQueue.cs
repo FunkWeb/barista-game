@@ -48,7 +48,7 @@ namespace Funksoft.Barista
             if (Customers.Contains(customer))
             {
                 if (_debugLogsEnabled)
-                    Debug.Log("Customer " + customer.name + " left.");
+                    TestUI.Log("Customer " + customer.name + " left.");
                 Customers.Remove(customer);
                 
                 Destroy(customer.gameObject);
