@@ -43,5 +43,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92ce4ccc8bdb42a45814eb993098718e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _debugLogsEnabled: 1
   _databaseSO: {fileID: 11400000, guid: d474ff30e52965c46b5b84135b8561cc, type: 2}
   minFillAmount: 0.9

@@ -43,6 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68c984dabf3ce44458359de8d1869cb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _debugLogsEnabled: 1
   DrinkMixture:
     <MaxTotalLiquid>k__BackingField: 250
     <SideIngredients>k__BackingField:

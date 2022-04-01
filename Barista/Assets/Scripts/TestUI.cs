@@ -151,6 +151,11 @@ namespace Funksoft.Barista
             _style.alignment = TextAnchor.MiddleCenter;
             _style.fontSize = 30;
             Rect rect;
+
+            rect = new Rect(_botLeft.x, _botLeft.y - 50, 50, 50);
+            //Quit game button
+            if (GUI.Button(rect, "X", _style))
+                Application.Quit();
             
             //MainIngredient dispenser buttons
             for(var i = 0; i < _mainDispensers.Count; i++)

@@ -95,4 +95,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab1b356c4180a2146a5748615c526830, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _debugLogsEnabled: 1
   _database: {fileID: 11400000, guid: d474ff30e52965c46b5b84135b8561cc, type: 2}
+  CustomerData: {fileID: 0}
+  TimeRemaining: 0

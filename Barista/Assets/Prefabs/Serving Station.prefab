@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c651acd15a8ee7d49b00aef1b4f73d0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _debugLogsEnabled: 0
+  _debugLogsEnabled: 1
 --- !u!114 &4102210716695408394
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -57,6 +57,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92ce4ccc8bdb42a45814eb993098718e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _debugLogsEnabled: 0
+  _debugLogsEnabled: 1
   _databaseSO: {fileID: 11400000, guid: d474ff30e52965c46b5b84135b8561cc, type: 2}
   minFillAmount: 0.9
