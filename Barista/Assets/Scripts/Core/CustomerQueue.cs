@@ -6,7 +6,7 @@ using pEventBus;
 
 namespace Funksoft.Barista
 {
-    public class CustomerQueue : MonoBehaviour
+    public class CustomerQueue : MonoBehaviour, IEventReceiver<DayManager.SpawnCustomer>
     {
         [SerializeField]
         private bool _debugLogsEnabled = false;
@@ -25,12 +25,26 @@ namespace Funksoft.Barista
 
         public List<Customer> Customers = new List<Customer>();
 
+        private void OnEnable()
+        {
+            EventBus.Register(this);
+        }
+        private void OnDisable()
+        {
+            EventBus.UnRegister(this);
+        }
+
         private void Update()
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 CreateNewCustomer(_database.CustomerTypes.HashSet.ElementAt(Random.Range(0, _database.CustomerTypes.HashSet.Count)));
             }
+        }
+
+        public void OnEvent(DayManager.SpawnCustomer e)
+        {
+            CreateNewCustomer(e.customerType);
         }
 
         private void OnDestroy()

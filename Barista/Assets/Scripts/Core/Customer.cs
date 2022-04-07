@@ -54,7 +54,7 @@ namespace Funksoft.Barista
 
         public void OrderSatisfied()
         {
-
+            
         }
 
         private void OutOfPatience()
@@ -78,11 +78,6 @@ namespace Funksoft.Barista
             }
             //Create order
             Order = new Order(recipe, sideIngredients, 5f);
-            if (_debugLogsEnabled)
-            {
-                foreach(SideIngredientData osi in Order.SideIngredients)
-                    TestUI.Log("Topping wanted: " + osi.Name);
-            }
                 
         }
     }
