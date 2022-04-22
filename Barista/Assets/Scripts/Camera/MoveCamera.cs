@@ -11,9 +11,10 @@ namespace Funksoft.Barista
 
         private Vector3 posA;
         private Vector3 posB;
+        private bool posLock = true;
 
-        [SerializeField]
-        private float duration;
+        
+        private float duration = 1;
 
         void Awake()
         {
@@ -26,18 +27,20 @@ namespace Funksoft.Barista
 
         void Update()
         {
-
-            if (Input.GetKeyDown(KeyCode.RightArrow))
+            //left position moving to right
+            if (Input.GetKeyDown(KeyCode.RightArrow)&& posLock)
             {
                 Debug.Log("Right arrow presed");
                 StartCoroutine(SwitchPos(true));
+                posLock = false;
             }
-            if (Input.GetKeyDown(KeyCode.LeftArrow))
+            //Right position moving to left
+            else if (Input.GetKeyDown(KeyCode.LeftArrow)&& !posLock)
             {
                 Debug.Log("Left arrow presed");
                 StartCoroutine(SwitchPos(false));
+                posLock = true;
             }
-            
         }
 
         //lerps the camera position to position A or B depending on current location.
@@ -46,6 +49,7 @@ namespace Funksoft.Barista
             Debug.Log("SwitchPos started");
 
             float time = 0;
+            float rate = 1/duration;
 
             while (time < duration)
             {
@@ -57,7 +61,7 @@ namespace Funksoft.Barista
                 {
                     transform.position = Vector3.Lerp(posB, posA, camMove.Evaluate(time));
                 }
-                time += Time.deltaTime;
+                time += rate * Time.deltaTime;
                 yield return null;
             }
         }
