@@ -11,10 +11,10 @@ namespace Funksoft.Barista
 
         private Vector3 posA;
         private Vector3 posB;
-        private bool posLock = true;
+        private bool transitioning;
 
-        
-        private float duration = 1;
+        [SerializeField]
+        private float speed;
 
         void Awake()
         {
@@ -28,18 +28,16 @@ namespace Funksoft.Barista
         void Update()
         {
             //left position moving to right
-            if (Input.GetKeyDown(KeyCode.RightArrow)&& posLock)
+            if (Input.GetKeyDown(KeyCode.RightArrow) && !transitioning)
             {
                 Debug.Log("Right arrow presed");
                 StartCoroutine(SwitchPos(true));
-                posLock = false;
             }
             //Right position moving to left
-            else if (Input.GetKeyDown(KeyCode.LeftArrow)&& !posLock)
+            else if (Input.GetKeyDown(KeyCode.LeftArrow) && !transitioning)
             {
                 Debug.Log("Left arrow presed");
                 StartCoroutine(SwitchPos(false));
-                posLock = true;
             }
         }
 
@@ -47,23 +45,26 @@ namespace Funksoft.Barista
         private IEnumerator SwitchPos(bool isPosA)
         {
             Debug.Log("SwitchPos started");
-
             float time = 0;
-            float rate = 1/duration;
+            float duration = 1;
+            transitioning = true;
 
             while (time < duration)
             {
+                //lerps left to right
                 if(isPosA)
                 {
                     transform.position = Vector3.Lerp(posA, posB, camMove.Evaluate(time));
                 }
+                //lerps right to left
                 else
                 {
                     transform.position = Vector3.Lerp(posB, posA, camMove.Evaluate(time));
                 }
-                time += rate * Time.deltaTime;
+                time += Time.deltaTime * speed;
                 yield return null;
             }
+            transitioning = false;
         }
     }
 }
