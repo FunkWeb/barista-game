@@ -6,6 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
+    path: Assets/Scenes/Main Menu.unity
+    guid: c39ef03d4be0d6a458b10543ebe1e9af
+  - enabled: 1
+    path: Assets/Scenes/Shift.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/ShiftOver.unity
+    guid: 8ffdd8e1446210b4bb9901fc6518581d
   m_configObjects: {}

@@ -6,7 +6,7 @@ using pEventBus;
 
 namespace Funksoft.Barista
 {
-    public class CustomerQueue : MonoBehaviour, IEventReceiver<DayManager.SpawnCustomer>
+    public class CustomerCounter : MonoBehaviour, IEventReceiver<DayManager.SpawnCustomer>
     {
         [SerializeField]
         private bool _debugLogsEnabled = false;
@@ -17,7 +17,7 @@ namespace Funksoft.Barista
         [SerializeField]
         private GameObject _customerPrefab;
 
-        [SerializeField, Header("Queue Properties")]
+        [SerializeField, Header("Properties")]
         private int _maxCustomerCount = 5;
 
         [SerializeField]

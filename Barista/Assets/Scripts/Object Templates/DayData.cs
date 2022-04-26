@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Valley;
 
 namespace Funksoft.Barista
 {
@@ -21,7 +22,7 @@ namespace Funksoft.Barista
         //Todo: Potentially add multiple timers/spawners?
 
         [SerializeField]
-        public List<CustomerData> PossibleCustomers; //List of customers that can be spawned during this shift.
+        public SerializableHashSet<CustomerData> PossibleCustomers; //List of customers that can be spawned during this shift.
 
         
     }

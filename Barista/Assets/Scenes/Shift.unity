@@ -153,6 +153,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _databaseSO: {fileID: 11400000, guid: d474ff30e52965c46b5b84135b8561cc, type: 2}
+  _days:
+  - {fileID: 11400000, guid: cda51874b64fd054ebe14e0da1eee2db, type: 2}
 --- !u!4 &170163418
 Transform:
   m_ObjectHideFlags: 0
@@ -249,13 +251,9 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1132660445}
     - target: {fileID: 7907885860109854072, guid: 335cd043d100dec43825afcb90ad67ea, type: 3}
-      propertyPath: _customerQueue
+      propertyPath: _customerCounter
       value: 
       objectReference: {fileID: 305992931}
-    - target: {fileID: 7907885860109854072, guid: 335cd043d100dec43825afcb90ad67ea, type: 3}
-      propertyPath: _logLabelHeight
-      value: 150
-      objectReference: {fileID: 0}
     - target: {fileID: 7907885860109854072, guid: 335cd043d100dec43825afcb90ad67ea, type: 3}
       propertyPath: _mainDispensers.Array.data[0]
       value: 
@@ -745,13 +743,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7133700323830340908, guid: 6e0ec00ccdf9c64469a671884b068402, type: 3}
-      propertyPath: _debugLogsEnabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7133700323830340909, guid: 6e0ec00ccdf9c64469a671884b068402, type: 3}
       propertyPath: m_Name
-      value: CustomerQueue
+      value: CustomerCounter
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6e0ec00ccdf9c64469a671884b068402, type: 3}

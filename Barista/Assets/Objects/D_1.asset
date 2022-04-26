@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57d33cab44acfe4468abe71c22dfeb8e, type: 3}
   m_Name: D_1
   m_EditorClassIdentifier: 
-  ShiftTime: 180
+  ShiftTime: 10
   InitialCustomerDelay: 5
   MinTimeBetweenCustomers: 3
   MaxTimeBetweenCustomers: 8
-  PossibleCustomers: []
+  PossibleCustomers:
+  - {fileID: 11400000, guid: 0afa17e795c8c3b4599acf97f7498b8d, type: 2}
+  - {fileID: 11400000, guid: 9a8b64c9e3723fc4fb04b5dce368daf5, type: 2}
