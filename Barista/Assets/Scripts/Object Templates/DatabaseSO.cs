@@ -20,6 +20,9 @@ namespace Funksoft.Barista
 
         [SerializeField]
         public SerializableHashSet<CustomerData> CustomerTypes;
+
+        [SerializeField]
+        public SerializableHashSet<DayData> Days;
     
         private void OnEnable()
         {

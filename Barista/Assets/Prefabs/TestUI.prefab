@@ -52,7 +52,7 @@ MonoBehaviour:
   _textLabelWidth: 250
   _textLabelHeight: 50
   _logLabelWidth: 1000
-  _logLabelHeight: 75
+  _logLabelHeight: 150
   _textPaddingX: 25
   _textPaddingY: 50
   _spaceBetweenText: 20
@@ -62,7 +62,7 @@ MonoBehaviour:
   _buttonPaddingY: 50
   _spaceBetweenButtons: 25
   _drink: {fileID: 0}
-  _customerQueue: {fileID: 0}
+  _customerCounter: {fileID: 0}
   _mainDispensers:
   - {fileID: 0}
   - {fileID: 0}

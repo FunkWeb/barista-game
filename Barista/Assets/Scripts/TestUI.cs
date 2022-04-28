@@ -52,7 +52,7 @@ namespace Funksoft.Barista
         private Drink _drink;
 
         [SerializeField]
-        private CustomerQueue _customerQueue;
+        private CustomerCounter _customerCounter;
 
         [SerializeField]
         private List<MainDispenser> _mainDispensers;
@@ -118,15 +118,15 @@ namespace Funksoft.Barista
 
             Rect cTabsRect;
             //Create tab buttons for each customer & store selected customer
-            for(var i = 0; i < _customerQueue.Customers.Count; i++)
+            for(var i = 0; i < _customerCounter.Customers.Count; i++)
             {
                 cTabsRect = new Rect(_topRight.x - _buttonPaddingX - _buttonWidth/2 - i * (_buttonWidth/2 + _spaceBetweenButtons),
                                      _topRight.y + _buttonPaddingY
                                      , _buttonWidth/2, _buttonHeight);
 
-                if (GUI.Button(cTabsRect, _customerQueue.Customers[i].TimeRemaining.ToString("F2"), _style))
+                if (GUI.Button(cTabsRect, _customerCounter.Customers[i].TimeRemaining.ToString("F2"), _style))
                 {
-                    _currentCustomer = _customerQueue.Customers[i];
+                    _currentCustomer = _customerCounter.Customers[i];
                 }
             }
             //if a customer is selected, create customer panel with its data

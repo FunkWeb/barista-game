@@ -30,3 +30,6 @@ MonoBehaviour:
   CustomerTypes:
     _items:
     - {fileID: 11400000, guid: 0afa17e795c8c3b4599acf97f7498b8d, type: 2}
+  Days:
+    _items:
+    - {fileID: 11400000, guid: cda51874b64fd054ebe14e0da1eee2db, type: 2}
