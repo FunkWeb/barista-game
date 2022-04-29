@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8abd0a663e69c5e469d6cf521d360380, type: 3}
   m_Name: S_Chocolate
   m_EditorClassIdentifier: 
-  Name: Chocolate Flakes
+  Name: Chocolate Syrup
