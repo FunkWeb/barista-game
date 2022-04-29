@@ -35,12 +35,21 @@ namespace Funksoft.Barista
                     _clickableObject.Activate();
             }
 
+            //Skip handling clicked object interactions if there is no clicked object.
+            if (_clickableObject == null)
+                return;
+
             //Continue activation every frame of input, if Hold Repeat is enabled
             if (Input.GetMouseButton(0))
             {
                 if (!_clickableObject.GetRepeatIfHeld())
                     return;
                 _clickableObject.Activate();
+            }
+
+            if (Input.GetMouseButtonUp(0))
+            {
+                _clickableObject = null;
             }
 
         }

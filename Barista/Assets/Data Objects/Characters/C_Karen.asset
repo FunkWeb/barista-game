@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2484dd252c579f5408fa27a82e712f92, type: 3}
   m_Name: C_Karen
   m_EditorClassIdentifier: 
-  Sprite: {fileID: 21300000, guid: 0e330dc5bbd6a824ba91da0c7af05be9, type: 3}
+  Sprite: {fileID: 21300000, guid: fed2a367b844c2c498efdee91a2dc268, type: 3}
   PatienceTimer: 60
-  MaxServeTries: 1
-  SideIngredientChance: 1
+  MaxServeTries: 2
+  SideIngredientChance: 0.3
