@@ -21,6 +21,9 @@ namespace Funksoft.Barista
 
         //Possibly add list of possible drinks to filter in/out of possible selection.
 
+        [SerializeField]
+        public float DisplayPositionHeight = 0f; //How high (y-pos) the character will spawn on-screen, relative the CustomerCounter object that creates the character.
+
 
 
     }

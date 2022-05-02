@@ -28,6 +28,7 @@ namespace Valley
                     if (_instance == null)
                     {
                         var obj = new GameObject();
+                        obj.name = Instance.name;
                         _instance = obj.AddComponent<T>();
                     }
                 }

@@ -33,8 +33,10 @@ namespace Funksoft.Barista
             {
                 if (_debugLogsEnabled)
                     TestUI.Log("Customer " + e.customer + "'s order was filled and left satisfied.");
-                e.customer.OrderSatisfied();
+                e.customer.LeaveSatisfied();
+                return;
             }
+            e.customer.ServedWrongOrder();
         }
 
         public bool TryServeDrink(Drink drink, Customer customer)

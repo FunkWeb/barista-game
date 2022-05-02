@@ -6,7 +6,7 @@ using pEventBus;
 
 namespace Funksoft.Barista
 {
-    public class CustomerCounter : MonoBehaviour, IEventReceiver<DayManager.SpawnCustomer>
+    public class CustomerCounter : MonoBehaviour, IEventReceiver<DayManager.SpawnCustomer>, IEventReceiver<Customer.Leave>
     {
         [SerializeField]
         private bool _debugLogsEnabled = false;
@@ -42,35 +42,41 @@ namespace Funksoft.Barista
             }
         }
 
+        #region Receive pEventBus events
+        //Receive order to spawn new customer from Day/shift manager
         public void OnEvent(DayManager.SpawnCustomer e)
         {
             CreateNewCustomer(e.customerType);
         }
-
-        private void OnDestroy()
+        //Receive event from spawned customer when they leave
+        public void OnEvent(Customer.Leave e)
         {
-            //Event cleanup, unsubscribe to vents from all customers in queue.
-            foreach(Customer c in Customers)
-            {
-                c.CustomerLeaves -= CustomerLeft;
-            }
+            CustomerLeft(e.customer, e.statisfied);
         }
+        #endregion
 
         //Remove customers from queue and handle changes needed when customers 
-        private void CustomerLeft(Customer customer)
+        private void CustomerLeft(Customer customer, bool wasStatisfied)
         {    
             if (Customers.Contains(customer))
             {
-                if (_debugLogsEnabled)
-                    TestUI.Log("Customer " + customer.name + " left.");
+                //Remove customer from counter list
                 Customers.Remove(customer);
-                
                 Destroy(customer.gameObject);
-                //Todo: Reorder queue. (Move up sprites to fill gaps left by leaving customers).
                 
-
-            }
+                //Handle stats and results based of failed or completed customer
+                if (wasStatisfied)
+                {
+                    PersistentShiftStats.Instance.CompletedCustomers += 1;
+                    if (_debugLogsEnabled)
+                        TestUI.Log("Customer " + customer.CustomerData.name + " left statisfied with their order.");
+                    return;
+                }
+                if (_debugLogsEnabled)
+                    TestUI.Log("Customer " + customer.CustomerData.name + " stomped off unhappy without their order.");
+                PersistentShiftStats.Instance.FailedCustomers += 1;
                 
+            }  
         }
 
         private void CreateNewCustomer(CustomerData customerData)
@@ -86,9 +92,6 @@ namespace Funksoft.Barista
             inst.TryGetComponent<Customer>(out customer);
             Customers.Add(customer);
             customer.CustomerData = customerData;
-
-            //Subscribe to CustomerLeaves event so we know when to "clean up" and remove them.
-            customer.CustomerLeaves += CustomerLeft;
         }
     }
 }

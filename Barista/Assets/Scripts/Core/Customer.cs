@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using System;
+using pEventBus;
 
 namespace Funksoft.Barista
 {
@@ -21,9 +22,15 @@ namespace Funksoft.Barista
         
         public float TimeRemaining;
 
-        public event Action<Customer> CustomerLeaves;
+        public int FailedServingsCount = 0;
 
         private SpriteRenderer _spriteRenderer;
+
+        public struct Leave : IEvent
+        {
+            public Customer customer;
+            public bool statisfied;
+        }
 
         private void Awake()
         {
@@ -48,20 +55,32 @@ namespace Funksoft.Barista
             TimeRemaining -= Time.deltaTime;
             if (TimeRemaining < Mathf.Epsilon)
             {
-                OutOfPatience();
+                LeaveUnstatisfied();
             }
         }
 
-        public void OrderSatisfied()
+        public void ServedWrongOrder()
         {
-            
+            //Play bad groan sound
+            if (FailedServingsCount < CustomerData.MaxServeTries)
+            {
+                //Wrong order, but wont leave yet
+                FailedServingsCount++;
+                return;
+            }
+            LeaveUnstatisfied();
         }
 
-        private void OutOfPatience()
+        public void LeaveSatisfied()
         {
-            if (CustomerLeaves != null)
-                CustomerLeaves(this);
-                
+            EventBus<Leave>.Raise
+            (new Leave{ customer = this, statisfied = true });
+        }
+
+        private void LeaveUnstatisfied()
+        {
+            EventBus<Leave>.Raise
+            (new Leave{ customer = this, statisfied = false });
         }
 
         private void CreateRandomOrder()

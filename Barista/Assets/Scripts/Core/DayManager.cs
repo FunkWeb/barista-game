@@ -12,6 +12,8 @@ namespace Funksoft.Barista
         private DatabaseSO _databaseSO;
         [SerializeField]
         private List<DayData> _days;
+
+        public bool PreShiftPause = true;
         
         private int _currentDayIndex = 0;
         public int CurrentDayIndex
@@ -46,6 +48,13 @@ namespace Funksoft.Barista
 
         private void Update()
         {
+            if (Input.GetKeyDown(KeyCode.P))
+                PreShiftPause = !PreShiftPause;
+            //Dont start countdown until shift is properly started.
+            if (PreShiftPause)
+                return;
+
+            //End shift when the time is up
             _shiftTimer -= Time.deltaTime;
             if (_shiftTimer <= 0f)
             {
@@ -53,6 +62,7 @@ namespace Funksoft.Barista
                 Debug.Log("Shift over. You made it.");
             }
             
+            //Customer spawn timer.
             _timer -= Time.deltaTime;
             if (_timer <= 0f)
             {
