@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: -5558162928399688501}
   - component: {fileID: 7649590715587947703}
   - component: {fileID: 2894593444869965565}
-  - component: {fileID: 955262205}
+  - component: {fileID: -2205597914210755364}
   m_Layer: 0
-  m_Name: Milk Dispenser
+  m_Name: Espresso Dispenser
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: a46bab62c7754f54781fc420398c5818, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ad0724309aef2924b8446ecd690c0663, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -98,18 +98,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.075}
+  m_Offset: {x: -0.05, y: -0.06}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.7777778, y: 2.8444445}
+    oldSize: {x: 2.72, y: 1.88}
     newSize: {x: 1.2433333, y: 2.32}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1.5}
+  m_Size: {x: 2.3, y: 1.6}
   m_EdgeRadius: 0
 --- !u!114 &2894593444869965565
 MonoBehaviour:
@@ -123,9 +123,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23945ccdddc17ed4595abe2e28109b2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Ingredient: {fileID: 11400000, guid: e067ed3f0c293584ba383585708e2864, type: 2}
+  Ingredient: {fileID: 11400000, guid: d7bf4ec422e6b4e45991cf8ef4dfbff8, type: 2}
   FillAmountPerSec: 50
---- !u!114 &955262205
+--- !u!114 &-2205597914210755364
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -138,5 +138,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _repeatIfHeld: 1
-  _hoverSprite: {fileID: 21300000, guid: a46bab62c7754f54781fc420398c5818, type: 3}
-  _clickedSprite: {fileID: 21300000, guid: a46bab62c7754f54781fc420398c5818, type: 3}
+  _hoverSprite: {fileID: 21300000, guid: ad0724309aef2924b8446ecd690c0663, type: 3}
+  _clickedSprite: {fileID: 21300000, guid: ad0724309aef2924b8446ecd690c0663, type: 3}

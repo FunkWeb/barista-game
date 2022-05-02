@@ -5,13 +5,14 @@ using pEventBus;
 
 namespace Funksoft.Barista
 {
-    public class MainDispenser : MonoBehaviour
+    public class MainDispenser : MonoBehaviour, IClickable
     {
         [SerializeField]
         public MainIngredientData Ingredient;
 
         [SerializeField]
         public float FillAmountPerSec = 50f;
+
 
         public struct Used : IEvent
         {
@@ -25,7 +26,10 @@ namespace Funksoft.Barista
             EventBus<Used>.Raise(useEvent);
         }
 
-
+        public void OnActivation()
+        {
+            Use();
+        }
 
     }
 }

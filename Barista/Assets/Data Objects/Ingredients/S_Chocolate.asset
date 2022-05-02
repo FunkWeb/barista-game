@@ -9,8 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eba7cac3090e8e946b56e8cdda52f425, type: 3}
-  m_Name: M_Tea
+  m_Script: {fileID: 11500000, guid: 8abd0a663e69c5e469d6cf521d360380, type: 3}
+  m_Name: S_Chocolate
   m_EditorClassIdentifier: 
-  Name: Tea
-  InCupColor: {r: 0.4528302, g: 0.36525455, b: 0.36525455, a: 0}
+  Name: Chocolate Syrup

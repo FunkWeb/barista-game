@@ -156,7 +156,7 @@ namespace Funksoft.Barista
             //Quit game button
             if (GUI.Button(rect, "X", _style))
                 Application.Quit();
-            
+            /*
             //MainIngredient dispenser buttons
             for(var i = 0; i < _mainDispensers.Count; i++)
             {
@@ -197,7 +197,7 @@ namespace Funksoft.Barista
             }
                 
             #endregion
-
+            */
             #region Serve Drink Button
             //Set position and size of button
             rect = new Rect(_botRight.x - _buttonWidth -_buttonPaddingX, _botRight.y - _buttonPaddingY - _buttonHeight, _buttonWidth, _buttonHeight);
