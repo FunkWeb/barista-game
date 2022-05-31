@@ -11,7 +11,15 @@ namespace Funksoft.Barista
         private bool _debugLogsEnabled = false;
 
         [SerializeField]
+        private DisplayCupContents _displayCupContents;
+
+        [SerializeField]
         public DrinkMixture DrinkMixture = new DrinkMixture(); //Holds the actual ingredients and amounts of liquid in the drink.
+
+        private void Awake()
+        {
+            _displayCupContents.DrinkMixture = DrinkMixture;
+        }
 
         //Subscribe to events
         private void OnEnable()
@@ -27,6 +35,7 @@ namespace Funksoft.Barista
         public void OnEvent(MainDispenser.Used e)
         {
             AddMainIngredient(e.ingredient, e.amount);
+            _displayCupContents.UpdateDisplay();
         }
         public void OnEvent(SideDispenser.Used e)
         {

@@ -83,7 +83,9 @@ namespace Funksoft.Barista
         {
             if (Customers.Count >= _maxCustomerCount)
                 return;
-                
+
+            //TODO: Instantiate customer UI object.
+            
             //Spawn customer prefab instance in position corresponding to the next open spot in the queue.
             Vector3 spawnPos = new Vector3(transform.position.x + (_distanceBetweenCustomers * Customers.Count), transform.position.y, transform.position.z);
             var inst = Instantiate(_customerPrefab, spawnPos, Quaternion.identity);
