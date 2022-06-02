@@ -10,13 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8e9e0360fb33ff748b8f4d1d24e8a067, type: 3}
-  m_Name: R_Espresso
+  m_Name: R_Cappucino
   m_EditorClassIdentifier: 
-  Name: Double Espresso
+  Name: Latte
   Ingredients:
   - {fileID: 11400000, guid: d7bf4ec422e6b4e45991cf8ef4dfbff8, type: 2}
   - {fileID: 11400000, guid: d7bf4ec422e6b4e45991cf8ef4dfbff8, type: 2}
   - {fileID: 11400000, guid: d7bf4ec422e6b4e45991cf8ef4dfbff8, type: 2}
   - {fileID: 11400000, guid: d7bf4ec422e6b4e45991cf8ef4dfbff8, type: 2}
-  - {fileID: 11400000, guid: d7bf4ec422e6b4e45991cf8ef4dfbff8, type: 2}
-  - {fileID: 11400000, guid: d7bf4ec422e6b4e45991cf8ef4dfbff8, type: 2}
+  - {fileID: 11400000, guid: e067ed3f0c293584ba383585708e2864, type: 2}
+  - {fileID: 11400000, guid: e067ed3f0c293584ba383585708e2864, type: 2}
+  - {fileID: 11400000, guid: e067ed3f0c293584ba383585708e2864, type: 2}
+  - {fileID: 11400000, guid: e067ed3f0c293584ba383585708e2864, type: 2}

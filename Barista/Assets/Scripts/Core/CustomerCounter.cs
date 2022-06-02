@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using pEventBus;
+using TMPro;
 
 namespace Funksoft.Barista
 {
@@ -83,8 +84,6 @@ namespace Funksoft.Barista
         {
             if (Customers.Count >= _maxCustomerCount)
                 return;
-
-            //TODO: Instantiate customer UI object.
             
             //Spawn customer prefab instance in position corresponding to the next open spot in the queue.
             Vector3 spawnPos = new Vector3(transform.position.x + (_distanceBetweenCustomers * Customers.Count), transform.position.y, transform.position.z);
@@ -94,6 +93,7 @@ namespace Funksoft.Barista
             inst.TryGetComponent<Customer>(out customer);
             Customers.Add(customer);
             customer.CustomerData = customerData;
+
         }
     }
 }

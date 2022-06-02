@@ -28,7 +28,7 @@ namespace Valley
                     if (_instance == null)
                     {
                         var obj = new GameObject();
-                        obj.name = Instance.name;
+                        //Todo (maybe): give obj a name
                         _instance = obj.AddComponent<T>();
                     }
                 }

@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: M_Coffee
   m_EditorClassIdentifier: 
   Name: Coffee
-  InCupColor: {r: 0, g: 0, b: 0, a: 0}
+  InCupColor: {r: 0.5849056, g: 0.28338757, b: 0.16278034, a: 1}

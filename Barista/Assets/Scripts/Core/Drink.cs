@@ -67,6 +67,8 @@ namespace Funksoft.Barista
         public void Clear()
         {
             DrinkMixture = new DrinkMixture();
+            _displayCupContents.DrinkMixture = DrinkMixture;
+            _displayCupContents.ResetIngredientDisplay();
             if (_debugLogsEnabled)
                 TestUI.Log("Drink contents emptied.");
         }

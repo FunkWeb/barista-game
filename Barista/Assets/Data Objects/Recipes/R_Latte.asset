@@ -14,6 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Latte
   Ingredients:
-  - {fileID: 11400000, guid: faa3123fccd3fb94b9d815776476100c, type: 2}
+  - {fileID: 11400000, guid: d7bf4ec422e6b4e45991cf8ef4dfbff8, type: 2}
+  - {fileID: 11400000, guid: d7bf4ec422e6b4e45991cf8ef4dfbff8, type: 2}
+  - {fileID: 11400000, guid: e067ed3f0c293584ba383585708e2864, type: 2}
+  - {fileID: 11400000, guid: e067ed3f0c293584ba383585708e2864, type: 2}
   - {fileID: 11400000, guid: e067ed3f0c293584ba383585708e2864, type: 2}
   - {fileID: 11400000, guid: e067ed3f0c293584ba383585708e2864, type: 2}

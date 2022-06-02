@@ -38,7 +38,7 @@ namespace Funksoft.Barista
                     inst.transform.parent = this.transform;
                     var instSpriteRenderer = inst.GetComponent<SpriteRenderer>();
                     //Give a random color, to easier differentiate the ingredient fills, visually. (just for the demo)
-                    instSpriteRenderer.color = Random.ColorHSV();
+                    instSpriteRenderer.color = pair.Key.InCupColor;
 
                     _ingredientSprites.Add(pair.Key, instSpriteRenderer);
                 }
@@ -53,6 +53,16 @@ namespace Funksoft.Barista
                 //Adds the visual-relative amount filled so far, so the next ingredient can be positioned at the top of existing ingredients
                 filledPortion += fillAmount;
             }
+        }
+
+        public void ResetIngredientDisplay()
+        {
+            //Remove sprite child objects when drink display is cleared
+            foreach(KeyValuePair<MainIngredientData, SpriteRenderer> displayIng in _ingredientSprites)
+                Destroy(displayIng.Value.gameObject);
+            //Remove references to deleted sprite objects
+            _ingredientSprites.Clear();
+            UpdateDisplay();
         }
 
     }
