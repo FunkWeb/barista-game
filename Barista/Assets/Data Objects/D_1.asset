@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShiftTime: 60
   InitialCustomerDelay: 5
-  MinTimeBetweenCustomers: 3
-  MaxTimeBetweenCustomers: 8
+  MinTimeBetweenCustomers: 15
+  MaxTimeBetweenCustomers: 25
   PossibleCustomers:
     _items:
     - {fileID: 11400000, guid: 0afa17e795c8c3b4599acf97f7498b8d, type: 2}

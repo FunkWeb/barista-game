@@ -98,4 +98,6 @@ MonoBehaviour:
   _debugLogsEnabled: 1
   _database: {fileID: 11400000, guid: d474ff30e52965c46b5b84135b8561cc, type: 2}
   CustomerData: {fileID: 0}
+  _customerUIPrefab: {fileID: 822468339323321989, guid: 913f7b207c08fc8419e2828966fe08f4, type: 3}
   TimeRemaining: 0
+  FailedServingsCount: 0

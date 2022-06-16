@@ -294,6 +294,7 @@ namespace Funksoft.Barista
             //Total liquid text
             textRect = new Rect(panelRect.x, panelRect.y + _panelHeight - _textLabelHeight, _panelWidth, _textLabelHeight);
             GUI.Label(textRect, "Total Liquid: " + _drink.DrinkMixture.GetTotalLiquid.ToString("F2") + "ml / " + _drink.DrinkMixture.MaxTotalLiquid + "ml", _style);
+        
         }
 
         private void DrawCustomerPanel(Vector2 pos, Customer customer)

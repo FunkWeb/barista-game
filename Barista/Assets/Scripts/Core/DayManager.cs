@@ -28,7 +28,7 @@ namespace Funksoft.Barista
         }
         
 
-        private float _shiftTimer;
+        public float ShiftTimer{get; private set;}
         private float _timer;
 
         //Todo: replace with better eventbus notification of timers triggering and such
@@ -39,8 +39,9 @@ namespace Funksoft.Barista
 
         private void Start()
         {
+
             _days = new List<DayData>(_databaseSO.Days.HashSet);
-            _shiftTimer = _days[CurrentDayIndex].ShiftTime;
+            ShiftTimer = _days[CurrentDayIndex].ShiftTime;
             _timer = _days[CurrentDayIndex].InitialCustomerDelay;
             
         }
@@ -55,8 +56,8 @@ namespace Funksoft.Barista
                 return;
 
             //End shift when the time is up
-            _shiftTimer -= Time.deltaTime;
-            if (_shiftTimer <= 0f)
+            ShiftTimer -= Time.deltaTime;
+            if (ShiftTimer <= 0f)
             {
                 Valley.MonoBehaviourSingleton<SceneLoader>.Instance.LoadPostShiftScene();
                 Debug.Log("Shift over. You made it.");

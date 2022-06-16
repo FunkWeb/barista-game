@@ -17,11 +17,13 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 8e63d8e712b68f94fa1efb1b565557bc, type: 2}
     - {fileID: 11400000, guid: b97e42e38362ca94eb107866326fb53c, type: 2}
     - {fileID: 11400000, guid: 67128221d7a3d69488111d465f2ed764, type: 2}
+    - {fileID: 11400000, guid: 80931440e8e632e449ad482571cf626b, type: 2}
   MainIngredients:
     _items:
     - {fileID: 11400000, guid: faa3123fccd3fb94b9d815776476100c, type: 2}
     - {fileID: 11400000, guid: e067ed3f0c293584ba383585708e2864, type: 2}
     - {fileID: 11400000, guid: d7bf4ec422e6b4e45991cf8ef4dfbff8, type: 2}
+    - {fileID: 11400000, guid: c9e65b9ccc21d6949aa75f4b85f9e741, type: 2}
   SideIngredients:
     _items:
     - {fileID: 11400000, guid: 2ac7d9f9eb951334089fa214d49f3e75, type: 2}
