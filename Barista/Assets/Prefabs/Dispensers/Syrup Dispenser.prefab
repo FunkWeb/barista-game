@@ -47,6 +47,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Ingredient: {fileID: 11400000, guid: c3f38e28ad62eff4c9ab47f43cf1cd32, type: 2}
+  _hoverSprite: {fileID: 21300000, guid: 059e2ca18e46ea6408ebc2e4008bc60c, type: 3}
+  _clickedSprite: {fileID: 21300000, guid: 059e2ca18e46ea6408ebc2e4008bc60c, type: 3}
 --- !u!61 &1220408728
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -137,5 +139,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _repeatIfHeld: 0
-  _hoverSprite: {fileID: 21300000, guid: 059e2ca18e46ea6408ebc2e4008bc60c, type: 3}
-  _clickedSprite: {fileID: 21300000, guid: 059e2ca18e46ea6408ebc2e4008bc60c, type: 3}

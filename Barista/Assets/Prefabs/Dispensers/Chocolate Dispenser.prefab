@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 8579664802388018187}
   - component: {fileID: 8579664802388018188}
+  - component: {fileID: 1220408729}
   - component: {fileID: 1220408728}
   - component: {fileID: 1220408730}
-  - component: {fileID: 1220408729}
   m_Layer: 0
   m_Name: Chocolate Dispenser
   m_TagString: Untagged
@@ -47,6 +47,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Ingredient: {fileID: 11400000, guid: 75e206177e5271f45873f30480c645a2, type: 2}
+  _hoverSprite: {fileID: 21300000, guid: b6c5b2b47a47ed347b72532189a7eac0, type: 3}
+  _clickedSprite: {fileID: 21300000, guid: b6c5b2b47a47ed347b72532189a7eac0, type: 3}
+--- !u!114 &1220408729
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8579664802388018189}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6b49c5955eef174db576f80380d2b2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _repeatIfHeld: 0
 --- !u!61 &1220408728
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -124,18 +139,3 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1220408729
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8579664802388018189}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a6b49c5955eef174db576f80380d2b2e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _repeatIfHeld: 0
-  _hoverSprite: {fileID: 21300000, guid: b6c5b2b47a47ed347b72532189a7eac0, type: 3}
-  _clickedSprite: {fileID: 21300000, guid: b6c5b2b47a47ed347b72532189a7eac0, type: 3}

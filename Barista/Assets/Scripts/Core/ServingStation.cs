@@ -5,10 +5,13 @@ using pEventBus;
 
 namespace Funksoft.Barista
 {
-    public class ServingStation : MonoBehaviour, IEventReceiver<TestUI.ServeInputTriggered>
+    public class ServingStation : MonoBehaviour, IEventReceiver<Customer.ServeDrinkInput>
     {
         [SerializeField]
         private bool _debugLogsEnabled = false;
+
+        [SerializeField]
+        private Drink _drink;
 
         private DrinkAssembler _drinkAssembler;
 
@@ -26,6 +29,20 @@ namespace Funksoft.Barista
             EventBus.UnRegister(this);
         }
 
+        //Triggered when serve input is called (aka. when a customer is clicked)
+        public void OnEvent(Customer.ServeDrinkInput e)
+        {
+            if (TryServeDrink(_drink, e.customer))
+            {
+                if (_debugLogsEnabled)
+                    TestUI.Log("Customer " + e.customer + "'s order was filled and left satisfied.");
+                e.customer.LeaveSatisfied();
+                return;
+            }
+            e.customer.ServedWrongOrder();
+        }
+
+        /*
         //Attempt to serve the drink when the input is received
         public void OnEvent(TestUI.ServeInputTriggered e)
         {
@@ -38,6 +55,7 @@ namespace Funksoft.Barista
             }
             e.customer.ServedWrongOrder();
         }
+        */
 
         public bool TryServeDrink(Drink drink, Customer customer)
         {

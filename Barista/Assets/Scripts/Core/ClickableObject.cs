@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
+//CLICKABLE OBJECT SCRIPT RUNS AT CUSTOM SCRIPT ORDER EXECUTION Default + 5. Check Script order Execution in project settings if unexpected order bugs appears.
+//This is done so the customer DataObject can be set in the start method, while ensuring this scipts start method runs after it, as to avoid Nulrefference should the order of the Start() events be different. 
 namespace Funksoft.Barista
 {
     [RequireComponent(typeof(SpriteRenderer))]
@@ -10,12 +12,10 @@ namespace Funksoft.Barista
     {
         [SerializeField]
         private bool _repeatIfHeld;
-        [SerializeField]
-        private Sprite _hoverSprite;
-        [SerializeField]
-        private Sprite _clickedSprite;
 
         private Sprite _defaultSprite;
+        private Sprite _hoverSprite;
+        private Sprite _clickedSprite;
 
         private SpriteRenderer _spriteRenderer;
         private IClickable _clickableComponent;
@@ -26,8 +26,13 @@ namespace Funksoft.Barista
             TryGetComponent<IClickable>(out _clickableComponent);
             if (_clickableComponent == null)
                 Debug.LogError("Object contains no clickable behaviour component.");
+        }
 
+        private void Start()
+        {
             _defaultSprite = _spriteRenderer.sprite;
+            _hoverSprite = _clickableComponent.GetHoverSprite();
+            _clickedSprite = _clickableComponent.GetClickedSprite();
         }
 
         private void Update()
@@ -71,5 +76,7 @@ namespace Funksoft.Barista
     public interface IClickable
     {
         public void OnActivation();
+        public Sprite GetHoverSprite();
+        public Sprite GetClickedSprite();
     }
 }

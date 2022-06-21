@@ -10,7 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 5663859507957798236}
   - component: {fileID: 5663859507957798239}
+  - component: {fileID: -5152980372400683233}
   - component: {fileID: 5663859507957798238}
+  - component: {fileID: -9134191925568568110}
   m_Layer: 0
   m_Name: Customer
   m_TagString: Untagged
@@ -83,6 +85,32 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &-5152980372400683233
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5663859507957798225}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 1}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 3.6, y: 7.2}
+    newSize: {x: 3.6, y: 7.2}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 3.5, y: 6}
+  m_EdgeRadius: 0
 --- !u!114 &5663859507957798238
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -98,6 +126,20 @@ MonoBehaviour:
   _debugLogsEnabled: 1
   _database: {fileID: 11400000, guid: d474ff30e52965c46b5b84135b8561cc, type: 2}
   CustomerData: {fileID: 0}
-  _customerUIPrefab: {fileID: 822468339323321989, guid: 913f7b207c08fc8419e2828966fe08f4, type: 3}
   TimeRemaining: 0
   FailedServingsCount: 0
+--- !u!114 &-9134191925568568110
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5663859507957798225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6b49c5955eef174db576f80380d2b2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _repeatIfHeld: 0
+  _hoverSprite: {fileID: 0}
+  _clickedSprite: {fileID: 0}

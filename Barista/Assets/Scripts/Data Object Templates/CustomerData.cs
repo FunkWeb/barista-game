@@ -6,10 +6,7 @@ namespace Funksoft.Barista
 {
     [CreateAssetMenu(menuName = "DataObject/Customer", fileName = "C_CustomerTypeName")]
     public class CustomerData : ScriptableObject
-    {
-        [SerializeField]
-        public Sprite Sprite; //If composite of multiple sprites is used in future, replace with a Sprite Set Data object containing all.
-        
+    {        
         [SerializeField]
         public float PatienceTimer; //Amount of time before the customer leaves due to having waited too long for their drink.
         
@@ -20,6 +17,13 @@ namespace Funksoft.Barista
         public float SideIngredientChance; //Chance of the customer wanting side ingredient on their drink. Independant roll for each ingredient, but same chance.
 
         //Possibly add list of possible drinks to filter in/out of possible selection.
+
+        [SerializeField]
+        public Sprite Sprite;
+        [SerializeField]
+        public Sprite HoverSprite;        
+        [SerializeField]
+        public Sprite ClickedSprite; 
 
         [SerializeField]
         public float DisplayPositionHeight = 0f; //How high (y-pos) the character will spawn on-screen, relative the CustomerCounter object that creates the character.

@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _debugLogsEnabled: 1
+  _drink: {fileID: 0}
 --- !u!114 &4102210716695408394
 MonoBehaviour:
   m_ObjectHideFlags: 0

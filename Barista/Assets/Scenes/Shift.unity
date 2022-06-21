@@ -1951,10 +1951,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4102210716695408394, guid: 527066ada316ae443b71928997cf9c75, type: 3}
-      propertyPath: _debugLogsEnabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8313703072474593100, guid: 527066ada316ae443b71928997cf9c75, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -2000,9 +1996,9 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8313703072474593101, guid: 527066ada316ae443b71928997cf9c75, type: 3}
-      propertyPath: _debugLogsEnabled
-      value: 1
-      objectReference: {fileID: 0}
+      propertyPath: _drink
+      value: 
+      objectReference: {fileID: 1132660445}
     - target: {fileID: 8313703072474593102, guid: 527066ada316ae443b71928997cf9c75, type: 3}
       propertyPath: m_Name
       value: Serving Station

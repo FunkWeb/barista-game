@@ -13,6 +13,12 @@ namespace Funksoft.Barista
         [SerializeField]
         public float FillAmountPerSec = 50f;
 
+        [SerializeField]
+        private Sprite _hoverSprite;
+
+        [SerializeField]
+        private Sprite _clickedSprite;
+
 
         public struct Used : IEvent
         {
@@ -20,15 +26,19 @@ namespace Funksoft.Barista
             public float amount;
         }
 
-        public void Use()
+        public void OnActivation()
         {
             var useEvent = new Used{ingredient = this.Ingredient, amount = this.FillAmountPerSec * Time.deltaTime};
             EventBus<Used>.Raise(useEvent);
         }
-
-        public void OnActivation()
+        //Provide sprites for this object's clickable component states.
+        public Sprite GetHoverSprite()
         {
-            Use();
+            return _hoverSprite;
+        }
+        public Sprite GetClickedSprite()
+        {
+            return _clickedSprite;
         }
 
     }

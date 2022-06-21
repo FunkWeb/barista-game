@@ -125,6 +125,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Ingredient: {fileID: 11400000, guid: d7bf4ec422e6b4e45991cf8ef4dfbff8, type: 2}
   FillAmountPerSec: 50
+  _hoverSprite: {fileID: 21300000, guid: ad0724309aef2924b8446ecd690c0663, type: 3}
+  _clickedSprite: {fileID: 21300000, guid: ad0724309aef2924b8446ecd690c0663, type: 3}
 --- !u!114 &-2205597914210755364
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -138,5 +140,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _repeatIfHeld: 1
-  _hoverSprite: {fileID: 21300000, guid: ad0724309aef2924b8446ecd690c0663, type: 3}
-  _clickedSprite: {fileID: 21300000, guid: ad0724309aef2924b8446ecd690c0663, type: 3}

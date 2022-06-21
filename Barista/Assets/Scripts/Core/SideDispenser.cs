@@ -10,20 +10,31 @@ namespace Funksoft.Barista
         [SerializeField]
         public SideIngredientData Ingredient;
 
+        [SerializeField]
+        private Sprite _hoverSprite;
+
+        [SerializeField]
+        private Sprite _clickedSprite;
+
         public struct Used : IEvent
         {
             public SideIngredientData ingredient;
         }
 
-        public void Use()
+        //Activated by ClickableObject component when clicked. Completes IClickable interface
+        public void OnActivation()
         {
             EventBus<Used>.Raise(new Used{ingredient = this.Ingredient});
         }
 
-        //Activated by ClickableObject component when clicked. Completes IClickable interface
-        public void OnActivation()
+        //Provide sprites for this object's clickable component states.
+        public Sprite GetHoverSprite()
         {
-            Use();
+            return _hoverSprite;
+        }
+        public Sprite GetClickedSprite()
+        {
+            return _clickedSprite;
         }
 
     }

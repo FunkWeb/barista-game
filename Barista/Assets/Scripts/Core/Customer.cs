@@ -7,7 +7,7 @@ using pEventBus;
 
 namespace Funksoft.Barista
 {
-    public class Customer : MonoBehaviour
+    public class Customer : MonoBehaviour, IClickable
     {
         [SerializeField]
         private bool _debugLogsEnabled = false;
@@ -32,6 +32,11 @@ namespace Funksoft.Barista
             public bool statisfied;
         }
 
+        public struct ServeDrinkInput : IEvent
+        {
+            public Customer customer;
+        }
+
         private void Awake()
         {
             TryGetComponent<SpriteRenderer>(out _spriteRenderer);
@@ -39,8 +44,8 @@ namespace Funksoft.Barista
 
         private void Start()
         {
-            TimeRemaining = CustomerData.PatienceTimer;
             _spriteRenderer.sprite = CustomerData.Sprite;
+            TimeRemaining = CustomerData.PatienceTimer;
             if (_debugLogsEnabled)
             {
                 TestUI.Log("Customer Type: " + CustomerData.name + ". Patience Time: " + CustomerData.PatienceTimer);
@@ -57,6 +62,20 @@ namespace Funksoft.Barista
             {
                 LeaveUnstatisfied();
             }
+        }
+
+        public void OnActivation()
+        {
+            EventBus<ServeDrinkInput>.Raise(new ServeDrinkInput{ customer = this});
+        }
+        //Provide sprites for this object's clickable component states.
+        public Sprite GetHoverSprite()
+        {
+            return CustomerData.HoverSprite;
+        }
+        public Sprite GetClickedSprite()
+        {
+            return CustomerData.ClickedSprite;
         }
 
         public void ServedWrongOrder()
