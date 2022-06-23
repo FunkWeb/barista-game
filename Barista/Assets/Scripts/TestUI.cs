@@ -252,7 +252,7 @@ namespace Funksoft.Barista
         }
 
         private void DrawCupPanelGUI(Vector2 pos)
-        {
+        {/*
             //Create Panel and Title text
             var panelRect = new Rect(_topLeft.x + _mainCamera.WorldToScreenPoint(pos).x - _panelWidth/2, 
                                      _topLeft.y + _mainCamera.WorldToScreenPoint(pos).y - _panelHeight/2, 
@@ -294,7 +294,7 @@ namespace Funksoft.Barista
             //Total liquid text
             textRect = new Rect(panelRect.x, panelRect.y + _panelHeight - _textLabelHeight, _panelWidth, _textLabelHeight);
             GUI.Label(textRect, "Total Liquid: " + _drink.DrinkMixture.GetTotalLiquid.ToString("F2") + "ml / " + _drink.DrinkMixture.MaxTotalLiquid + "ml", _style);
-        
+            */
         }
 
         private void DrawCustomerPanel(Vector2 pos, Customer customer)

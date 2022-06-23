@@ -98,8 +98,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _repeatIfHeld: 0
-  _hoverSprite: {fileID: 7482667652216324306, guid: a1306d8d85ab1834b950dee5d67cb8bb, type: 3}
-  _clickedSprite: {fileID: 7482667652216324306, guid: a1306d8d85ab1834b950dee5d67cb8bb, type: 3}
 --- !u!114 &689538013042086669
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -114,6 +112,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _recipeWindowPrefab: {fileID: 7092207282301905617, guid: 8e4e9c8099d05424ea2c6e5eb1fb4e45, type: 3}
   _canvas: {fileID: 0}
+  _hoverSprite: {fileID: 7482667652216324306, guid: a1306d8d85ab1834b950dee5d67cb8bb, type: 3}
+  _clickedSprite: {fileID: 7482667652216324306, guid: a1306d8d85ab1834b950dee5d67cb8bb, type: 3}
 --- !u!61 &8031838145431861001
 BoxCollider2D:
   m_ObjectHideFlags: 0

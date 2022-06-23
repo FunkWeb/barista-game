@@ -1013,6 +1013,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TestUI
       objectReference: {fileID: 0}
+    - target: {fileID: 7907885860109854071, guid: 335cd043d100dec43825afcb90ad67ea, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7907885860109854072, guid: 335cd043d100dec43825afcb90ad67ea, type: 3}
       propertyPath: _drink
       value: 
