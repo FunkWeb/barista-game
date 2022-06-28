@@ -21,7 +21,6 @@ namespace Funksoft.Barista
             
             if (Input.GetMouseButtonDown(0))
             {
-                
                 //Find reference to clicked object
                 RaycastHit2D result = Physics2D.Raycast(_mousePos, Vector2.zero);
                 if (!result)

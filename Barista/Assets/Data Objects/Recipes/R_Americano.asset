@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: R_Americano
   m_EditorClassIdentifier: 
   Name: Americano
+  DrinkSprite: {fileID: 21300000, guid: 238dc0778593f8c4682d6b90564afea2, type: 3}
+  FillSprite: {fileID: 21300000, guid: cffae745fa491c244b71f44b1ae313f9, type: 3}
+  DescText: Testy test
   Ingredients:
   - {fileID: 11400000, guid: d7bf4ec422e6b4e45991cf8ef4dfbff8, type: 2}
   - {fileID: 11400000, guid: d7bf4ec422e6b4e45991cf8ef4dfbff8, type: 2}

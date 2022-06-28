@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: R_Latte
   m_EditorClassIdentifier: 
   Name: Latte
+  DrinkSprite: {fileID: 21300000, guid: 64975ad1f528c61418bb99fdc70e2be1, type: 3}
+  FillSprite: {fileID: 21300000, guid: 2a98e598445175e4d97ce6f2d5a317b4, type: 3}
+  DescText: testuicategb
   Ingredients:
   - {fileID: 11400000, guid: d7bf4ec422e6b4e45991cf8ef4dfbff8, type: 2}
   - {fileID: 11400000, guid: d7bf4ec422e6b4e45991cf8ef4dfbff8, type: 2}
