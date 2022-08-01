@@ -42,8 +42,6 @@ namespace Funksoft.Barista
         [SerializeField]
         private TextMeshProUGUI _rightDescText;
 
-
-
         private void Start()
         {
             //Sort recipes into left and right recipebook lists, alternating.
@@ -103,7 +101,7 @@ namespace Funksoft.Barista
 
         public void Close()
         {
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
     }
 }
