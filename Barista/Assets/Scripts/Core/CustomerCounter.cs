@@ -106,6 +106,7 @@ namespace Funksoft.Barista
             //Create and place UI on canvas, but relative to worldspace location of customer
             var displacedSpawnPos = new Vector3(spawnPos.x, spawnPos.y + _customerUIHeight, spawnPos.z);
             var customerUI = Instantiate(_customerUIPrefab, Camera.main.WorldToScreenPoint(displacedSpawnPos), Quaternion.identity).GetComponent<CustomerUI>();
+            
             customerUI.gameObject.transform.SetParent(_canvas.transform, true);
             customerUI.Customer = customer;
             #endregion

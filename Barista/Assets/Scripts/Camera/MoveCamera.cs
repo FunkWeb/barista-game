@@ -28,11 +28,19 @@ namespace Funksoft.Barista
         void Update()
         {
             //left position moving to right
-            if (Input.GetKeyDown(KeyCode.Space) && !_transitioning)
+            if (Input.GetKeyDown(KeyCode.Space))
             {
-                StartCoroutine(SwitchPos(_isStartPos));
-                _isStartPos = !_isStartPos;
+                StartSwitch();
             }
+        }
+
+        private void StartSwitch()
+        {
+            if (_transitioning)
+                return;
+
+            StartCoroutine(SwitchPos(_isStartPos));
+            _isStartPos = !_isStartPos;
         }
 
         //lerps the camera position to position A or B depending on current location.

@@ -13,12 +13,16 @@ namespace Funksoft.Barista
         [SerializeField]
         private TextMeshProUGUI _sideIngText;
 
+        private void Start()
+        {
+            DisplayOrderData();
+        }
         
         private void DisplayOrderData()
         {
             foreach(SideIngredientData si in _order.SideIngredients)
             {
-                _sideIngText.text += "test";
+                _sideIngText.text += "test \n";
             }
         }
     }
