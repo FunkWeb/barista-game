@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: R_Espresso
   m_EditorClassIdentifier: 
   Name: Double Espresso
-  DrinkSprite: {fileID: 21300000, guid: f289698062490704e99841ba7b507be0, type: 3}
-  FillSprite: {fileID: 21300000, guid: 661a173d59c638e4c9a25d5a783892fd, type: 3}
-  DescText: Testidufb
+  DrinkSprite: {fileID: 21300000, guid: db3612c3fa57883419429bb12f1bd841, type: 3}
+  FillSprite: {fileID: 0}
+  DescText: 1 part Espresso, full cup.
   Ingredients:
   - {fileID: 11400000, guid: d7bf4ec422e6b4e45991cf8ef4dfbff8, type: 2}
   - {fileID: 11400000, guid: d7bf4ec422e6b4e45991cf8ef4dfbff8, type: 2}

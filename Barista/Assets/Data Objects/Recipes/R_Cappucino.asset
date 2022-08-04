@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: R_Cappucino
   m_EditorClassIdentifier: 
   Name: Latte
-  DrinkSprite: {fileID: 21300000, guid: a46bab62c7754f54781fc420398c5818, type: 3}
-  FillSprite: {fileID: 21300000, guid: 5ded685487f575f41b6d5ad1d221cb51, type: 3}
-  DescText: Testy test
+  DrinkSprite: {fileID: 21300000, guid: c49d88f5ea801e6449b3c030c26afffe, type: 3}
+  FillSprite: {fileID: 0}
+  DescText: 1 part Espresso, 1 part milk. Half of each.
   Ingredients:
   - {fileID: 11400000, guid: d7bf4ec422e6b4e45991cf8ef4dfbff8, type: 2}
   - {fileID: 11400000, guid: d7bf4ec422e6b4e45991cf8ef4dfbff8, type: 2}

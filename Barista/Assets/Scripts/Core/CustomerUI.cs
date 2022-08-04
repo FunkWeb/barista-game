@@ -12,8 +12,8 @@ namespace Funksoft.Barista
         [SerializeField]
         private TextMeshProUGUI _timerText;
 
-        [SerializeField]
-        private bool _showExtendedInfo = false;
+        //[SerializeField]
+        //private bool _showExtendedInfo = false;
 
         [SerializeField]
         private GameObject _orderPanel;
@@ -41,13 +41,13 @@ namespace Funksoft.Barista
 
         public void OnPointerEnter(PointerEventData pointerEventData)
         {
-            _showExtendedInfo = true;
+            //_showExtendedInfo = true;
             _orderPanel.SetActive(true);
         }
 
         public void OnPointerExit(PointerEventData pointerEventData)
         {
-            _showExtendedInfo = false;
+            //_showExtendedInfo = false;
             _orderPanel.SetActive(false);
         }
 

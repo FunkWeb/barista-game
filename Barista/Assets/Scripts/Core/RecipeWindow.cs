@@ -80,6 +80,11 @@ namespace Funksoft.Barista
             LoadPageData(_pageIndex);
         }
 
+        private void LoadBarIcons()
+        {
+            
+        }
+
         //Populate UI elements with the data from the recipes
         private void LoadPageData(int index)
         {
