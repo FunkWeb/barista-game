@@ -48,7 +48,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Ingredient: {fileID: 11400000, guid: 2ac7d9f9eb951334089fa214d49f3e75, type: 2}
   _hoverSprite: {fileID: 21300000, guid: 1bc884346cf6b6441a9209b22e2ae953, type: 3}
-  _clickedSprite: {fileID: 21300000, guid: 1bc884346cf6b6441a9209b22e2ae953, type: 3}
+  _clickedSprite: {fileID: 0}
 --- !u!61 &1220408728
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -66,7 +66,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.34, y: 1.1266667}
+    oldSize: {x: 0.51, y: 1.69}
     newSize: {x: 1.01, y: 3.43}
     adaptiveTilingThreshold: 0.5
     drawMode: 0

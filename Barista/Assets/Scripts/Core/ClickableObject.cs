@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 
 //CLICKABLE OBJECT SCRIPT RUNS AT CUSTOM SCRIPT ORDER EXECUTION Default + 5. Check Script order Execution in project settings if unexpected order bugs appears.
-//This is done so the customer DataObject can be set in the start method, while ensuring this scipts start method runs after it, as to avoid Nulrefference should the order of the Start() events be different. 
+//This is done so the customer DataObject can be set in the start method, while ensuring this scipts start method runs after it, as to avoid Nullreference should the order of the Start() events be different. 
 namespace Funksoft.Barista
 {
     [RequireComponent(typeof(SpriteRenderer))]
