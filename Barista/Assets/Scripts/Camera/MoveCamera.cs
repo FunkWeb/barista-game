@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using pEventBus;
 
 namespace Funksoft.Barista
 {
@@ -17,6 +18,22 @@ namespace Funksoft.Barista
         [SerializeField]
         private float speed;
 
+        public enum Screen
+        {
+            LeftScreen,
+            RightScreen
+        }
+
+        public struct CamMoveFinished : IEvent
+        {
+            public Screen screenMovedTo;
+        }
+
+        public struct CamMoveStarted : IEvent
+        {
+            public Screen screenMovingTo;
+        }
+
         void Awake()
         {
             //Hard coding positions because they don't need to be changed once set.
@@ -27,7 +44,6 @@ namespace Funksoft.Barista
 
         void Update()
         {
-            //left position moving to right
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 StartSwitch();
@@ -50,6 +66,37 @@ namespace Funksoft.Barista
             float duration = 1;
             _transitioning = true;
 
+            Screen screenMovingTo;
+
+            if (isPosA)
+                screenMovingTo = Screen.RightScreen;
+            else
+                screenMovingTo = Screen.LeftScreen;
+
+            #region Raise CameraMoveStarted event, and provide which screen camera is moving towards.
+            if (screenMovingTo == Screen.LeftScreen)
+            {
+                EventBus<CamMoveStarted>.Raise
+                (
+                    new CamMoveStarted
+                    {
+                        screenMovingTo = Screen.LeftScreen
+                    }
+                );
+            }
+            else if (screenMovingTo == Screen.RightScreen)
+            {
+                EventBus<CamMoveStarted>.Raise
+                (
+                    new CamMoveStarted
+                    {
+                        screenMovingTo = Screen.RightScreen
+                    }
+                );
+            }
+            #endregion
+
+            #region Do Camera Move over time
             while (time < duration)
             {
                 //lerps left to right
@@ -66,6 +113,44 @@ namespace Funksoft.Barista
                 yield return null;
             }
             _transitioning = false;
+            #endregion
+            
+            //Set transform to exact destination position after transition, and store which screen we arrived at.
+            Screen screenArrivedAt;
+            if (isPosA)
+            {
+                transform.position = _posB;
+                screenArrivedAt = Screen.RightScreen;
+            }
+            else
+            {
+                transform.position = _posA;
+                screenArrivedAt = Screen.LeftScreen;
+            }
+
+            #region Raise CameraMoveFinished event, and provide which screen camera moved towards
+            if (screenArrivedAt == Screen.LeftScreen)
+            {
+                EventBus<CamMoveFinished>.Raise
+                (
+                    new CamMoveFinished
+                    {
+                        screenMovedTo = Screen.LeftScreen
+                    }
+                );
+            }
+            else if (screenArrivedAt == Screen.RightScreen)
+            {
+                EventBus<CamMoveFinished>.Raise
+                (
+                    new CamMoveFinished
+                    {
+                        screenMovedTo = Screen.RightScreen
+                    }
+                );
+            }
+            #endregion
+
         }
     }
 }

@@ -24,6 +24,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: e067ed3f0c293584ba383585708e2864, type: 2}
     - {fileID: 11400000, guid: d7bf4ec422e6b4e45991cf8ef4dfbff8, type: 2}
     - {fileID: 11400000, guid: c9e65b9ccc21d6949aa75f4b85f9e741, type: 2}
+    - {fileID: 11400000, guid: 692eae5e27471ba458a59c853a7b7d8a, type: 2}
   SideIngredients:
     _items:
     - {fileID: 11400000, guid: 2ac7d9f9eb951334089fa214d49f3e75, type: 2}

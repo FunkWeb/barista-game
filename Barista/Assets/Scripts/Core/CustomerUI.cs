@@ -25,12 +25,13 @@ namespace Funksoft.Barista
         [SerializeField]
         private TextMeshProUGUI _orderSideIngredientText;
 
-        public Customer Customer{ get; set; }
+        public Customer Customer{ get; set;}
+
 
         private void Start()
         {
             _orderPanel.SetActive(false);
-            DisplayOrderData();
+            DisplayOrderData();   
         }
 
 

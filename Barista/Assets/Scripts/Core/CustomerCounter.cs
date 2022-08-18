@@ -7,7 +7,9 @@ using TMPro;
 
 namespace Funksoft.Barista
 {
-    public class CustomerCounter : MonoBehaviour, IEventReceiver<DayManager.SpawnCustomer>, IEventReceiver<Customer.Leave>
+    public class CustomerCounter : MonoBehaviour, 
+                                   IEventReceiver<DayManager.SpawnCustomer>, IEventReceiver<Customer.Leave>, 
+                                   IEventReceiver<MoveCamera.CamMoveFinished>, IEventReceiver<MoveCamera.CamMoveStarted>
     {
         [SerializeField]
         private bool _debugLogsEnabled = false;
@@ -18,16 +20,13 @@ namespace Funksoft.Barista
         [SerializeField]
         private GameObject _customerPrefab;
         [SerializeField]
-        private GameObject _customerUIPrefab;
-
-        [SerializeField]
-        private Canvas _canvas;
+        private List<CustomerUI> _customerUIs;
 
         [SerializeField, Header("Properties")]
         private int _maxCustomerCount = 5;
 
         [SerializeField]
-        private float _distanceBetweenCustomers = 3f;
+        private List<Transform> _customerPositions;
 
         [SerializeField]
         private float _customerUIHeight = 3f;
@@ -62,6 +61,29 @@ namespace Funksoft.Barista
         {
             CustomerLeft(e.customer, e.statisfied);
         }
+
+        //Change Scale of CustomerUI object to make it visible, when fully moved from right to left screen
+        public void OnEvent(MoveCamera.CamMoveFinished e )
+        {
+            if (e.screenMovedTo == MoveCamera.Screen.LeftScreen)
+            {
+                foreach(CustomerUI CUI in _customerUIs)
+                {
+                    CUI.transform.localScale = new Vector3(1,1,1);
+                }
+            }
+        }
+        //Change Scale of CustomerUI object to make it invisible, when starting a move from left to right screen
+        public void OnEvent(MoveCamera.CamMoveStarted e)
+        {
+            if (e.screenMovingTo == MoveCamera.Screen.RightScreen)
+            {
+                foreach(CustomerUI CUI in _customerUIs)
+                {
+                    CUI.transform.localScale = new Vector3(0,0,0);
+                }
+            }
+        }
         #endregion
 
         //Remove customers from queue and handle changes needed when customers 
@@ -94,7 +116,7 @@ namespace Funksoft.Barista
                 return;
             
             //Spawn customer prefab instance in position corresponding to the next open spot in the queue.
-            Vector3 spawnPos = new Vector3(transform.position.x + (_distanceBetweenCustomers * Customers.Count), transform.position.y, transform.position.z);
+            Vector3 spawnPos = _customerPositions[Customers.Count].position;
             var inst = Instantiate(_customerPrefab, spawnPos, Quaternion.identity);
             //
             Customer customer;
@@ -103,12 +125,13 @@ namespace Funksoft.Barista
             customer.CustomerData = customerData;
 
             #region Create CustomerUI
-            //Create and place UI on canvas, but relative to worldspace location of customer
-            var displacedSpawnPos = new Vector3(spawnPos.x, spawnPos.y + _customerUIHeight, spawnPos.z);
-            var customerUI = Instantiate(_customerUIPrefab, Camera.main.WorldToScreenPoint(displacedSpawnPos), Quaternion.identity).GetComponent<CustomerUI>();
-            
-            customerUI.gameObject.transform.SetParent(_canvas.transform, true);
-            customerUI.Customer = customer;
+            //Set info, and activate customerUI
+            var thisCustomerUI = _customerUIs[Customers.Count-1];
+            thisCustomerUI.Customer = customer;
+            thisCustomerUI.gameObject.SetActive(true);
+            thisCustomerUI.transform.position = Camera.main.WorldToScreenPoint(new Vector3(spawnPos.x, spawnPos.y + _customerUIHeight, spawnPos.z));
+
+
             #endregion
         }
     }

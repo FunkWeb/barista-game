@@ -115,7 +115,7 @@ namespace Funksoft.Barista
 
             _style.alignment = TextAnchor.MiddleCenter;
             _style.fontSize = 30;
-
+            /*
             Rect cTabsRect;
             //Create tab buttons for each customer & store selected customer
             for(var i = 0; i < _customerCounter.Customers.Count; i++)
@@ -132,7 +132,7 @@ namespace Funksoft.Barista
             //if a customer is selected, create customer panel with its data
             if (_currentCustomer)
                 DrawCustomerPanel(_customerPanelPos, _currentCustomer);
-
+            */
         }
 
         private void DrawLogGUI(Vector2 pos, float width, float height, string text)
@@ -197,7 +197,7 @@ namespace Funksoft.Barista
             }
                 
             #endregion
-            */
+            
             #region Serve Drink Button
             //Set position and size of button
             rect = new Rect(_botRight.x - _buttonWidth -_buttonPaddingX, _botRight.y - _buttonPaddingY - _buttonHeight, _buttonWidth, _buttonHeight);
@@ -209,6 +209,7 @@ namespace Funksoft.Barista
             }
                 
             #endregion
+            */
         }
 
         private void DrawMidPanelGUI(DrinkRecipeData recipe, Vector2 pos)
