@@ -131,23 +131,17 @@ namespace Funksoft.Barista
             #region Raise CameraMoveFinished event, and provide which screen camera moved towards
             if (screenArrivedAt == Screen.LeftScreen)
             {
-                EventBus<CamMoveFinished>.Raise
-                (
-                    new CamMoveFinished
-                    {
-                        screenMovedTo = Screen.LeftScreen
-                    }
-                );
+                EventBus<CamMoveFinished>.Raise(new CamMoveFinished
+                {
+                    screenMovedTo = Screen.LeftScreen
+                });
             }
             else if (screenArrivedAt == Screen.RightScreen)
             {
-                EventBus<CamMoveFinished>.Raise
-                (
-                    new CamMoveFinished
-                    {
-                        screenMovedTo = Screen.RightScreen
-                    }
-                );
+                EventBus<CamMoveFinished>.Raise(new CamMoveFinished
+                {
+                    screenMovedTo = Screen.RightScreen
+                });
             }
             #endregion
 

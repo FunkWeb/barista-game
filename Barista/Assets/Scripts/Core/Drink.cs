@@ -40,6 +40,7 @@ namespace Funksoft.Barista
         public void OnEvent(SideDispenser.Used e)
         {
             AddSideIngredient(e.ingredient);
+            _displayCupContents.UpdateSideIngredientDisplay();
         }
 
         public void AddMainIngredient(MainIngredientData ingredient, float amount)

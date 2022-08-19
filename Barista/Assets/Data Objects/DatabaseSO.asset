@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DrinkRecipes:
     _items:
+    - {fileID: 11400000, guid: 43de2b9fd928f9645849b00dff763d50, type: 2}
     - {fileID: 11400000, guid: 8e63d8e712b68f94fa1efb1b565557bc, type: 2}
     - {fileID: 11400000, guid: b97e42e38362ca94eb107866326fb53c, type: 2}
     - {fileID: 11400000, guid: 67128221d7a3d69488111d465f2ed764, type: 2}
@@ -30,7 +31,6 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 2ac7d9f9eb951334089fa214d49f3e75, type: 2}
     - {fileID: 11400000, guid: 75e206177e5271f45873f30480c645a2, type: 2}
     - {fileID: 11400000, guid: b909405d161032745887766be399c389, type: 2}
-    - {fileID: 11400000, guid: c3f38e28ad62eff4c9ab47f43cf1cd32, type: 2}
   CustomerTypes:
     _items:
     - {fileID: 11400000, guid: 0afa17e795c8c3b4599acf97f7498b8d, type: 2}

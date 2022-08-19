@@ -18,7 +18,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7451393316030439309
 RectTransform:
   m_ObjectHideFlags: 0
@@ -53,7 +53,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _timerText: {fileID: 5637763856826110144}
-  _showExtendedInfo: 0
   _orderPanel: {fileID: 9125145196442134434}
   _orderImage: {fileID: 9125145198120754474}
   _orderTitleText: {fileID: 9125145197221275276}

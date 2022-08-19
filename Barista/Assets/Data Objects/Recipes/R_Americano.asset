@@ -15,7 +15,7 @@ MonoBehaviour:
   Name: Americano
   DrinkSprite: {fileID: 21300000, guid: 439732a2bd6df7948bfbcda525b89bd8, type: 3}
   FillSprite: {fileID: 0}
-  DescText: 2 parts Espresso, 3 parts Water.
+  DescText: 2/5 - (40%) espresso | 3/5 - (60%) water
   Ingredients:
   - {fileID: 11400000, guid: d7bf4ec422e6b4e45991cf8ef4dfbff8, type: 2}
   - {fileID: 11400000, guid: d7bf4ec422e6b4e45991cf8ef4dfbff8, type: 2}

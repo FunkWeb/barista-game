@@ -16,6 +16,6 @@ MonoBehaviour:
   MaxServeTries: 2
   SideIngredientChance: 0.3
   Sprite: {fileID: 21300000, guid: b24465ecc2f1f9d4a8b50f4775b5238e, type: 3}
-  HoverSprite: {fileID: 21300000, guid: b24465ecc2f1f9d4a8b50f4775b5238e, type: 3}
-  ClickedSprite: {fileID: 21300000, guid: b24465ecc2f1f9d4a8b50f4775b5238e, type: 3}
+  HoverSprite: {fileID: 21300000, guid: b6e219a66a8f15140b0f852e521f0da9, type: 3}
+  ClickedSprite: {fileID: 21300000, guid: eb497fa7a1579f14faf763cb5e82a855, type: 3}
   DisplayPositionHeight: 0

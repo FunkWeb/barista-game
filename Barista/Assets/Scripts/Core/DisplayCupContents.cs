@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 namespace Funksoft.Barista
 {
@@ -14,6 +15,9 @@ namespace Funksoft.Barista
 
         [SerializeField]
         private GameObject cupDisplayIngredientPrefab;
+
+        [SerializeField]
+        private TextMeshPro _sideIngredientText; //Temporary, displays side ingredients in cup on screen
         
         public DrinkMixture DrinkMixture{ get; set;}
 
@@ -55,6 +59,15 @@ namespace Funksoft.Barista
             }
         }
 
+        public void UpdateSideIngredientDisplay()
+        {
+            _sideIngredientText.text = "";
+            foreach(SideIngredientData si in DrinkMixture.SideIngredients.HashSet)
+            {
+                _sideIngredientText.text += si.Name + "\n";
+            }
+        }
+
         public void ResetIngredientDisplay()
         {
             //Remove sprite child objects when drink display is cleared
@@ -63,6 +76,7 @@ namespace Funksoft.Barista
             //Remove references to deleted sprite objects
             _ingredientSprites.Clear();
             UpdateDisplay();
+            UpdateSideIngredientDisplay();
         }
 
     }

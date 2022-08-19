@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: M_MilkFoamed
   m_EditorClassIdentifier: 
   Name: Foamed Milk
-  InCupColor: {r: 1, g: 1, b: 1, a: 1}
+  InCupColor: {r: 0.9433962, g: 0.9433962, b: 0.9433962, a: 1}

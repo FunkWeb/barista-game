@@ -69,7 +69,12 @@ namespace Funksoft.Barista
             {
                 foreach(CustomerUI CUI in _customerUIs)
                 {
+                    if (CUI.Customer == null)
+                        return;
                     CUI.transform.localScale = new Vector3(1,1,1);
+                    //Set position of UI to be above customer
+                    Vector3 customerPos = CUI.Customer.transform.position;
+                    CUI.transform.position = Camera.main.WorldToScreenPoint(new Vector3(customerPos.x, customerPos.y + _customerUIHeight, customerPos.z));
                 }
             }
         }
@@ -91,6 +96,10 @@ namespace Funksoft.Barista
         {    
             if (Customers.Contains(customer))
             {
+                //Remove active CustomerUI of customer when they leave.
+                int index = Customers.IndexOf(customer);
+                _customerUIs[index].gameObject.SetActive(false);
+
                 //Remove customer from counter list
                 Customers.Remove(customer);
                 Destroy(customer.gameObject);
@@ -115,20 +124,22 @@ namespace Funksoft.Barista
             if (Customers.Count >= _maxCustomerCount)
                 return;
             
-            //Spawn customer prefab instance in position corresponding to the next open spot in the queue.
-            Vector3 spawnPos = _customerPositions[Customers.Count].position;
-            var inst = Instantiate(_customerPrefab, spawnPos, Quaternion.identity);
-            //
+            //Spawn customer, Add to customer List, and put it on the right world position in the queue
+            var inst = Instantiate(_customerPrefab, Vector3.zero, Quaternion.identity);
             Customer customer;
             inst.TryGetComponent<Customer>(out customer);
             Customers.Add(customer);
+            Vector3 spawnPos = _customerPositions[Customers.IndexOf(customer)].position;
+            inst.transform.position = spawnPos;
+
+            //Give the created customer instance its data.
             customer.CustomerData = customerData;
 
             #region Create CustomerUI
             //Set info, and activate customerUI
-            var thisCustomerUI = _customerUIs[Customers.Count-1];
-            thisCustomerUI.Customer = customer;
+            var thisCustomerUI = _customerUIs[Customers.IndexOf(customer)];
             thisCustomerUI.gameObject.SetActive(true);
+            thisCustomerUI.Customer = customer;
             thisCustomerUI.transform.position = Camera.main.WorldToScreenPoint(new Vector3(spawnPos.x, spawnPos.y + _customerUIHeight, spawnPos.z));
 
 

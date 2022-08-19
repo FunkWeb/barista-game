@@ -26,6 +26,7 @@ namespace Funksoft.Barista
         private TextMeshProUGUI _orderSideIngredientText;
 
         public Customer Customer{ get; set;}
+        public Vector3 WorldPos{ get; set;}
 
 
         private void Start()

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57d33cab44acfe4468abe71c22dfeb8e, type: 3}
   m_Name: D_1
   m_EditorClassIdentifier: 
-  ShiftTime: 60
+  ShiftTime: 180
   InitialCustomerDelay: 5
   MinTimeBetweenCustomers: 15
   MaxTimeBetweenCustomers: 25
@@ -20,3 +20,5 @@ MonoBehaviour:
     _items:
     - {fileID: 11400000, guid: 0afa17e795c8c3b4599acf97f7498b8d, type: 2}
     - {fileID: 11400000, guid: 9a8b64c9e3723fc4fb04b5dce368daf5, type: 2}
+    - {fileID: 11400000, guid: 29ae624de5aed4049bee78640ad310c7, type: 2}
+    - {fileID: 11400000, guid: 971ec705f1b7e7c4a980453dd5243bec, type: 2}

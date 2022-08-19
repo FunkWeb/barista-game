@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using pEventBus;
 
 //CLICKABLE OBJECT SCRIPT RUNS AT CUSTOM SCRIPT ORDER EXECUTION Default + 5. Check Script order Execution in project settings if unexpected order bugs appears.
 //This is done so the customer DataObject can be set in the start method, while ensuring this scipts start method runs after it, as to avoid Nullreference should the order of the Start() events be different. 
@@ -19,6 +20,12 @@ namespace Funksoft.Barista
 
         private SpriteRenderer _spriteRenderer;
         private IClickable _clickableComponent;
+
+        public struct HoverEvent : IEvent
+        {
+            public string objectDisplayName;
+        }
+
 
         private void Awake()
         {
@@ -50,6 +57,12 @@ namespace Funksoft.Barista
             if (_spriteRenderer.sprite == _hoverSprite || _spriteRenderer.sprite == _clickedSprite)
                 return;
             _spriteRenderer.sprite = _hoverSprite;
+
+            //Raise Event when hover starts, so HoverText can display name of currently hovered object.
+            EventBus<HoverEvent>.Raise(new HoverEvent
+            {
+                objectDisplayName = gameObject.name
+            });
         }
 
         //Switch back to default sprite when no longer hovering
@@ -58,6 +71,12 @@ namespace Funksoft.Barista
             if (_spriteRenderer.sprite == _clickedSprite)
                 return;
             _spriteRenderer.sprite = _defaultSprite;
+
+            //Raise Event on hover end so HoverText can be cleared.
+            EventBus<HoverEvent>.Raise(new HoverEvent
+            {
+                objectDisplayName = ""
+            });
         }
 
         public void Activate()

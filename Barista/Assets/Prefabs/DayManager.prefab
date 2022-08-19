@@ -46,4 +46,4 @@ MonoBehaviour:
   _databaseSO: {fileID: 11400000, guid: d474ff30e52965c46b5b84135b8561cc, type: 2}
   _days:
   - {fileID: 11400000, guid: cda51874b64fd054ebe14e0da1eee2db, type: 2}
-  PreShiftPause: 1
+  PreShiftPause: 0

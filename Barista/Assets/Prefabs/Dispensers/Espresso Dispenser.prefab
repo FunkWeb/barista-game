@@ -125,8 +125,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Ingredient: {fileID: 11400000, guid: d7bf4ec422e6b4e45991cf8ef4dfbff8, type: 2}
   FillAmountPerSec: 50
-  _hoverSprite: {fileID: 21300000, guid: 11660d5afbcf9ca488a58cde9cf73865, type: 3}
-  _clickedSprite: {fileID: 0}
+  _hoverSprite: {fileID: 21300000, guid: 88e49b1d8d2612d46b2acf0a8772fb4f, type: 3}
+  _clickedSprite: {fileID: 21300000, guid: e4c6470f3667cb54e8ea6f21981826cd, type: 3}
 --- !u!114 &-2205597914210755364
 MonoBehaviour:
   m_ObjectHideFlags: 0
