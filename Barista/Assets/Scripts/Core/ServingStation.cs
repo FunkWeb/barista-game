@@ -79,7 +79,7 @@ namespace Funksoft.Barista
             {
                 if (_debugLogsEnabled)
                     TestUI.Log("Mistake: Wrong drink served. " + customer.CustomerData.name + " ordered: " + 
-                              customer.Order.Drink.Name + ". You served: " + assembledDrinkRecipe.Name + ".");
+                              customer.Order.Drink.Name + ". \n You served: " + assembledDrinkRecipe.Name + ".");
                 return false;
             }
                 

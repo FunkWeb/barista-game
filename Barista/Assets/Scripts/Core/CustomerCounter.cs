@@ -4,6 +4,7 @@ using UnityEngine;
 using System.Linq;
 using pEventBus;
 using TMPro;
+using System;
 
 namespace Funksoft.Barista
 {
@@ -20,7 +21,7 @@ namespace Funksoft.Barista
         [SerializeField]
         private GameObject _customerPrefab;
         [SerializeField]
-        private List<CustomerUI> _customerUIs;
+        private CustomerUI[] _customerUIs;
 
         [SerializeField, Header("Properties")]
         private int _maxCustomerCount = 5;
@@ -31,7 +32,7 @@ namespace Funksoft.Barista
         [SerializeField]
         private float _customerUIHeight = 3f;
 
-        public List<Customer> Customers = new List<Customer>();
+        public Customer[] Customers = new Customer[3];
 
         private void OnEnable()
         {
@@ -46,7 +47,15 @@ namespace Funksoft.Barista
         {
             if (Input.GetKeyDown(KeyCode.C))
             {
-                CreateNewCustomer(_database.CustomerTypes.HashSet.ElementAt(Random.Range(0, _database.CustomerTypes.HashSet.Count)));
+                CreateNewCustomer(_database.CustomerTypes.HashSet.ElementAt(UnityEngine.Random.Range(0, _database.CustomerTypes.HashSet.Count)));
+            }
+
+            if (Input.GetKeyDown(KeyCode.Q))
+            {
+                foreach(Customer c in Customers)
+                {
+                    Debug.Log(c);
+                }
             }
         }
 
@@ -72,6 +81,7 @@ namespace Funksoft.Barista
                     if (CUI.Customer == null)
                         return;
                     CUI.transform.localScale = new Vector3(1,1,1);
+                    Debug.Log("Move ended, reset");
                     //Set position of UI to be above customer
                     Vector3 customerPos = CUI.Customer.transform.position;
                     CUI.transform.position = Camera.main.WorldToScreenPoint(new Vector3(customerPos.x, customerPos.y + _customerUIHeight, customerPos.z));
@@ -91,17 +101,18 @@ namespace Funksoft.Barista
         }
         #endregion
 
+
         //Remove customers from queue and handle changes needed when customers 
         private void CustomerLeft(Customer customer, bool wasStatisfied)
         {    
             if (Customers.Contains(customer))
             {
                 //Remove active CustomerUI of customer when they leave.
-                int index = Customers.IndexOf(customer);
+                int index = Array.IndexOf(Customers, customer);
                 _customerUIs[index].gameObject.SetActive(false);
 
-                //Remove customer from counter list
-                Customers.Remove(customer);
+                //Remove customer from array
+                Customers[index] = null;
                 Destroy(customer.gameObject);
                 
                 //Handle stats and results based of failed or completed customer
@@ -119,31 +130,37 @@ namespace Funksoft.Barista
             }  
         }
 
+
         private void CreateNewCustomer(CustomerData customerData)
         {
-            if (Customers.Count >= _maxCustomerCount)
-                return;
+            for(var i = 0; i < Customers.Length; i++)
+            {
+                if (Customers[i] != null)
+                    continue;
+                
+                //Spawn customer, Add to customer List, and put it on the right world position in the queue
+                var inst = Instantiate(_customerPrefab, Vector3.zero, Quaternion.identity);
+                Customer customer;
+                inst.TryGetComponent<Customer>(out customer);
+                Customers[i] = customer;
+                Vector3 spawnPos = _customerPositions[Array.IndexOf(Customers,customer)].position;
+                inst.transform.position = spawnPos;
+
+                //Give the created customer instance its data.
+                customer.CustomerData = customerData;
+
+                #region Create CustomerUI
+                //Set info, and activate customerUI
+                var thisCustomerUI = _customerUIs[Array.IndexOf(Customers, customer)];
+                thisCustomerUI.gameObject.SetActive(true);
+                thisCustomerUI.transform.localScale = new Vector3(1,1,1);
+                thisCustomerUI.Customer = customer;
+                thisCustomerUI.transform.position = Camera.main.WorldToScreenPoint(new Vector3(spawnPos.x, spawnPos.y + _customerUIHeight, spawnPos.z));
+                #endregion
+                break;
+            }
             
-            //Spawn customer, Add to customer List, and put it on the right world position in the queue
-            var inst = Instantiate(_customerPrefab, Vector3.zero, Quaternion.identity);
-            Customer customer;
-            inst.TryGetComponent<Customer>(out customer);
-            Customers.Add(customer);
-            Vector3 spawnPos = _customerPositions[Customers.IndexOf(customer)].position;
-            inst.transform.position = spawnPos;
-
-            //Give the created customer instance its data.
-            customer.CustomerData = customerData;
-
-            #region Create CustomerUI
-            //Set info, and activate customerUI
-            var thisCustomerUI = _customerUIs[Customers.IndexOf(customer)];
-            thisCustomerUI.gameObject.SetActive(true);
-            thisCustomerUI.Customer = customer;
-            thisCustomerUI.transform.position = Camera.main.WorldToScreenPoint(new Vector3(spawnPos.x, spawnPos.y + _customerUIHeight, spawnPos.z));
-
-
-            #endregion
+            
         }
     }
 }

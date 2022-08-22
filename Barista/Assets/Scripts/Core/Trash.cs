@@ -7,6 +7,8 @@ namespace Funksoft.Barista
     public class Trash : MonoBehaviour, IClickable
     {
         [SerializeField]
+        private string _displayName;
+        [SerializeField]
         private Drink _drink;
 
         [SerializeField]
@@ -24,7 +26,11 @@ namespace Funksoft.Barista
         {
             _drink.Clear();
         }
-        //Provide sprites for this object's clickable component states.
+        //Provide name and sprites for this object and its clickable component states.
+        public string GetDisplayName()
+        {
+            return _displayName;
+        }
         public Sprite GetHoverSprite()
         {
             return _hoverSprite;

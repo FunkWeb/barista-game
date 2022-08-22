@@ -92,7 +92,17 @@ namespace Funksoft.Barista
             _leftDescText.text = _leftRecipes[index].DescText;
             _leftDrinkImage.sprite = _leftRecipes[index].DrinkSprite;
             _leftFillImage.sprite = _leftRecipes[index].FillSprite;
-
+            
+            //If we are on the last page, and there are not enough rightside recipes to fill the right side of the last page, 
+            //...meaning there is an odd number of recipes, dont attempt to load the nonexistant recipe. Show blank info instead.
+            if (_pageIndex == _totalPages-1 && _leftRecipes.Count > _rightRecipes.Count)
+            {
+                _rightTitleText.text = "";
+                _rightDescText.text = "";
+                _rightDrinkImage.sprite = null;
+                _rightFillImage.sprite = null;
+                return;
+            }
             _rightTitleText.text = _rightRecipes[index].Name;
             _rightDescText.text = _rightRecipes[index].DescText;
             _rightDrinkImage.sprite = _rightRecipes[index].DrinkSprite;

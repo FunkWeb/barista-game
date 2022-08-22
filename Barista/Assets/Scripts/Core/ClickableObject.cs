@@ -14,6 +14,7 @@ namespace Funksoft.Barista
         [SerializeField]
         private bool _repeatIfHeld;
 
+        private string _displayName;
         private Sprite _defaultSprite;
         private Sprite _hoverSprite;
         private Sprite _clickedSprite;
@@ -37,6 +38,7 @@ namespace Funksoft.Barista
 
         private void Start()
         {
+            _displayName = _clickableComponent.GetDisplayName();
             _defaultSprite = _spriteRenderer.sprite;
             _hoverSprite = _clickableComponent.GetHoverSprite();
             _clickedSprite = _clickableComponent.GetClickedSprite();
@@ -61,7 +63,7 @@ namespace Funksoft.Barista
             //Raise Event when hover starts, so HoverText can display name of currently hovered object.
             EventBus<HoverEvent>.Raise(new HoverEvent
             {
-                objectDisplayName = gameObject.name
+                objectDisplayName = _displayName
             });
         }
 
@@ -95,6 +97,7 @@ namespace Funksoft.Barista
     public interface IClickable
     {
         public void OnActivation();
+        public string GetDisplayName();
         public Sprite GetHoverSprite();
         public Sprite GetClickedSprite();
     }

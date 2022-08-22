@@ -27,7 +27,11 @@ namespace Funksoft.Barista
             EventBus<Used>.Raise(new Used{ingredient = this.Ingredient});
         }
 
-        //Provide sprites for this object's clickable component states.
+        //Provide name and sprites for this object and its clickable component states.
+        public string GetDisplayName()
+        {
+            return Ingredient.Name;
+        }
         public Sprite GetHoverSprite()
         {
             return _hoverSprite;

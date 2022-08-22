@@ -7,6 +7,8 @@ namespace Funksoft.Barista
     public class RecipeBook : MonoBehaviour, IClickable
     {
         [SerializeField]
+        private string _displayName;
+        [SerializeField]
         private RecipeWindow _recipeWindowPrefab;
         [SerializeField]
         private Canvas _canvas;
@@ -21,7 +23,12 @@ namespace Funksoft.Barista
             if (!_recipeWindowPrefab.gameObject.activeSelf)
                 _recipeWindowPrefab.gameObject.SetActive(true);
         }
-        //Provide sprites for this object's clickable component states.
+        //Provide name and sprites for this object and its clickable component states.
+        public string GetDisplayName()
+        {
+            return _displayName;
+        }
+        
         public Sprite GetHoverSprite()
         {
             return _hoverSprite;
