@@ -7,7 +7,7 @@ using pEventBus;
 
 namespace Funksoft.Barista
 {
-    public class Customer : MonoBehaviour, IClickable
+    public class Customer : MonoBehaviour, IClickable, IEventReceiver<DayManager.ShiftEnded>
     {
         [SerializeField]
         private bool _debugLogsEnabled = false;
@@ -29,7 +29,7 @@ namespace Funksoft.Barista
         public struct Leave : IEvent
         {
             public Customer customer;
-            public bool statisfied;
+            public bool satisfied;
         }
 
         public struct ServeDrinkInput : IEvent
@@ -53,6 +53,20 @@ namespace Funksoft.Barista
             CreateRandomOrder();
         }
 
+        private void OnEnable()
+        {
+            EventBus.Register(this);
+        }
+        private void OnDisable()
+        {
+            EventBus.UnRegister(this);
+        }
+
+        public void OnEvent(DayManager.ShiftEnded e)
+        {
+            LeaveUnsatisfied();
+        }
+
         private void Update()
         {
             
@@ -60,7 +74,7 @@ namespace Funksoft.Barista
             TimeRemaining -= Time.deltaTime;
             if (TimeRemaining < Mathf.Epsilon)
             {
-                LeaveUnstatisfied();
+                LeaveUnsatisfied();
             }
         }
 
@@ -71,7 +85,7 @@ namespace Funksoft.Barista
         //Provide name and sprites for this object and its clickable component states.
         public string GetDisplayName()
         {
-            return CustomerData.name;
+            return "Serve drink to " + CustomerData.name;
         }
         public Sprite GetHoverSprite()
         {
@@ -91,19 +105,19 @@ namespace Funksoft.Barista
                 FailedServingsCount++;
                 return;
             }
-            LeaveUnstatisfied();
+            LeaveUnsatisfied();
         }
 
         public void LeaveSatisfied()
         {
             EventBus<Leave>.Raise
-            (new Leave{ customer = this, statisfied = true });
+            (new Leave{ customer = this, satisfied = true });
         }
 
-        private void LeaveUnstatisfied()
+        private void LeaveUnsatisfied()
         {
             EventBus<Leave>.Raise
-            (new Leave{ customer = this, statisfied = false });
+            (new Leave{ customer = this, satisfied = false });
         }
 
         private void CreateRandomOrder()

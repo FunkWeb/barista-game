@@ -18,7 +18,7 @@ namespace Funksoft.Barista
         private void Start()
         {
             _dayText.text = MonoBehaviourSingleton<PersistentShiftStats>.Instance.CurrentDayIndex.ToString();
-            _completedText.text = MonoBehaviourSingleton<PersistentShiftStats>.Instance.CompletedCustomers.ToString() + " statisfied customers";
+            _completedText.text = MonoBehaviourSingleton<PersistentShiftStats>.Instance.CompletedCustomers.ToString() + " satisfied customers";
             _failedText.text = MonoBehaviourSingleton<PersistentShiftStats>.Instance.FailedCustomers.ToString() + " unhappy customers";
         }
 

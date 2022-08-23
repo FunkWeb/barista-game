@@ -21,8 +21,12 @@ namespace Funksoft.Barista
         public void OnActivation()
         {
             if (!_recipeWindowPrefab.gameObject.activeSelf)
+            {
                 _recipeWindowPrefab.gameObject.SetActive(true);
+                BlockClickables.Instance.BlockEnabled = true;
+            }         
         }
+                
         //Provide name and sprites for this object and its clickable component states.
         public string GetDisplayName()
         {

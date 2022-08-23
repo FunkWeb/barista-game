@@ -68,7 +68,7 @@ namespace Funksoft.Barista
         //Receive event from spawned customer when they leave
         public void OnEvent(Customer.Leave e)
         {
-            CustomerLeft(e.customer, e.statisfied);
+            CustomerLeft(e.customer, e.satisfied);
         }
 
         //Change Scale of CustomerUI object to make it visible, when fully moved from right to left screen
@@ -103,8 +103,8 @@ namespace Funksoft.Barista
 
 
         //Remove customers from queue and handle changes needed when customers 
-        private void CustomerLeft(Customer customer, bool wasStatisfied)
-        {    
+        private void CustomerLeft(Customer customer, bool wasSatisfied)
+        {
             if (Customers.Contains(customer))
             {
                 //Remove active CustomerUI of customer when they leave.
@@ -116,11 +116,11 @@ namespace Funksoft.Barista
                 Destroy(customer.gameObject);
                 
                 //Handle stats and results based of failed or completed customer
-                if (wasStatisfied)
+                if (wasSatisfied)
                 {
                     PersistentShiftStats.Instance.CompletedCustomers += 1;
                     if (_debugLogsEnabled)
-                        TestUI.Log("Customer " + customer.CustomerData.name + " left statisfied with their order.");
+                        TestUI.Log("Customer " + customer.CustomerData.name + " left satisfied with their order.");
                     return;
                 }
                 if (_debugLogsEnabled)

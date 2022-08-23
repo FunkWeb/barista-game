@@ -56,6 +56,9 @@ namespace Funksoft.Barista
         //Switch to hover sprite when hovering, unless already done, or click is held.
         private void OnMouseOver()
         {
+            //Abort interaction if global clickable block is on.
+            if (BlockClickables.Instance.BlockEnabled)
+                return;
             if (_spriteRenderer.sprite == _hoverSprite || _spriteRenderer.sprite == _clickedSprite)
                 return;
             _spriteRenderer.sprite = _hoverSprite;
@@ -70,6 +73,9 @@ namespace Funksoft.Barista
         //Switch back to default sprite when no longer hovering
         private void OnMouseExit()
         {
+            //Abort interaction if global clickable block is on.
+            if (BlockClickables.Instance.BlockEnabled)
+                return;
             if (_spriteRenderer.sprite == _clickedSprite)
                 return;
             _spriteRenderer.sprite = _defaultSprite;
@@ -83,6 +89,9 @@ namespace Funksoft.Barista
 
         public void Activate()
         {
+            //Abort interaction if global clickable block is on.
+            if (BlockClickables.Instance.BlockEnabled)
+                return;
             _spriteRenderer.sprite = _clickedSprite;
             _clickableComponent.OnActivation();
         }

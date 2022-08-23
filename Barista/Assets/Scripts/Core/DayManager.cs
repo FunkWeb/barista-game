@@ -37,6 +37,11 @@ namespace Funksoft.Barista
             public CustomerData customerType;
         }
 
+        public struct ShiftEnded : IEvent
+        {
+
+        }
+
         private void Start()
         {
 
@@ -44,6 +49,11 @@ namespace Funksoft.Barista
             ShiftTimer = _days[CurrentDayIndex].ShiftTime;
             _timer = _days[CurrentDayIndex].InitialCustomerDelay;
             
+        }
+        private void LoadShiftEnd()
+        {
+            Valley.MonoBehaviourSingleton<SceneLoader>.Instance.LoadPostShiftScene();
+            Debug.Log("Shift over. You made it.");
         }
 
 
@@ -59,8 +69,10 @@ namespace Funksoft.Barista
             ShiftTimer -= Time.deltaTime;
             if (ShiftTimer <= 0f)
             {
-                Valley.MonoBehaviourSingleton<SceneLoader>.Instance.LoadPostShiftScene();
-                Debug.Log("Shift over. You made it.");
+                //Raise event for end of shift cleanup.
+                EventBus<ShiftEnded>.Raise(new ShiftEnded{});
+                //Load end of shift scene, Invoke with delay so we are certain all events have a chance to fire, and the player isnt given whiplash.
+                Invoke("LoadShiftEnd", 1f);
             }
             
             //Customer spawn timer.

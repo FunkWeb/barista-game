@@ -117,6 +117,7 @@ namespace Funksoft.Barista
         public void Close()
         {
             gameObject.SetActive(false);
+            BlockClickables.Instance.BlockEnabled = false;
         }
     }
 }
