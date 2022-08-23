@@ -44,7 +44,8 @@ namespace Funksoft.Barista
         }
         public void OnEvent(Customer.Leave e)
         {
-            Clear();
+            if (e.satisfied)
+                Clear();
         }
 
         public void AddMainIngredient(MainIngredientData ingredient, float amount)

@@ -39,6 +39,14 @@ namespace Funksoft.Barista
                 e.customer.LeaveSatisfied();
                 return;
             }
+            //Cancel serve attempt if there are no main ingredients in the drinkmixture. Customer will not lose patience or count it as a mistake.
+            if (_drink.DrinkMixture.MainIngredients.Count == 0)
+            {
+                if (_debugLogsEnabled)
+                    TestUI.Log("You cannot serve the customer an empty drink.");
+                return;
+            }
+
             e.customer.ServedWrongOrder();
         }
 
