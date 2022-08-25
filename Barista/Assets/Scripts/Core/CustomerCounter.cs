@@ -81,7 +81,7 @@ namespace Funksoft.Barista
                     if (CUI.Customer == null)
                         return;
                     CUI.transform.localScale = new Vector3(1,1,1);
-                    Debug.Log("Move ended, reset");
+                    
                     //Set position of UI to be above customer
                     Vector3 customerPos = CUI.Customer.transform.position;
                     CUI.transform.position = Camera.main.WorldToScreenPoint(new Vector3(customerPos.x, customerPos.y + _customerUIHeight, customerPos.z));
