@@ -25,7 +25,16 @@ namespace Funksoft.Barista
         [SerializeField]
         private TextMeshProUGUI _orderSideIngredientText;
 
-        public Customer Customer{ get; set;}
+        private Customer _customer;
+        public Customer Customer
+        {
+            get {return _customer;}
+            set
+            {
+                _customer = value;
+                DisplayOrderData();
+            }
+        }
         public Vector3 WorldPos{ get; set;}
 
 
@@ -56,6 +65,7 @@ namespace Funksoft.Barista
         //Give display components the relevant data
         private void DisplayOrderData()
         {
+
             _orderTitleText.text = Customer.Order.Drink.Name;
             _orderImage.sprite = Customer.Order.Drink.DrinkSprite;
             //Name each side ingredient on a new line. Clear first to wipe inspector written scene view test content.

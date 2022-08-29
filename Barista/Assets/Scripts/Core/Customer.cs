@@ -40,7 +40,10 @@ namespace Funksoft.Barista
         private void Awake()
         {
             TryGetComponent<SpriteRenderer>(out _spriteRenderer);
+            //Create order in Awake instead of Start, so the Customer UI can be activated at the same time as the customer is instantiated, without order being missing or outdated.
+            CreateRandomOrder();
         }
+
 
         private void Start()
         {
@@ -50,7 +53,7 @@ namespace Funksoft.Barista
             {
                 TestUI.Log("Customer Type: " + CustomerData.name + ". Patience Time: " + CustomerData.PatienceTimer);
             }
-            CreateRandomOrder();
+            
         }
 
         private void OnEnable()
