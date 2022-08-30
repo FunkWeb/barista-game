@@ -9,7 +9,7 @@ using System;
 namespace Funksoft.Barista
 {
     public class CustomerCounter : MonoBehaviour, 
-                                   IEventReceiver<DayManager.SpawnCustomer>, IEventReceiver<Customer.Leave>, 
+                                   IEventReceiver<Shift.SpawnCustomer>, IEventReceiver<Customer.Leave>, 
                                    IEventReceiver<MoveCamera.CamMoveFinished>, IEventReceiver<MoveCamera.CamMoveStarted>
     {
         [SerializeField]
@@ -61,7 +61,7 @@ namespace Funksoft.Barista
 
         #region Receive pEventBus events
         //Receive order to spawn new customer from Day/shift manager
-        public void OnEvent(DayManager.SpawnCustomer e)
+        public void OnEvent(Shift.SpawnCustomer e)
         {
             CreateNewCustomer(e.customerType);
         }

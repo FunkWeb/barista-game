@@ -6,14 +6,27 @@ using System.Linq;
 
 namespace Funksoft.Barista
 {
-    public class DayManager : MonoBehaviour
+    public class Shift : MonoBehaviour
     {
         [SerializeField]
         private DatabaseSO _databaseSO;
         [SerializeField]
         private List<DayData> _days;
 
-        public bool PreShiftPause = true;
+        private bool _paused;
+        public bool Paused
+        {
+            get {return _paused;}
+            set
+            {
+                _paused = value;
+                //Raise pausing events, notifies relevant parties to make sure everything that should stops.
+                if (_paused)
+                    EventBus<ShiftStateEvent>.Raise(new ShiftStateEvent{ type = ShiftEventType.Paused });
+                else
+                    EventBus<ShiftStateEvent>.Raise(new ShiftStateEvent{ type = ShiftEventType.Unpaused });
+            }
+        }
         
         private int _currentDayIndex = 0;
         public int CurrentDayIndex
@@ -31,15 +44,23 @@ namespace Funksoft.Barista
         public float ShiftTimer{get; private set;}
         private float _timer;
 
+        public enum ShiftEventType
+        {
+            Paused,
+            Unpaused,
+            ShiftEnded
+
+        }
+
         //Todo: replace with better eventbus notification of timers triggering and such
         public struct SpawnCustomer : IEvent
         {
             public CustomerData customerType;
         }
 
-        public struct ShiftEnded : IEvent
+        public struct ShiftStateEvent : IEvent
         {
-
+            public ShiftEventType type;
         }
 
         private void Start()
@@ -60,9 +81,9 @@ namespace Funksoft.Barista
         private void Update()
         {
             if (Input.GetKeyDown(KeyCode.P))
-                PreShiftPause = !PreShiftPause;
+                Paused = !Paused;
             //Dont start countdown until shift is properly started.
-            if (PreShiftPause)
+            if (Paused)
                 return;
 
             //End shift when the time is up
@@ -70,7 +91,7 @@ namespace Funksoft.Barista
             if (ShiftTimer <= 0f)
             {
                 //Raise event for end of shift cleanup.
-                EventBus<ShiftEnded>.Raise(new ShiftEnded{});
+                EventBus<ShiftStateEvent>.Raise(new ShiftStateEvent{ type = ShiftEventType.ShiftEnded });
                 //Load end of shift scene, Invoke with delay so we are certain all events have a chance to fire, and the player isnt given whiplash.
                 Invoke("LoadShiftEnd", 1f);
             }

@@ -7,7 +7,7 @@ namespace Funksoft.Barista
 {
     public class RegisterDisplay : MonoBehaviour
     {
-        private DayManager _dayManager;
+        private Shift _shift;
         private Canvas _canvas;
 
         [SerializeField]
@@ -16,14 +16,14 @@ namespace Funksoft.Barista
         // Start is called before the first frame update
         void Awake()
         {
-            _dayManager = FindObjectOfType<DayManager>();
+            _shift = FindObjectOfType<Shift>();
             _canvas = FindObjectOfType<Canvas>();
         }
 
         // Update is called once per frame
         void Update()
         {
-            _text.text = _dayManager.ShiftTimer.ToString("F0");
+            _text.text = _shift.ShiftTimer.ToString("F0");
         }
     }
 }

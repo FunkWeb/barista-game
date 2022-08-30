@@ -7,7 +7,7 @@ using pEventBus;
 
 namespace Funksoft.Barista
 {
-    public class Customer : MonoBehaviour, IClickable, IEventReceiver<DayManager.ShiftEnded>
+    public class Customer : MonoBehaviour, IClickable, IEventReceiver<Shift.ShiftStateEvent>
     {
         [SerializeField]
         private bool _debugLogsEnabled = false;
@@ -23,6 +23,8 @@ namespace Funksoft.Barista
         public float TimeRemaining;
 
         public int FailedServingsCount = 0;
+
+        private bool _pauseTimer;
 
         private SpriteRenderer _spriteRenderer;
 
@@ -65,16 +67,29 @@ namespace Funksoft.Barista
             EventBus.UnRegister(this);
         }
 
-        public void OnEvent(DayManager.ShiftEnded e)
+        public void OnEvent(Shift.ShiftStateEvent e)
         {
-            LeaveUnsatisfied();
+            switch(e.type)
+            {
+                case Shift.ShiftEventType.Paused:
+                    _pauseTimer = true;
+                    break;
+                case Shift.ShiftEventType.Unpaused:
+                    _pauseTimer = false;
+                    break;
+                case Shift.ShiftEventType.ShiftEnded:
+                    LeaveUnsatisfied();
+                    break;
+            }
         }
 
         private void Update()
         {
             
             //Customer Patience Countdown. Leave when timer has run out.
-            TimeRemaining -= Time.deltaTime;
+            if (!_pauseTimer)
+                TimeRemaining -= Time.deltaTime;
+
             if (TimeRemaining < Mathf.Epsilon)
             {
                 LeaveUnsatisfied();
