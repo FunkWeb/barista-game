@@ -8,6 +8,8 @@ namespace Funksoft.Barista
 {
     public class SceneLoader : MonoBehaviourSingleton<SceneLoader>
     {
+
+        public int StoredIndex{ get; set; }
         protected override void Awake()
         {
             base.Awake();
@@ -31,8 +33,10 @@ namespace Funksoft.Barista
         }
 
         //I know, this is really bad.
-        public void LoadShiftScene()
+        public void LoadShiftScene(int dayIndex)
         {
+            StoredIndex = dayIndex;
+            Debug.Log("Loading Shift Scene with DayIndex: " + StoredIndex);
             SceneManager.LoadScene(1);
         }
         public void LoadPostShiftScene()

@@ -12,7 +12,7 @@ namespace Funksoft.Barista
         //Hardcoded = Bad, Time = Short;
         public void LoadShiftScene()
         {
-            MonoBehaviourSingleton<SceneLoader>.Instance.LoadShiftScene();
+            MonoBehaviourSingleton<SceneLoader>.Instance.LoadShiftScene(0);
         }
     }
 }

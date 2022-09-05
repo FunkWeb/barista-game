@@ -1918,7 +1918,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2505002707431467594, guid: 656e4de0de0072b4a9344f6a4355884e, type: 3}
       propertyPath: m_Name
-      value: DayManager
+      value: Shift
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 656e4de0de0072b4a9344f6a4355884e, type: 3}

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using pEventBus;
 using System.Linq;
+using Valley;
 
 namespace Funksoft.Barista
 {
@@ -32,13 +33,17 @@ namespace Funksoft.Barista
         public int CurrentDayIndex
         {
             get {return _currentDayIndex;}
-            set {_currentDayIndex = Mathf.Clamp(_currentDayIndex, 0, _days.Count-1);}
+            set 
+            {
+                _currentDayIndex = value;
+                _currentDayIndex = Mathf.Clamp(_currentDayIndex, 0, _databaseSO.Days.HashSet.Count-1);
+            }
         }
 
-        public DayData CurrentDayData
+        /*public DayData CurrentDayData
         {
             get { return _days[CurrentDayIndex];}
-        }
+        }*/
         
 
         public float ShiftTimer{get; private set;}
@@ -49,7 +54,6 @@ namespace Funksoft.Barista
             Paused,
             Unpaused,
             ShiftEnded
-
         }
 
         //Todo: replace with better eventbus notification of timers triggering and such
@@ -65,8 +69,9 @@ namespace Funksoft.Barista
 
         private void Start()
         {
-
             _days = new List<DayData>(_databaseSO.Days.HashSet);
+            CurrentDayIndex = MonoBehaviourSingleton<SceneLoader>.Instance.StoredIndex;
+            Debug.Log("Shift Loaded with DayIndex: " + CurrentDayIndex);
             ShiftTimer = _days[CurrentDayIndex].ShiftTime;
             _timer = _days[CurrentDayIndex].InitialCustomerDelay;
             

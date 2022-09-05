@@ -40,3 +40,16 @@ MonoBehaviour:
   Days:
     _items:
     - {fileID: 11400000, guid: cda51874b64fd054ebe14e0da1eee2db, type: 2}
+    - {fileID: 11400000, guid: 92dc49d164757ad4f92bb39e72ca0286, type: 2}
+    - {fileID: 11400000, guid: f03d5e8ba69b37d48b752a4be97a36ec, type: 2}
+    - {fileID: 11400000, guid: 4a51db8437813e542ac3045ea4515ef0, type: 2}
+    - {fileID: 11400000, guid: 217b078e50b6b1643beeadd965c76a4b, type: 2}
+    - {fileID: 11400000, guid: 54155eadc7dbf884cb6db49a52e8280a, type: 2}
+    - {fileID: 11400000, guid: 12e9389c10162fa409dd38e688d55b99, type: 2}
+    - {fileID: 11400000, guid: a414e62434eaf274b9796fc4cccf84cc, type: 2}
+    - {fileID: 11400000, guid: 2dff7773d9f7d9e4ea8700fd5940fd87, type: 2}
+    - {fileID: 11400000, guid: 55d70c75df2990540bcc083966ec7cec, type: 2}
+    - {fileID: 11400000, guid: 36a9f3babd0fa314a98e77440ec8dd2a, type: 2}
+    - {fileID: 11400000, guid: 89b2dfa9f785c704f9e307a9c4e11923, type: 2}
+    - {fileID: 11400000, guid: 64e31032ce8ec6c4ea6e6cfdbcd67207, type: 2}
+    - {fileID: 11400000, guid: 04e6b51c044670e48bb8b32df73a50f8, type: 2}
