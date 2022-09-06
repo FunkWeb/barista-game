@@ -50,7 +50,7 @@ namespace Funksoft.Barista
             }
         }
 
-        private void StartSwitch()
+        public void StartSwitch()
         {
             if (_transitioning)
                 return;

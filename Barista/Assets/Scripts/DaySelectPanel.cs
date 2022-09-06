@@ -26,13 +26,12 @@ namespace Funksoft.Barista
         [SerializeField]
         private int _yRowPadding = 200;
 
-        private void LoadDay(int index)
-        {
-            MonoBehaviourSingleton<SceneLoader>.Instance.LoadShiftScene(index);
-        }
+        private List<GameObject> _buttonInstances = new List<GameObject>();
 
-        private void OnEnable()
+        //Initialization object in Awake due to being modified in OnEnable (Awake -> OnEnable -> Start)
+        private void Awake()
         {
+            #region Create Day Buttons
             int index = 0;
             foreach(DayData d in _database.Days.HashSet)
             {
@@ -41,7 +40,8 @@ namespace Funksoft.Barista
                 var y = _yRowPadding + (Mathf.CeilToInt(index / _daysInRow) * (_borderPadding + _dayButtonSize));
                 var pos = new Vector3(transform.position.x + x, transform.position.y - y, transform.position.z);
                 var inst = Instantiate(_dayButtonPrefab, pos, Quaternion.identity, this.transform);
-                
+                _buttonInstances.Add(inst);
+
                 //Set button text to match day index (+1 so visual display is not 0 indexed)
                 var text = inst.GetComponentInChildren<TextMeshProUGUI>(false);
                 text.text = (index+1).ToString();
@@ -49,6 +49,23 @@ namespace Funksoft.Barista
                 inst.GetComponent<Button>().onClick.AddListener(() => LoadDay(Int32.Parse(text.text)-1));
                 index++;
             }
+            #endregion
         }
+
+        public void ToggleWindow()
+        {
+            if (this.gameObject.activeSelf)
+                this.gameObject.SetActive(false);
+            else
+                this.gameObject.SetActive(true);
+        }
+
+
+
+        private void LoadDay(int index)
+        {
+            MonoBehaviourSingleton<SceneLoader>.Instance.LoadShiftScene(index);
+        }
+
     }
 }

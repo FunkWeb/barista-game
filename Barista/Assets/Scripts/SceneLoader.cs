@@ -44,7 +44,6 @@ namespace Funksoft.Barista
             SceneManager.LoadScene(2);
         }
 
-
         public void RestartCurrentScene()
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);

@@ -7,19 +7,15 @@ namespace Funksoft.Barista
 {
     public class SwitchScreenButton : MonoBehaviour, IEventReceiver<MoveCamera.CamMoveStarted>, IEventReceiver<MoveCamera.CamMoveFinished>
     {
-        private Vector3 _initialPos;
-        private Vector3 _oppositePos;
+        //Which screen this switch screen button is on.
+        [SerializeField]
+        private MoveCamera.Screen _buttonScreen;
 
         private RectTransform rectTransform;
 
         private void Awake()
         {
             TryGetComponent<RectTransform>(out rectTransform);
-        }
-
-        void Start()
-        {
-
         }
 
         private void OnEnable()
@@ -33,25 +29,15 @@ namespace Funksoft.Barista
 
         public void OnEvent(MoveCamera.CamMoveStarted e)
         {
-            Debug.Log("Test");
             rectTransform.localScale = new Vector3(0, 0, 0);
         }
+
         public void OnEvent(MoveCamera.CamMoveFinished e)
         {
-            rectTransform.localScale = new Vector3(1, 1, 1);
-
-            if (e.screenMovedTo == MoveCamera.Screen.LeftScreen)
+            if (e.screenMovedTo == _buttonScreen)
             {
-                rectTransform.anchorMin = new Vector2(1f, rectTransform.anchorMin.y);
-                rectTransform.anchorMax = new Vector2(1f, rectTransform.anchorMax.y);
+                rectTransform.localScale = new Vector3(1, 1, 1);
             }
-            else if (e.screenMovedTo == MoveCamera.Screen.RightScreen)
-            {
-                rectTransform.anchorMin = new Vector2(0f, rectTransform.anchorMin.y);
-                rectTransform.anchorMax = new Vector2(0f, rectTransform.anchorMax.y);
-            }
-
-            transform.position = new Vector3(0, 0, 0);
         }
     }
 }
