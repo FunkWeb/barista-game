@@ -39,6 +39,11 @@ namespace Funksoft.Barista
             public Customer customer;
         }
 
+        public struct Selected : IEvent
+        {
+            public Customer customer;
+        }
+
         private void Awake()
         {
             TryGetComponent<SpriteRenderer>(out _spriteRenderer);
@@ -98,7 +103,9 @@ namespace Funksoft.Barista
 
         public void OnActivation()
         {
-            EventBus<ServeDrinkInput>.Raise(new ServeDrinkInput{ customer = this});
+            //EventBus<ServeDrinkInput>.Raise(new ServeDrinkInput{ customer = this});
+            EventBus<Selected>.Raise(new Selected{ customer = this});
+        
         }
         //Provide name and sprites for this object and its clickable component states.
         public string GetDisplayName()
@@ -112,6 +119,11 @@ namespace Funksoft.Barista
         public Sprite GetClickedSprite()
         {
             return CustomerData.ClickedSprite;
+        }
+
+        public void AttemptServe()
+        {
+            EventBus<ServeDrinkInput>.Raise(new ServeDrinkInput{ customer = this});
         }
 
         public void ServedWrongOrder()

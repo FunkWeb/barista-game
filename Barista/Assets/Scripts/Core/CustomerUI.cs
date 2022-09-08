@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 namespace Funksoft.Barista
 {
-    public class CustomerUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+    public class CustomerUI : MonoBehaviour//, IPointerEnterHandler, IPointerExitHandler
     {
         [SerializeField]
         private TextMeshProUGUI _timerText;
@@ -50,6 +50,7 @@ namespace Funksoft.Barista
             _timerText.text = Customer.TimeRemaining.ToString("F0");
         }
 
+        /*
         public void OnPointerEnter(PointerEventData pointerEventData)
         {
             //_showExtendedInfo = true;
@@ -60,6 +61,21 @@ namespace Funksoft.Barista
         {
             //_showExtendedInfo = false;
             _orderPanel.SetActive(false);
+        }
+        */
+
+        public void OpenOrderPanel()
+        {
+            _orderPanel.SetActive(true);
+        }
+        public void CloseOrderPanel()
+        {
+            _orderPanel.SetActive(false);
+        }
+
+        public void ActivateServe()
+        {
+            _customer.AttemptServe();
         }
 
         //Give display components the relevant data

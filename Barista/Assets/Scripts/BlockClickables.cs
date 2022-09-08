@@ -7,7 +7,8 @@ namespace Funksoft.Barista
 {
     public class BlockClickables : MonoBehaviourSingleton<BlockClickables>
     {
-        public bool BlockEnabled{get; set;} = false;
+        [SerializeField]
+        public bool BlockEnabled = false;
         
         protected override void Awake()
         {

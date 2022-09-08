@@ -10,7 +10,8 @@ namespace Funksoft.Barista
 {
     public class CustomerCounter : MonoBehaviour, 
                                    IEventReceiver<Shift.SpawnCustomer>, IEventReceiver<Customer.Leave>, 
-                                   IEventReceiver<MoveCamera.CamMoveFinished>, IEventReceiver<MoveCamera.CamMoveStarted>
+                                   IEventReceiver<MoveCamera.CamMoveFinished>, IEventReceiver<MoveCamera.CamMoveStarted>, 
+                                   IEventReceiver<Customer.Selected>
     {
         [SerializeField]
         private bool _debugLogsEnabled = false;
@@ -69,6 +70,15 @@ namespace Funksoft.Barista
         public void OnEvent(Customer.Leave e)
         {
             CustomerLeft(e.customer, e.satisfied);
+        }
+        //Receive event from customer when they are selected, and display order display
+        public void OnEvent(Customer.Selected e)
+        {
+            foreach(CustomerUI cui in _customerUIs)
+                cui.CloseOrderPanel();
+            
+            var index = Array.IndexOf<Customer>(Customers, e.customer);
+            _customerUIs[index].OpenOrderPanel();
         }
 
         //Change Scale of CustomerUI object to make it visible, when fully moved from right to left screen
