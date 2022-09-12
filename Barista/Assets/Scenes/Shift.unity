@@ -1654,10 +1654,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: CustomerUI (2)
       objectReference: {fileID: 0}
-    - target: {fileID: 822468339323321989, guid: 913f7b207c08fc8419e2828966fe08f4, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7451393316030439309, guid: 913f7b207c08fc8419e2828966fe08f4, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

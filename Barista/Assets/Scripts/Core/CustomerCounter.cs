@@ -81,6 +81,18 @@ namespace Funksoft.Barista
             _customerUIs[index].OpenOrderPanel();
         }
 
+        //Change Scale of CustomerUI object to make it invisible, when starting a move from left to right screen
+        public void OnEvent(MoveCamera.CamMoveStarted e)
+        {
+            if (e.screenMovingTo == MoveCamera.Screen.RightScreen)
+            {
+                foreach(CustomerUI CUI in _customerUIs)
+                {
+                    CUI.gameObject.SetActive(false);
+                    CUI.CloseOrderPanel();
+                }
+            }
+        }
         //Change Scale of CustomerUI object to make it visible, when fully moved from right to left screen
         public void OnEvent(MoveCamera.CamMoveFinished e )
         {
@@ -89,23 +101,13 @@ namespace Funksoft.Barista
                 foreach(CustomerUI CUI in _customerUIs)
                 {
                     if (CUI.Customer == null)
-                        return;
-                    CUI.transform.localScale = new Vector3(1,1,1);
+                        continue;
+                    CUI.gameObject.SetActive(true);
+                    
                     
                     //Set position of UI to be above customer
                     Vector3 customerPos = CUI.Customer.transform.position;
                     CUI.transform.position = Camera.main.WorldToScreenPoint(new Vector3(customerPos.x, customerPos.y + _customerUIHeight, customerPos.z));
-                }
-            }
-        }
-        //Change Scale of CustomerUI object to make it invisible, when starting a move from left to right screen
-        public void OnEvent(MoveCamera.CamMoveStarted e)
-        {
-            if (e.screenMovingTo == MoveCamera.Screen.RightScreen)
-            {
-                foreach(CustomerUI CUI in _customerUIs)
-                {
-                    CUI.transform.localScale = new Vector3(0,0,0);
                 }
             }
         }
@@ -119,6 +121,7 @@ namespace Funksoft.Barista
             {
                 //Remove active CustomerUI of customer when they leave.
                 int index = Array.IndexOf(Customers, customer);
+                _customerUIs[index].CloseOrderPanel();
                 _customerUIs[index].gameObject.SetActive(false);
 
                 //Remove customer from array

@@ -10,13 +10,11 @@ namespace Funksoft.Barista
     public class CustomerUI : MonoBehaviour//, IPointerEnterHandler, IPointerExitHandler
     {
         [SerializeField]
-        private TextMeshProUGUI _timerText;
-
-        //[SerializeField]
-        //private bool _showExtendedInfo = false;
-
-        [SerializeField]
         private GameObject _orderPanel;
+        [SerializeField]
+        public GameObject HeadUI;
+        [SerializeField]
+        private TextMeshProUGUI _headTimerText;
 
         [SerializeField]
         private Image _orderImage;
@@ -24,6 +22,8 @@ namespace Funksoft.Barista
         private TextMeshProUGUI _orderTitleText;
         [SerializeField]
         private TextMeshProUGUI _orderSideIngredientText;
+        [SerializeField]
+        private TextMeshProUGUI _orderTimerText;
 
         private Customer _customer;
         public Customer Customer
@@ -47,7 +47,8 @@ namespace Funksoft.Barista
 
         private void LateUpdate()
         {
-            _timerText.text = Customer.TimeRemaining.ToString("F0");
+            _headTimerText.text = Customer.TimeRemaining.ToString("F0");
+            _orderTimerText.text = _headTimerText.text;
         }
 
         /*
@@ -67,10 +68,12 @@ namespace Funksoft.Barista
         public void OpenOrderPanel()
         {
             _orderPanel.SetActive(true);
+            HeadUI.SetActive(false);
         }
         public void CloseOrderPanel()
         {
             _orderPanel.SetActive(false);
+            HeadUI.SetActive(true);
         }
 
         public void ActivateServe()
