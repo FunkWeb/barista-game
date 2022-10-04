@@ -1398,9 +1398,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5473515401153851573, guid: 8e4e9c8099d05424ea2c6e5eb1fb4e45, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7092207282301905617, guid: 8e4e9c8099d05424ea2c6e5eb1fb4e45, type: 3}
       propertyPath: m_Name
       value: Recipe Window
+      objectReference: {fileID: 0}
+    - target: {fileID: 7092207282301905617, guid: 8e4e9c8099d05424ea2c6e5eb1fb4e45, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9129360736327952540, guid: 8e4e9c8099d05424ea2c6e5eb1fb4e45, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PrevPage
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8e4e9c8099d05424ea2c6e5eb1fb4e45, type: 3}
