@@ -15,7 +15,6 @@ MonoBehaviour:
   Name: Latte
   DrinkSprite: {fileID: 21300000, guid: 9913e64164915da44a587fc90d109481, type: 3}
   FillSprite: {fileID: 0}
-  DescText: A glass of water. I have no idea why anyone would come to a coffee shop
-    for this.
+  DescText: 
   Ingredients:
   - {fileID: 11400000, guid: c9e65b9ccc21d6949aa75f4b85f9e741, type: 2}

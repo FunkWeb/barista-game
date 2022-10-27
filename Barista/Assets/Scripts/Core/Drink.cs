@@ -5,7 +5,8 @@ using pEventBus;
 
 namespace Funksoft.Barista
 {
-    public class Drink : MonoBehaviour, IEventReceiver<MainDispenser.Used>, IEventReceiver<SideDispenser.Used>, IEventReceiver<Customer.Leave>
+    public class Drink : MonoBehaviour, IEventReceiver<MainDispenser.Used>, IEventReceiver<SideDispenser.Used>, IEventReceiver<Customer.Leave>,
+                                        IEventReceiver<LidPile.AttemptLidDrink>
     {
         [SerializeField]
         private bool _debugLogsEnabled = false;
@@ -47,6 +48,7 @@ namespace Funksoft.Barista
             if (e.satisfied)
                 Clear();
         }
+        public void OnEvent(LidPile.AttemptLidDrink e){}
 
         public void AddMainIngredient(MainIngredientData ingredient, float amount)
         {
@@ -78,6 +80,7 @@ namespace Funksoft.Barista
             if (_debugLogsEnabled)
                 TestUI.Log("Drink contents emptied.");
         }
+
 
         
     }

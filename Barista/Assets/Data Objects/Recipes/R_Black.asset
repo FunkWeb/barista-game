@@ -15,7 +15,7 @@ MonoBehaviour:
   Name: Black Coffee
   DrinkSprite: {fileID: 21300000, guid: 3a7e95873df4f734a9b551cfa24d4168, type: 3}
   FillSprite: {fileID: 0}
-  DescText: 1/1 - (100%) one full cup of regular coffee
+  DescText: 
   Ingredients:
   - {fileID: 11400000, guid: faa3123fccd3fb94b9d815776476100c, type: 2}
   - {fileID: 11400000, guid: faa3123fccd3fb94b9d815776476100c, type: 2}

@@ -15,11 +15,12 @@ MonoBehaviour:
   Name: Latte
   DrinkSprite: {fileID: 21300000, guid: 30ecd97930796f14ab14e058661e2976, type: 3}
   FillSprite: {fileID: 0}
-  DescText: 1/4 - (25%) espresso | (65%) steamed milk | 1/10n - (10%) foamed milk
+  DescText: 
   Ingredients:
   - {fileID: 11400000, guid: d7bf4ec422e6b4e45991cf8ef4dfbff8, type: 2}
   - {fileID: 11400000, guid: d7bf4ec422e6b4e45991cf8ef4dfbff8, type: 2}
   - {fileID: 11400000, guid: e067ed3f0c293584ba383585708e2864, type: 2}
+  - {fileID: 11400000, guid: 692eae5e27471ba458a59c853a7b7d8a, type: 2}
   - {fileID: 11400000, guid: 692eae5e27471ba458a59c853a7b7d8a, type: 2}
   - {fileID: 11400000, guid: 692eae5e27471ba458a59c853a7b7d8a, type: 2}
   - {fileID: 11400000, guid: 692eae5e27471ba458a59c853a7b7d8a, type: 2}
