@@ -26,7 +26,7 @@ private void Eksempel
 }
 
 
-All kode til prosjektet burde være i samme NameSpace, som for eksempel:
+All kode til prosjektet burde være i samme namespace, som for eksempel:
 
 namespace Funksoft.Barista
 {

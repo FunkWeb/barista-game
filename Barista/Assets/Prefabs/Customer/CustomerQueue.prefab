@@ -170,6 +170,7 @@ MonoBehaviour:
   _debugLogsEnabled: 1
   _database: {fileID: 11400000, guid: d474ff30e52965c46b5b84135b8561cc, type: 2}
   _customerPrefab: {fileID: 5663859507957798225, guid: 448a89e6dfd557c4482e142cd09a2863, type: 3}
+  _customerFeedbackIconPrefab: {fileID: 5765894900149842878, guid: 904662be155857144ac8e18d5e114f3a, type: 3}
   _customerUIs:
   - {fileID: 0}
   - {fileID: 0}
@@ -182,4 +183,8 @@ MonoBehaviour:
   - {fileID: 1771905639}
   - {fileID: 807532958}
   _customerUIHeight: 4
-  Customers: []
+  Customers:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}

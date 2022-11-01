@@ -127,7 +127,7 @@ namespace Funksoft.Barista
                 //Remove customer from array
                 Customers[index] = null;
                 Destroy(customer.gameObject);
-                
+
                 //Handle stats and results based of failed or completed customer
                 if (wasSatisfied)
                 {

@@ -18,10 +18,16 @@ namespace Funksoft.Barista
         [SerializeField]
         public CustomerData CustomerData;
 
-        public Order Order;
-        
-        public float TimeRemaining;
+        [Header("Feedback Icons"), SerializeField]
+        private Transform _iconTransform;
+        private GameObject _happyIconPrefab;
+        [SerializeField]
+        private GameObject _unhappyIconPrefab;
 
+        public Order Order;
+        [HideInInspector]
+        public float TimeRemaining;
+        [HideInInspector]
         public int FailedServingsCount = 0;
 
         private bool _pauseTimer;
@@ -140,12 +146,15 @@ namespace Funksoft.Barista
 
         public void LeaveSatisfied()
         {
+            Instantiate(_happyIconPrefab, _iconTransform.position, Quaternion.identity);
+
             EventBus<Leave>.Raise
             (new Leave{ customer = this, satisfied = true });
         }
 
         private void LeaveUnsatisfied()
         {
+            Instantiate(_unhappyIconPrefab, _iconTransform.position, Quaternion.identity);
             EventBus<Leave>.Raise
             (new Leave{ customer = this, satisfied = false });
         }
