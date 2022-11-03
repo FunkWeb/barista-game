@@ -46,6 +46,12 @@ namespace Funksoft.Barista
                     TestUI.Log("You cannot serve the customer an empty drink.");
                 return;
             }
+            if (!_drink.Lidded)
+            {
+                if (_debugLogsEnabled)
+                    TestUI.Log("Drink is incomplete. The drink must be full and lidded before serving.");
+                return;
+            }
 
             e.customer.ServedWrongOrder();
         }
@@ -69,6 +75,9 @@ namespace Funksoft.Barista
         {
             //Make sure customer still exists
             if (customer == null)
+                return false;
+
+            if (!drink.Lidded)
                 return false;
 
             //Attempt to assemble drink.

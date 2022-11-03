@@ -128,6 +128,7 @@ MonoBehaviour:
   _database: {fileID: 11400000, guid: d474ff30e52965c46b5b84135b8561cc, type: 2}
   CustomerData: {fileID: 0}
   _iconTransform: {fileID: 1981872745438359157}
+  _happyIconPrefab: {fileID: 573611292444411523, guid: 5c0f0afd967543443bc2f32039f68792, type: 3}
   _unhappyIconPrefab: {fileID: 573611292444411523, guid: 4ae456b412154564e8b3143eaaf0b05d, type: 3}
   TimeRemaining: 0
   FailedServingsCount: 0

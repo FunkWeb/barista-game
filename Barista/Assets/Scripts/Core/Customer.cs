@@ -20,6 +20,7 @@ namespace Funksoft.Barista
 
         [Header("Feedback Icons"), SerializeField]
         private Transform _iconTransform;
+        [SerializeField]
         private GameObject _happyIconPrefab;
         [SerializeField]
         private GameObject _unhappyIconPrefab;

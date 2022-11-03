@@ -11,7 +11,9 @@ namespace Funksoft.Barista
         [SerializeField]
         private bool _debugLogsEnabled = false;
 
-        [SerializeField]
+        public bool Lidded{get; private set;}
+
+        [Header("References"), SerializeField]
         private DisplayCupContents _displayCupContents;
 
         [SerializeField]
@@ -48,7 +50,18 @@ namespace Funksoft.Barista
             if (e.satisfied)
                 Clear();
         }
-        public void OnEvent(LidPile.AttemptLidDrink e){}
+        public void OnEvent(LidPile.AttemptLidDrink e)
+        {
+            if (!Lidded)
+                Lidded = true;
+            
+            //Todo: Assemble drink and store resulting recipe.
+
+            //Todo: Update visual display drink to match assembled drink + lid graphics.
+
+            //Todo: Spawn and transfer drink info to receipt object.
+
+        }
 
         public void AddMainIngredient(MainIngredientData ingredient, float amount)
         {
@@ -77,8 +90,8 @@ namespace Funksoft.Barista
             DrinkMixture = new DrinkMixture();
             _displayCupContents.DrinkMixture = DrinkMixture;
             _displayCupContents.ResetIngredientDisplay();
-            if (_debugLogsEnabled)
-                TestUI.Log("Drink contents emptied.");
+            //if (_debugLogsEnabled)
+                //TestUI.Log("Drink contents emptied.");
         }
 
 

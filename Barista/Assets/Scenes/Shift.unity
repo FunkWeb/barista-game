@@ -1830,6 +1830,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2894593444869965565, guid: 5f75ababf2dc6d6469b9ccca702e90b1, type: 3}
+      propertyPath: FillAmountPerSec
+      value: 75
+      objectReference: {fileID: 0}
     - target: {fileID: 2894593444869965566, guid: 5f75ababf2dc6d6469b9ccca702e90b1, type: 3}
       propertyPath: m_Name
       value: Espresso Dispenser
@@ -2601,8 +2605,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _displayName: Lids
-  _hoverSprite: {fileID: 1629272856247149884, guid: 69c6ebbe1d322144c8e29294885b7d3c, type: 3}
-  _clickedSprite: {fileID: 0}
+  _hoverSprite: {fileID: 21300000, guid: f9161c6c9e06dc445ada3ee16d991f90, type: 3}
+  _clickedSprite: {fileID: 21300000, guid: f09eae8c0ea04254b90c5386a034a225, type: 3}
 --- !u!61 &1201261411686879951
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2860,6 +2864,10 @@ PrefabInstance:
     - target: {fileID: 2894593444869965564, guid: 3c9a4f12ec02daf499385923aa2ba1b5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2894593444869965565, guid: 3c9a4f12ec02daf499385923aa2ba1b5, type: 3}
+      propertyPath: FillAmountPerSec
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 2894593444869965566, guid: 3c9a4f12ec02daf499385923aa2ba1b5, type: 3}
       propertyPath: m_Name
