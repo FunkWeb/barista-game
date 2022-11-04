@@ -20,6 +20,12 @@ namespace Funksoft.Barista
             _dayText.text = MonoBehaviourSingleton<PersistentShiftStats>.Instance.CurrentDayIndex.ToString();
             _completedText.text = MonoBehaviourSingleton<PersistentShiftStats>.Instance.CompletedCustomers.ToString() + " satisfied customers";
             _failedText.text = MonoBehaviourSingleton<PersistentShiftStats>.Instance.FailedCustomers.ToString() + " unhappy customers";
+
+            //Todo (maybe): Save stats for highscore table.
+
+            //Reset customer stats to prevent carryover between shifts.
+            MonoBehaviourSingleton<PersistentShiftStats>.Instance.CompletedCustomers = 0;
+            MonoBehaviourSingleton<PersistentShiftStats>.Instance.FailedCustomers = 0;
         }
 
 

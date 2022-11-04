@@ -29,6 +29,12 @@ namespace Funksoft.Barista
             EventBus.UnRegister(this);
         }
 
+        public struct TriggerMistake : IEvent
+        {
+            public MistakeReceipt.MistakeType mistakeType;
+            public Drink drink;
+        }
+
         //Triggered when serve input is called (aka. when a customer is clicked)
         public void OnEvent(Customer.ServeDrinkInput e)
         {
@@ -42,6 +48,12 @@ namespace Funksoft.Barista
             //Cancel serve attempt if there are no main ingredients in the drinkmixture. Customer will not lose patience or count it as a mistake.
             if (_drink.DrinkMixture.MainIngredients.Count == 0)
             {
+                /*
+                EventBus<TriggerMistake>.Raise(new TriggerMistake(){
+                    mistakeType = MistakeReceipt.MistakeType.DrinkEmpty;
+                    drink = _drink;
+                });
+                */
                 if (_debugLogsEnabled)
                     TestUI.Log("You cannot serve the customer an empty drink.");
                 return;
