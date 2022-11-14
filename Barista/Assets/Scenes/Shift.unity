@@ -1622,9 +1622,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'MIXING MISTAKE
-
-    ----------------------------'
+  m_text: 'Mistake: Empty Drink'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2248,18 +2246,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'DRINK DOES NOT MATCH ANY RECIPE
-
-
-    The drink consisted of:
-
-
-    22%
-    Steamed Milk
-
-    31% Water
-
-    47% Espresso'
+  m_text: You cannot serve the customer an empty drink.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2594,7 +2581,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: -600, y: -375}
-  m_SizeDelta: {x: -1650, y: -750}
+  m_SizeDelta: {x: -1625, y: -750}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2101800160
 MonoBehaviour:
@@ -2646,8 +2633,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c725282f626c8914da62f731eb50c846, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _titleText: {fileID: 0}
-  _bodyText: {fileID: 0}
+  _mistakeTitleTexts:
+  - 'Mistake: No Lid'
+  - 'Mistake: Empty Cup'
+  - 'Mistake: Wrong Drink'
+  - 'Mistake: Not a Recipe'
+  - 'Mistake: Missing Topping'
+  - 'Mistake: Unwanted Topping'
+  _mistakeBodyTexts:
+  - Drink must be lidded before serving.
+  - You cannot serve a custmer an empty cup.
+  - This is not the recipe that the customer ordered.
+  - This drink matches no known recipe.
+  - The drink is missing a topping the customer ordered.
+  - This drink has a topping the customer didn't ask for.
+  _displayTime: 3
+  _titleText: {fileID: 1240968842}
+  _bodyText: {fileID: 2043515190}
 --- !u!4 &2115076535 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 236524460607680589, guid: e981f3b8602f22c4ca82a1493d13dfd7, type: 3}

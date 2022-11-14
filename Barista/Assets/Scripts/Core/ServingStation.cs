@@ -33,6 +33,7 @@ namespace Funksoft.Barista
         {
             public MistakeReceipt.MistakeType mistakeType;
             public Drink drink;
+            public Order order;
         }
 
         //Triggered when serve input is called (aka. when a customer is clicked)
@@ -48,18 +49,24 @@ namespace Funksoft.Barista
             //Cancel serve attempt if there are no main ingredients in the drinkmixture. Customer will not lose patience or count it as a mistake.
             if (_drink.DrinkMixture.MainIngredients.Count == 0)
             {
-                /*
-                EventBus<TriggerMistake>.Raise(new TriggerMistake(){
-                    mistakeType = MistakeReceipt.MistakeType.DrinkEmpty;
-                    drink = _drink;
+                EventBus<TriggerMistake>.Raise(new TriggerMistake()
+                {
+                    mistakeType = MistakeReceipt.MistakeType.DrinkEmpty,
+                    drink = _drink
                 });
-                */
+                
                 if (_debugLogsEnabled)
                     TestUI.Log("You cannot serve the customer an empty drink.");
                 return;
             }
             if (!_drink.Lidded)
             {
+                EventBus<TriggerMistake>.Raise(new TriggerMistake()
+                {
+                    mistakeType = MistakeReceipt.MistakeType.UnLidded,
+                    drink = _drink
+                });
+
                 if (_debugLogsEnabled)
                     TestUI.Log("Drink is incomplete. The drink must be full and lidded before serving.");
                 return;
@@ -80,8 +87,8 @@ namespace Funksoft.Barista
                 return;
             }
             e.customer.ServedWrongOrder();
-        }
-        */
+        }*/
+        
 
         public bool TryServeDrink(Drink drink, Customer customer)
         {
@@ -98,6 +105,12 @@ namespace Funksoft.Barista
             //If the converted and assembled drink does not match any recipe
             if (assembledDrinkRecipe == null)
             {
+                EventBus<TriggerMistake>.Raise(new TriggerMistake()
+                {
+                    mistakeType = MistakeReceipt.MistakeType.NoRecipe,
+                    drink = _drink
+                });
+
                 if (_debugLogsEnabled)
                     TestUI.Log("Mistake: Drink does not match any existing recipe");
                 return false;
@@ -106,6 +119,12 @@ namespace Funksoft.Barista
             //The converted and asembled drink result is not the recipe the customer ordered
             if (assembledDrinkRecipe != customer.Order.Drink)
             {
+                EventBus<TriggerMistake>.Raise(new TriggerMistake()
+                {
+                    mistakeType = MistakeReceipt.MistakeType.WrongRecipe,
+                    drink = _drink
+                });
+
                 if (_debugLogsEnabled)
                     TestUI.Log("Mistake: Wrong drink served. " + customer.CustomerData.name + " ordered: " + 
                               customer.Order.Drink.Name + ". \n You served: " + assembledDrinkRecipe.Name + ".");
@@ -117,6 +136,12 @@ namespace Funksoft.Barista
             {
                 if (!drink.DrinkMixture.SideIngredients.HashSet.Contains(si))
                 {
+                    EventBus<TriggerMistake>.Raise(new TriggerMistake()
+                    {
+                        mistakeType = MistakeReceipt.MistakeType.MissingTopping,
+                        drink = _drink
+                    });
+
                     if (_debugLogsEnabled)
                         TestUI.Log("Mistake: Drink is missing " + si.Name);
                     return false;
@@ -127,6 +152,13 @@ namespace Funksoft.Barista
             {
                 if (!customer.Order.SideIngredients.Contains(si))
                 {
+                    EventBus<TriggerMistake>.Raise(new TriggerMistake()
+                    {
+                        mistakeType = MistakeReceipt.MistakeType.UnwantedTopping,
+                        drink = _drink,
+                        order = customer.Order
+                    });
+
                     if (_debugLogsEnabled)
                         TestUI.Log("Mistake: Drink was not supposed to have " + si.Name);
                     return false;
