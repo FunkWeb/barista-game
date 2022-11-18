@@ -25,6 +25,7 @@ namespace Funksoft.Barista
         public void OnActivation()
         {
             _drink.Clear();
+            _drink.HasCup = false;
         }
         //Provide name and sprites for this object and its clickable component states.
         public string GetDisplayName()
